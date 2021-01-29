@@ -1,0 +1,12 @@
+using System;
+
+namespace Kari_sFirstProject
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello SoftUni");
+        }
+    }
+}
