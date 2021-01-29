@@ -1,0 +1,127 @@
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git status
+On branch Master
+Your branch is up to date with 'origin/Master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   ../First Steps In Coding - Exercise/TextFileExercise
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        01. NumbersEndingIn7/
+
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git status
+On branch Master
+Your branch is up to date with 'origin/Master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   ../First Steps In Coding - Exercise/TextFileExercise
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        01NumbersEndingIn7/
+
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git add 01NumbersEndingIn7/
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git status
+On branch Master
+Your branch is up to date with 'origin/Master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   ../First Steps In Coding - Exercise/TextFileExercise
+        new file:   01NumbersEndingIn7/01. NumbersEndingIn7.csproj
+        new file:   01NumbersEndingIn7/Program.cs
+
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git commit -m 'Test upload'
+[Master 722c83a] Test upload
+ 3 files changed, 28 insertions(+)
+ create mode 100644 CsharpBasics/FirstStepsInCoding/01NumbersEndingIn7/01. NumbersEndingIn7.csproj
+ create mode 100644 CsharpBasics/FirstStepsInCoding/01NumbersEndingIn7/Program.cs
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git push
+Warning: Permanently added the RSA host key for IP address '140.82.121.3' to the list of known hosts.
+Enumerating objects: 14, done.
+Counting objects: 100% (14/14), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 1.09 KiB | 185.00 KiB/s, done.
+Total 9 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:DAniBorisovJB/SoftUniCourses.git
+   4094e59..722c83a  Master -> Master
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git log
+commit 722c83ab10428ace878aea1519a77a219f073300 (HEAD -> Master, origin/Master, origin/HEAD)
+Author: Дани Борисов DAniborisov <diesonnekind@gmail.com>
+Date:   Fri Jan 29 21:28:50 2021 +0200
+
+    Test upload
+
+commit 4094e59ada51199f56ba3780b8da95605c2cdc9c
+Author: Dani Borisov <77731733+DAniBorisovJB@users.noreply.github.com>
+Date:   Fri Jan 29 18:12:38 2021 +0200
+
+    Add files via upload
+
+commit 56a6ad3d9427c53114007138f0249ffa4a0167af
+Author: Dani Borisov <77731733+DAniBorisovJB@users.noreply.github.com>
+Date:   Fri Jan 29 18:09:19 2021 +0200
+
+    Create 01. Hello SoftUni
+
+commit 767253bc55284bcd59e90ac68336bf03a75372ed
+Author: Dani Borisov <77731733+DAniBorisovJB@users.noreply.github.com>
+Date:   Fri Jan 29 18:07:49 2021 +0200
+
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git remote
+origin
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git pull
+Already up to date.
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git branch --list
+* Master
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git checkout -b
+error: switch `b' requires a value
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ git checkout -b test
+Switched to a new branch 'test'
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (test)
+$ git branch --list
+  Master
+* test
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (test)
+$ git checkout master
+'Switched to branch 'master'
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (master)
+$ git checkout Master
+Switched to branch 'Master'
+Your branch is up to date with 'origin/Master'.
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$ ^C
+
+BatmanBegins@DESKTOP-FD7JQBV MINGW64 /c/work/SoftUniCourses/CsharpBasics/FirstStepsInCoding (Master)
+$
