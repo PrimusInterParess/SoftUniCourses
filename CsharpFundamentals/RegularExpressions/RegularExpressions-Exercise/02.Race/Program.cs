@@ -8,7 +8,7 @@ namespace _02.Race
     class Program
     {
         static void Main(string[] args)
-        {
+        { 
             string namePattern = "[A-Za-z]";
             string digitPattern = @"\d";
 
@@ -41,11 +41,11 @@ namespace _02.Race
                 }
             }
 
-            var sortedDictionary = raceDictionary.OrderByDescending(x => x.Value).Select(x=>x.Key).Take(3).ToList();
+            var sortedDictionary = raceDictionary.OrderByDescending(x => x.Value).Select(x => x.Key).Take(3).ToList();
 
-            Console.WriteLine($"1st place {sortedDictionary[0]}");
-            Console.WriteLine($"2nd place {sortedDictionary[1]}");
-            Console.WriteLine($"3rd place {sortedDictionary[2]}");
+            Console.WriteLine($"1st place: {sortedDictionary[0]}");
+            Console.WriteLine($"2nd place: {sortedDictionary[1]}");
+            Console.WriteLine($"3rd place: {sortedDictionary[2]}");
         }
     }
 }
