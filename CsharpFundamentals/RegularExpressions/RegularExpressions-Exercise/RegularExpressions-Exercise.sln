@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01. Furniture", "ConsoleApp1\01. Furniture.csproj", "{A27DCDD0-A3FE-47E3-9326-29D3B9410E4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.Race", "02.Race\02.Race.csproj", "{09C750D8-88F2-451B-815D-04A25CA595A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.Race", "02.Race\02.Race.csproj", "{09C750D8-88F2-451B-815D-04A25CA595A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.SoftUniBarIncome", "03.SoftUniBarIncome\03.SoftUniBarIncome.csproj", "{ECB89DA5-065D-4718-B5DF-DD17F62DFBB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.SoftUniBarIncome", "03.SoftUniBarIncome\03.SoftUniBarIncome.csproj", "{ECB89DA5-065D-4718-B5DF-DD17F62DFBB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.StarEnigma", "04.StarEnigma\04.StarEnigma.csproj", "{4A711C8D-960F-4126-B9A5-4520DD63E976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{ECB89DA5-065D-4718-B5DF-DD17F62DFBB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECB89DA5-065D-4718-B5DF-DD17F62DFBB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECB89DA5-065D-4718-B5DF-DD17F62DFBB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A711C8D-960F-4126-B9A5-4520DD63E976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A711C8D-960F-4126-B9A5-4520DD63E976}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A711C8D-960F-4126-B9A5-4520DD63E976}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A711C8D-960F-4126-B9A5-4520DD63E976}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
