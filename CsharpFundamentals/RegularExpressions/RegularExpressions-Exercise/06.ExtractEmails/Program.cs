@@ -7,7 +7,7 @@ namespace _06.ExtractEmails
     {
         static void Main(string[] args)
         {
-            string pattern = @"(?<=\s)(?<user>[A-Za-z0-9]+[.-]*\w)*@(?<host>[a-z]+?([.-][a-z]*)*(\.[a-z]{2,3}))";
+            string pattern = @"(?<=\s)(?<user>[A-Za-z0-9]+[.-]*\w*)*@(?<host>[a-z]+?([.-][a-z]*)*(\.[a-z]{2,}))";
 
             string input = Console.ReadLine();
 
