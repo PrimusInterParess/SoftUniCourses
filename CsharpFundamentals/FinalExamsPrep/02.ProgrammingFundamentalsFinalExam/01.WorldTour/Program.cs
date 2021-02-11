@@ -20,17 +20,20 @@ namespace _01.WorldTour
                 {
                     case "Add Stop":
                         data = Add(data, int.Parse(command[1]), command[2]);
-                        Console.WriteLine(data);
+
                         break;
                     case "Remove Stop":
                         data = Remove(data, int.Parse(command[1]), int.Parse(command[2]));
-                        Console.WriteLine(data);
+
                         break;
-                    case "Switch":data= SwitchStop(data, command[1], command[2]);
-                        Console.WriteLine(data);
+                    case "Switch":
+                        data = SwitchStop(data, command[1], command[2]);
+
                         break;
-                        
+
                 }
+
+                Console.WriteLine(data);
             }
 
             Console.WriteLine($"Ready for world tour! Planned stops: {data}");
@@ -40,7 +43,7 @@ namespace _01.WorldTour
         {
             if (data.Contains(oldString))
             {
-               data= data.Replace(oldString, newString);
+                data = data.Replace(oldString, newString);
             }
 
             return data;
@@ -48,19 +51,19 @@ namespace _01.WorldTour
 
         private static string Remove(string data, int start, int end)
         {
-            if (start >= 0 && end <= data.Length - 1 && start < end)
+            if ((start >= 0 && start <= data.Length - 1) && (end >= 0 && end <= data.Length - 1))
             {
                 int toRemove = end - start + 1;
 
                 int stop = 0;
 
-                for (int i = start; i <=end; i++)
+                for (int i = start; i <= end; i++)
                 {
                     data = data.Remove(i, 1);
                     stop++;
                     i--;
 
-                    if (stop== toRemove)
+                    if (stop == toRemove)
                     {
                         break;
                     }
