@@ -20,7 +20,7 @@ namespace _03.HeroesOfCodeAndLogicVII
             HP = hp;
         }
 
-        
+
     }
 
     class Program
@@ -62,7 +62,7 @@ namespace _03.HeroesOfCodeAndLogicVII
                 }
             }
 
-            foreach (Hero hero in herosList.OrderByDescending(h=>h.HP).ThenBy(h=>h.Name))
+            foreach (Hero hero in herosList.OrderByDescending(h => h.HP).ThenBy(h => h.Name))
             {
                 StringBuilder toPrint = new StringBuilder();
 
@@ -80,22 +80,20 @@ namespace _03.HeroesOfCodeAndLogicVII
             {
                 if (hero.Name == heroName)
                 {
-                    int hpNeeded = 100 - hero.HP;
+                   
 
-                    if (hpNeeded >= healing)
+                    if (hero.HP + healing> 100)
                     {
-                        hero.HP += healing;
+                        healing = 100-hero.HP;
 
-                        Console.WriteLine($"{hero.Name} healed for {healing} HP!");
-                        return;
+                        
                     }
-                    else
-                    {
-                        hero.HP = 100;
 
-                        Console.WriteLine($"{hero.Name} recharged for {hpNeeded} MP!");
-                        return;
-                    }
+                    hero.HP += healing;
+
+                    Console.WriteLine($"{hero.Name} healed for {healing} HP!");
+                    return;
+                   
                 }
             }
         }
@@ -108,20 +106,17 @@ namespace _03.HeroesOfCodeAndLogicVII
                 {
                     int mpNeeded = 200 - hero.MP;
 
-                    if (mpNeeded >= mpToAdd)
-                    {
-                        hero.MP += mpToAdd;
 
-                        Console.WriteLine($"{hero.Name} recharged for {mpToAdd} MP!");
-                        return;
-                    }
-                    else
+                    if (hero.MP + mpToAdd > 200)
                     {
-                        hero.MP = 200;
-
-                        Console.WriteLine($"{hero.Name} recharged for {mpNeeded} MP!");
-                        return;
+                        mpToAdd = 200 - hero.MP;
                     }
+
+                    hero.MP += mpToAdd;
+
+                    Console.WriteLine($"{hero.Name} recharged for {mpToAdd} MP!");
+                    return;
+
                 }
             }
         }
