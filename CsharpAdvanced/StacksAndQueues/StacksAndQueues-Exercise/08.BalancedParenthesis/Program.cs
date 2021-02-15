@@ -39,9 +39,9 @@ namespace _08.BalancedParenthesis
                 }
                 else
                 {
-                    char lastBracket = parenthesesChars.Pop();
+                   
 
-                    char expected = pairsParentheses[lastBracket];
+                    char expected = pairsParentheses[parenthesesChars.Pop()];
 
                     if (ch != expected)
                     {
