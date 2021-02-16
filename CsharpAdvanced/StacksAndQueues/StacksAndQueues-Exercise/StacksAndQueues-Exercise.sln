@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.TruckTour", "07.TruckTou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.BalancedParenthesis", "08.BalancedParenthesis\08.BalancedParenthesis.csproj", "{37CBF21D-0BD7-4B37-B228-5C248B3B41CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.SimpleTextEditor", "09.SimpleTextEditor\09.SimpleTextEditor.csproj", "{E3AE0994-ABD4-458D-BDF6-A35CF76CC734}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09.SimpleTextEditor", "09.SimpleTextEditor\09.SimpleTextEditor.csproj", "{E3AE0994-ABD4-458D-BDF6-A35CF76CC734}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo", "demo\demo.csproj", "{268FA305-9589-4867-BF8D-39083A3CDF42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "demo", "demo\demo.csproj", "{268FA305-9589-4867-BF8D-39083A3CDF42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.Crossroads", "10.Crossroads\10.Crossroads.csproj", "{7F050F42-4FCB-4BD6-9ECE-373C09C40CE4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{268FA305-9589-4867-BF8D-39083A3CDF42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268FA305-9589-4867-BF8D-39083A3CDF42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{268FA305-9589-4867-BF8D-39083A3CDF42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F050F42-4FCB-4BD6-9ECE-373C09C40CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F050F42-4FCB-4BD6-9ECE-373C09C40CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F050F42-4FCB-4BD6-9ECE-373C09C40CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F050F42-4FCB-4BD6-9ECE-373C09C40CE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
