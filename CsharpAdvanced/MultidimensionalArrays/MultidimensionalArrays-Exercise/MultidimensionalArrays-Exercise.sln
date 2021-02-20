@@ -11,13 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "demoSquareSum", "demoSquare
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BeerKegs", "BeerKegs\BeerKegs.csproj", "{351DEFE3-BCBB-4065-AA1D-69A80FBD52AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3.MaximalSum", "3.MaximalSum\3.MaximalSum.csproj", "{5CB35615-7717-473D-9A23-DF0DB890F7A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3.MaximalSum", "3.MaximalSum\3.MaximalSum.csproj", "{5CB35615-7717-473D-9A23-DF0DB890F7A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.MatrixShuffling", "4.MatrixShuffling\4.MatrixShuffling.csproj", "{782E66FC-AC4E-4533-9BC4-DA7E54DC1C45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "4.MatrixShuffling", "4.MatrixShuffling\4.MatrixShuffling.csproj", "{782E66FC-AC4E-4533-9BC4-DA7E54DC1C45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demoZigZagArray", "demoZigZagArray\demoZigZagArray.csproj", "{7D21355B-8888-4B1C-AA89-BFEFA131B627}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "demoZigZagArray", "demoZigZagArray\demoZigZagArray.csproj", "{7D21355B-8888-4B1C-AA89-BFEFA131B627}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5.SnakeMoves", "5.SnakeMoves\5.SnakeMoves.csproj", "{07C671E8-4A8B-4A81-A453-82022A9892E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "5.SnakeMoves", "5.SnakeMoves\5.SnakeMoves.csproj", "{07C671E8-4A8B-4A81-A453-82022A9892E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6.JaggedArrayManipulator", "6.JaggedArrayManipulator\6.JaggedArrayManipulator.csproj", "{6E83CC1E-B705-4034-9014-078EA43ED69F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{07C671E8-4A8B-4A81-A453-82022A9892E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07C671E8-4A8B-4A81-A453-82022A9892E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07C671E8-4A8B-4A81-A453-82022A9892E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E83CC1E-B705-4034-9014-078EA43ED69F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E83CC1E-B705-4034-9014-078EA43ED69F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E83CC1E-B705-4034-9014-078EA43ED69F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E83CC1E-B705-4034-9014-078EA43ED69F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
