@@ -22,18 +22,17 @@ namespace _6.JaggedArrayManipulator
 
             for (int row = 0; row < rows - 1; row++)
             {
-                int[] first = jaggedArrays[row];
-                int[] second = jaggedArrays[row + 1];
+               
 
-                if (first.Length == second.Length)
+                if (jaggedArrays[row].Length == jaggedArrays[row + 1].Length)
                 {
-                    jaggedArrays[row] = first.Select(x => x * 2).ToArray();
-                    jaggedArrays[row + 1] = second.Select(x => x * 2).ToArray();
+                    jaggedArrays[row] = jaggedArrays[row].Select(x => x * 2).ToArray();
+                    jaggedArrays[row + 1] = jaggedArrays[row + 1].Select(x => x * 2).ToArray();
                 }
                 else
                 {
-                    jaggedArrays[row] = first.Select(x => x / 2).ToArray();
-                    jaggedArrays[row + 1] = second.Select(x => x / 2).ToArray();
+                    jaggedArrays[row] = jaggedArrays[row].Select(x => x / 2).ToArray();
+                    jaggedArrays[row + 1] = jaggedArrays[row + 1].Select(x => x / 2).ToArray();
 
                 }
 
