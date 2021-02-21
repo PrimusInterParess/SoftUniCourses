@@ -104,22 +104,24 @@ namespace _7.KnightGame
                             }
                         }
 
-                        if (hit > maxHit)
-                        {
-                            maxHit = hit;
-                            rowK = row;
-                            colK = col;
+
+                    }
+
+                    if (hit > maxHit)
+                    {
+                        maxHit = hit;
+                        rowK = row;
+                        colK = col;
 
 
-                        }
                     }
                 }
 
-                if (row == dimensions - 1 && maxHit > 0)
+                if (row == dimensions - 1 && maxHit != 0)
                 {
                     KnightMatrix[rowK, colK] = '0';
                     removed++;
-                    row = 0;
+                    row = -1;
                     rowK = -1;
                     colK = -1;
 
