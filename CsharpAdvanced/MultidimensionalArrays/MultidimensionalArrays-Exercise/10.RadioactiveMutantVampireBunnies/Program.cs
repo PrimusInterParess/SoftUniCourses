@@ -15,7 +15,7 @@ namespace _10.RadioactiveMutantVampireBunnies
 
             char[,] bunnyLair = new char[rows, cols];
 
-
+            List<int[]> bunniesPositions = new List<int[]>();
 
             int[] position = new int[2];
 
@@ -32,6 +32,7 @@ namespace _10.RadioactiveMutantVampireBunnies
                         position[0] = row;
                         position[1] = col;
                     }
+
                 }
             }
 
@@ -47,7 +48,15 @@ namespace _10.RadioactiveMutantVampireBunnies
 
                 if (direction == 'R')
                 {
-                    if (bunnyLair[position[0], position[1] + 1] == '.')
+                    if (position[1] + 1 > bunnyLair.GetLength(1))
+                    {
+                        bunnyLair[position[0], position[1]] = '.';
+
+                        win = true;
+
+                    }
+
+                    else if (bunnyLair[position[0], position[1] + 1] == '.' && position[1] < bunnyLair.GetLength(1))
                     {
                         bunnyLair[position[0], position[1] + 1] = 'P';
 
@@ -56,7 +65,7 @@ namespace _10.RadioactiveMutantVampireBunnies
                         position[1] += 1;
 
                     }
-                    else if (bunnyLair[position[0], position[1] + 1] == 'B')
+                    else if (bunnyLair[position[0], position[1] + 1] == 'B' && position[1] < bunnyLair.GetLength(1))
                     {
                         dead = true;
 
@@ -66,27 +75,22 @@ namespace _10.RadioactiveMutantVampireBunnies
 
 
                     }
-                    else if (position[1] + 1 == cols)
-                    {
-                        bunnyLair[position[0], position[1]] = '.';
 
-                        win = true;
-                        break;
-
-                    }
-
-                    dead = PopulatiingLairWithBunnies(bunnyLair, position);
-
-                    if (dead)
-                    {
-                        break;
-
-                    }
+                    FindingBunnies(bunnyLair, bunniesPositions);
+                    PopulatiingLairWithBunnies(bunnyLair, position, win, bunniesPositions);
 
                 }
                 else if (direction == 'L')
                 {
-                    if (bunnyLair[position[0], position[1] - 1] == '.')
+                    if (position[1] - 1 < 0)
+                    {
+                        bunnyLair[position[0], position[1]] = '.';
+
+                        win = true;
+
+                    }
+
+                    else if (bunnyLair[position[0], position[1] - 1] == '.')
                     {
                         bunnyLair[position[0], position[1] - 1] = 'P';
 
@@ -103,29 +107,23 @@ namespace _10.RadioactiveMutantVampireBunnies
 
                         position[1] -= 1;
 
-                        break;
-                    }
-                    else if (position[1] - 1 < 0)
-                    {
-                        bunnyLair[position[0], position[1]] = '.';
-
-                        win = true;
-                        break;
 
                     }
 
-                    dead = PopulatiingLairWithBunnies(bunnyLair, position);
-
-                    if (dead)
-                    {
-                        break;
-
-                    }
+                    FindingBunnies(bunnyLair, bunniesPositions);
+                    PopulatiingLairWithBunnies(bunnyLair, position, win, bunniesPositions);
 
                 }
                 else if (direction == 'U')
                 {
-                    if (bunnyLair[position[0] - 1, position[1]] == '.')
+                    if (position[0] - 1 < 0)
+                    {
+                        bunnyLair[position[0], position[1]] = '.';
+
+                        win = true;
+
+                    }
+                    else if (bunnyLair[position[0] - 1, position[1]] == '.')
                     {
                         bunnyLair[position[0] - 1, position[1]] = 'P';
 
@@ -142,29 +140,24 @@ namespace _10.RadioactiveMutantVampireBunnies
 
                         position[0] -= 1;
 
-                        break;
-                    }
-                    else if (position[0] - 1 < 0)
-                    {
-                        bunnyLair[position[0], position[1]] = '.';
-
-                        win = true;
-                        break;
 
                     }
 
-                    dead = PopulatiingLairWithBunnies(bunnyLair, position);
-
-                    if (dead)
-                    {
-                        break;
-
-                    }
+                    FindingBunnies(bunnyLair, bunniesPositions);
+                    PopulatiingLairWithBunnies(bunnyLair, position, win, bunniesPositions);
 
                 }
                 else if (direction == 'D')
                 {
-                    if (bunnyLair[position[0] + 1, position[1]] == '.')
+                    if (position[0] + 1 > bunnyLair.GetLength(0))
+                    {
+                        bunnyLair[position[0], position[1]] = '.';
+
+                        win = true;
+
+                    }
+
+                    else if (bunnyLair[position[0] + 1, position[1]] == '.')
                     {
                         bunnyLair[position[0] + 1, position[1]] = 'P';
 
@@ -181,89 +174,129 @@ namespace _10.RadioactiveMutantVampireBunnies
 
                         position[0] += 1;
 
-                        break;
-                    }
-                    else if (position[0] - 1 < 0)
-                    {
-                        bunnyLair[position[0], position[1]] = '.';
-
-                        win = true;
-                        break;
 
                     }
 
-                    dead = PopulatiingLairWithBunnies(bunnyLair, position);
-
-                    if (dead)
-                    {
-                        break;
-
-                    }
+                    FindingBunnies(bunnyLair, bunniesPositions);
+                    PopulatiingLairWithBunnies(bunnyLair, position, win, bunniesPositions);
 
                 }
+
+                if (win || dead)
+                {
+                    break;
+
+                }
+
 
             }
 
 
 
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < cols; col++)
+                {
+                    Console.Write(bunnyLair[row, col]);
+                }
 
+                Console.WriteLine();
+            }
+
+            if (win)
+            {
+                Console.WriteLine($"won: {position[0]} {position[1]}");
+            }
+            else if (dead)
+            {
+                Console.WriteLine($"dead: {position[0]} {position[1]}");
+
+            }
 
         }
 
-        static bool PopulatiingLairWithBunnies(char[,] bunnyLair, int[] positions)
+        private static void FindingBunnies(char[,] bunnyLair, List<int[]> bunniesPositions)
         {
-
-            bool gameOver = false;
-
             for (int row = 0; row < bunnyLair.GetLength(0); row++)
             {
+
+
                 for (int col = 0; col < bunnyLair.GetLength(1); col++)
                 {
+
+
                     if (bunnyLair[row, col] == 'B')
                     {
-                        if (row - 1 >= 0 && bunnyLair[row - 1, col] == 'P')
-                        {
-                            bunnyLair[row - 1, col] = 'B';
-                            gameOver = true;
-                        }
-                        else if (row - 1 >= 0 && bunnyLair[row - 1, col] == '.')
-                        {
-                            bunnyLair[row - 1, col] = 'B';
-                        }
-
-                        if (row + 1 < bunnyLair.GetLength(0) && bunnyLair[row + 1, col] == 'P')
-                        {
-                            bunnyLair[row + 1, col] = 'B';
-                            gameOver = true;
-                        }
-                        else if (row + 1 < bunnyLair.GetLength(0) && bunnyLair[row + 1, col] == '.')
-                        {
-                            bunnyLair[row + 1, col] = 'B';
-                        }
-
-
-                        if (col + 1 < bunnyLair.GetLength(1) && bunnyLair[row, col + 1] == 'P')
-                        {
-                            bunnyLair[row, col + 1] = 'B';
-                            gameOver = true;
-                        }
-                        else if (col + 1 < bunnyLair.GetLength(1) && bunnyLair[row, col + 1] == '.')
-                        {
-                            bunnyLair[row, col + 1] = 'B';
-                        }
-
-                        if (col - 1 >= 0 && bunnyLair[row, col - 1] == 'P')
-                        {
-                            bunnyLair[row, col - 1] = 'B';
-                            gameOver = true;
-                        }
-                        else if (col - 1 >= 0 && bunnyLair[row, col - 1] == '.')
-                        {
-                            bunnyLair[row, col - 1] = 'B';
-                        }
+                        bunniesPositions.Add(new[] { row, col });
                     }
-
                 }
+            }
+        }
+
+        static bool PopulatiingLairWithBunnies(char[,] bunnyLair, int[] positions, bool win, List<int[]> bunnIntsList)
+        {
+            bool gameOver = false;
+
+            foreach (var bunnyPosition in bunnIntsList)
+            {
+
+                int row = bunnyPosition[0];
+                int col = bunnyPosition[1];
+
+
+                if (row - 1 >= 0 && bunnyLair[row - 1, col] == 'P')
+                {
+                    bunnyLair[row - 1, col] = 'B';
+                    gameOver = true;
+                }
+                else if (row - 1 >= 0 && bunnyLair[row - 1, col] == '.')
+                {
+                    bunnyLair[row - 1, col] = 'B';
+                }
+
+                if (row + 1 < bunnyLair.GetLength(0) && bunnyLair[row + 1, col] == 'P')
+                {
+                    bunnyLair[row + 1, col] = 'B';
+                    gameOver = true;
+                }
+                else if (row + 1 < bunnyLair.GetLength(0) && bunnyLair[row + 1, col] == '.')
+                {
+                    bunnyLair[row + 1, col] = 'B';
+                }
+
+
+                if (col + 1 < bunnyLair.GetLength(1) && bunnyLair[row, col + 1] == 'P')
+                {
+                    bunnyLair[row, col + 1] = 'B';
+                    gameOver = true;
+                }
+                else if (col + 1 < bunnyLair.GetLength(1) && bunnyLair[row, col + 1] == '.')
+                {
+                    bunnyLair[row, col + 1] = 'B';
+                }
+
+                if (col - 1 >= 0 && bunnyLair[row, col - 1] == 'P')
+                {
+                    bunnyLair[row, col - 1] = 'B';
+                    gameOver = true;
+                }
+                else if (col - 1 >= 0 && bunnyLair[row, col - 1] == '.')
+                {
+                    bunnyLair[row, col - 1] = 'B';
+                }
+
+
+
+
+            }
+
+            if (win)
+            {
+                return win;
+            }
+            else if (gameOver)
+            {
+                return gameOver;
             }
 
             return gameOver;
