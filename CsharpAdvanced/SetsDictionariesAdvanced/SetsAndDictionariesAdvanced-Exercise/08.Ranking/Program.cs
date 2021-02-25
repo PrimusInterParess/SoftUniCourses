@@ -10,7 +10,7 @@ namespace _08.Ranking
         {
             Dictionary<string, string> contestDictionary = new Dictionary<string, string>();
 
-            Dictionary<string, Dictionary<string, int>> userData = new Dictionary<string, Dictionary<string, int>>();
+            SortedDictionary<string, Dictionary<string, int>> userData = new SortedDictionary<string, Dictionary<string, int>>();
 
             ContestLoading(contestDictionary);
 
@@ -36,11 +36,21 @@ namespace _08.Ranking
 
             Console.WriteLine($"Best candidate is {first.Key} with total {first.Value.Values.Sum()} points.");
 
-            Console.WriteLine("Ranking");
+            Console.WriteLine("Ranking:");
+
+            foreach (var pair in userData)
+            {
+                Console.WriteLine($"{pair.Key}");
+
+                foreach (var contest in pair.Value.OrderByDescending(x=>x.Value))
+                {
+                    Console.WriteLine($"#  {contest.Key} -> {contest.Value}");
+                }
+            }
 
         }
 
-        private static void AddDataToUserData(string[] data, Dictionary<string, Dictionary<string, int>> userData)
+        private static void AddDataToUserData(string[] data, SortedDictionary<string, Dictionary<string, int>> userData)
         {
             string contest = data[0];
             string password = data[1];
