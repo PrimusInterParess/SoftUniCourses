@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.CountSymbols", "05.Count
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.Wardrobe", "06.Wardrobe\06.Wardrobe.csproj", "{4C8FD630-FA48-4585-B4E8-92547252F817}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.TheV-Logger", "07.TheV-Logger\07.TheV-Logger.csproj", "{21622F73-C68E-4873-B427-79931220293E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.TheV-Logger", "07.TheV-Logger\07.TheV-Logger.csproj", "{21622F73-C68E-4873-B427-79931220293E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.Ranking", "08.Ranking\08.Ranking.csproj", "{491E936E-9948-43A2-AE9A-448D0E80D74B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{21622F73-C68E-4873-B427-79931220293E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21622F73-C68E-4873-B427-79931220293E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21622F73-C68E-4873-B427-79931220293E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{491E936E-9948-43A2-AE9A-448D0E80D74B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{491E936E-9948-43A2-AE9A-448D0E80D74B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{491E936E-9948-43A2-AE9A-448D0E80D74B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{491E936E-9948-43A2-AE9A-448D0E80D74B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
