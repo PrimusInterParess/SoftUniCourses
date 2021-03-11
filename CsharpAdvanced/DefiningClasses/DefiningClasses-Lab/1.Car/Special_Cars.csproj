@@ -3,11 +3,6 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>_1.Car</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="Special_Cars.csproj" />
-  </ItemGroup>
 
 </Project>
