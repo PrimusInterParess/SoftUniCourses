@@ -9,16 +9,17 @@ namespace _08.CarSalesman
 
         private string model;
 
-        private int weight; //optional
+        private int? weight; 
 
-        private string color; //optional
+        private string color; 
+
 
         public Car(string model, Engine engine)
+      
         {
             Model = model;
             Engine = engine;
-            Weight = 0;
-            Color = "";
+            
 
         }
 
@@ -34,13 +35,12 @@ namespace _08.CarSalesman
             Color = color;
         }
 
-        public Car(string model, Engine engine, string color, int weight)
+        public Car(string model, Engine engine, int weight, string color )
             : this(model, engine)
         {
             Weight = weight;
             Color = color;
         }
-
 
 
         public Engine Engine { get; set; }
@@ -51,7 +51,7 @@ namespace _08.CarSalesman
             set => this.model = value;
         }
 
-        public int Weight
+        public int? Weight
         {
             get => this.weight;
             set => this.weight = value;
@@ -61,6 +61,23 @@ namespace _08.CarSalesman
         {
             get => this.color;
             set => this.color = value;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string weightStr = this.Weight.HasValue ? this.Weight.ToString() : "n/a";
+
+            string colorStr = string.IsNullOrEmpty(this.Color) ? "n/a" : this.Color;
+
+            sb.AppendLine($"{this.Model}:")
+                .AppendLine($"{this.Engine}")
+                .AppendLine($"  Weight: {weightStr}")
+                .AppendLine($"  Color: {colorStr}");
+
+            return sb.ToString().TrimEnd();
+
         }
     }
 }

@@ -10,18 +10,18 @@ namespace _08.CarSalesman
 
         private int power;
 
-        private int displacment;
+        private int? displacment;
 
         private string efficiency;
 
+       
 
         public Engine(string model, int power)
-
+        
         {
             Model = model;
             Power = power;
-            Displacment = 0;
-            Efficiency = "";
+            
 
         }
 
@@ -34,7 +34,7 @@ namespace _08.CarSalesman
         public Engine(string model, int power, string efficiency)
             : this(model, power)
         {
-            Efficiency = Efficiency;
+            Efficiency = efficiency;
         }
 
         public Engine(string model, int power, int displacment, string efficiency)
@@ -42,8 +42,10 @@ namespace _08.CarSalesman
         {
 
             Displacment = displacment;
-            Efficiency = Efficiency;
+            Efficiency = efficiency;
         }
+
+       
 
 
         public string Model
@@ -58,7 +60,7 @@ namespace _08.CarSalesman
             set => this.power = value;
         }
 
-        public int Displacment
+        public int? Displacment
         {
             get => this.displacment;
             set => this.displacment = value;
@@ -70,5 +72,22 @@ namespace _08.CarSalesman
                   this.efficiency = value;
         }
 
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            string displacementStr = this.Displacment.HasValue ? this.Displacment.ToString() : "n/a";
+
+            string efficiencyStr = string.IsNullOrEmpty(this.Efficiency) ? "n/a" : this.Efficiency;
+
+            sb
+                .AppendLine($"  {this.Model}:")
+                .AppendLine($"    Power: {this.Power}")
+                .AppendLine($"    Displacement: {displacementStr}")
+                .AppendLine($"    Efficiency: {efficiencyStr}");
+
+            return sb.ToString().TrimEnd();
+        }
     }
 }
