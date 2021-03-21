@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDataStructure", "CustomDataStructure\CustomDataStructure.csproj", "{CBB0101A-CBF0-45DA-90FC-07740CF2BD4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomStack", "CustomStack\CustomStack.csproj", "{39B13647-3283-4A9E-B2D2-FCE970EB368E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CBB0101A-CBF0-45DA-90FC-07740CF2BD4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBB0101A-CBF0-45DA-90FC-07740CF2BD4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBB0101A-CBF0-45DA-90FC-07740CF2BD4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBB0101A-CBF0-45DA-90FC-07740CF2BD4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39B13647-3283-4A9E-B2D2-FCE970EB368E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39B13647-3283-4A9E-B2D2-FCE970EB368E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39B13647-3283-4A9E-B2D2-FCE970EB368E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39B13647-3283-4A9E-B2D2-FCE970EB368E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {00FE28F4-FAB9-49A5-88A8-7E7F0B42E5E0}
+	EndGlobalSection
+EndGlobal
