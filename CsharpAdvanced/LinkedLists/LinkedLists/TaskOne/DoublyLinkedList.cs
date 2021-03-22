@@ -4,17 +4,17 @@ using System.Collections.Specialized;
 using System.Reflection.Metadata;
 using System.Text;
 
-namespace TaskOne
+namespace CustomDoublyLinkedList
 {
-    public class SoftUniLinkedList
+    public class SoftUniLinkedList<T>
     {
         private int count = 0;
 
-        public Node Head { get; set; }
+        public Node<T> Head { get; set; }
 
-        public Node Tail { get; set; }
+        public Node<T> Tail { get; set; }
 
-        public void AddHead(Node node)
+        public void AddHead(Node<T> node)
         {
             count++;
 
@@ -32,7 +32,7 @@ namespace TaskOne
             Head = node;
         }
 
-        public void AddLast(Node node)
+        public void AddLast(Node<T> node)
         {
             count++;
 
@@ -49,7 +49,7 @@ namespace TaskOne
         }
 
 
-        public Node RemoveHead()
+        public Node<T> RemoveHead()
         {
             count--;
 
@@ -77,7 +77,7 @@ namespace TaskOne
             return nodeToReturn;
         }
 
-        public Node RemoveTail()
+        public Node<T> RemoveTail()
         {
             count--;
 
@@ -105,10 +105,10 @@ namespace TaskOne
             return nodeToReturn;
         }
 
-        public void Foreach(Action<Node> action)
+        public void Foreach(Action<Node<T>> action)
         {
 
-            Node currNode = Head;
+            Node<T> currNode = Head;
 
             while (currNode != null)
             {
@@ -117,10 +117,10 @@ namespace TaskOne
             }
         }
 
-        public void ForeachHead(Action<Node> action)
+        public void ForeachHead(Action<Node<T>> action)
         {
 
-            Node currNode = Head;
+            Node<T> currNode = Head;
 
             while (currNode != null)
             {
@@ -129,10 +129,10 @@ namespace TaskOne
             }
         }
 
-        public void ForeachTail(Action<Node> action)
+        public void ForeachTail(Action<Node<T>> action)
         {
 
-            Node currNode = Tail;
+            Node<T> currNode = Tail;
 
             while (currNode != null)
             {
@@ -141,12 +141,12 @@ namespace TaskOne
             }
         }
 
-        public int[] ToArray()
+        public T[] ToArray()
         {
 
             int index = 0;
 
-            int[] array = new int[count];
+            T[] array = new T[count];
 
             ForeachHead(node =>
             {

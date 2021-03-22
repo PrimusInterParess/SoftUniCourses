@@ -9,7 +9,11 @@ namespace GG
         {
             var animals = new List<Animal>();
 
-            var list = new MyList<Cat>(new Cat());
+            animals.Add(new Cat("Ivan"));
+
+
+
+            MyComperator.Copare(5, 6);
         }
 
        

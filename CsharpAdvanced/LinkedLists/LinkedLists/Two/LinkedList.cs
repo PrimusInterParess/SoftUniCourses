@@ -4,16 +4,16 @@ using System.Text;
 
 namespace Two
 {
-    public class LinkedList
+    public class LinkedList<T>
     {
         private int count = 0;
 
-        public Node Head { get; set; }
+        public Node<T> Head { get; set; }
 
-        public Node Tail { get; set; }
+        public Node<T> Tail { get; set; }
 
 
-        public void AddHead(Node node)
+        public void AddHead(Node<T> node)
         {
             count++;
 
@@ -31,7 +31,7 @@ namespace Two
             Head = node;
         }
 
-        public void AddTail(Node node)
+        public void AddTail(Node<T> node)
         {
             count++;
 
@@ -49,7 +49,7 @@ namespace Two
             Tail = node;
         }
 
-        public Node RemoveHead()
+        public Node<T> RemoveHead()
         {
             count--;
 
@@ -75,7 +75,7 @@ namespace Two
             return toReturn;
         }
 
-        public Node RemoveTail()
+        public Node<T> RemoveTail()
         {
             count--;
 
@@ -100,9 +100,9 @@ namespace Two
             return toReturn;
         }
 
-        public void ForeachHead(Action<Node> action)
+        public void ForeachHead(Action<Node<T>> action)
         {
-            Node currNode = Head;
+            Node<T> currNode = Head;
 
             while (currNode != null)
             {
@@ -112,9 +112,9 @@ namespace Two
             }
         }
 
-        public void ForeachTail(Action<Node> action)
+        public void ForeachTail(Action<Node<T>> action)
         {
-            Node currNode = Tail;
+            Node<T> currNode = Tail;
 
             while (currNode != null)
             {
@@ -124,11 +124,11 @@ namespace Two
             }
         }
 
-        public int[] LinkedListToArray()
+        public T[] LinkedListToArray()
         {
             int index = 0;
 
-            int[] array = new int[count];
+            T[] array = new T[count];
 
             ForeachHead(node =>
             {

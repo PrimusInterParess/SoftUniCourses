@@ -3,23 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxOfT", "01.Box\BoxOfT.csproj", "{05310467-2F6F-4BB4-A351-44A680D8F755}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoxOfT1", "01.Box\BoxOfT1.csproj", "{05310467-2F6F-4BB4-A351-44A680D8F755}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoGenerics", "DemoGenerics\DemoGenerics.csproj", "{E6F077C8-6474-40BC-9614-21B2EF32770A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DemoGenerics", "DemoGenerics\DemoGenerics.csproj", "{E6F077C8-6474-40BC-9614-21B2EF32770A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericMethods", "GenericMethods\GenericMethods.csproj", "{20BB7547-0730-4EEF-AC1E-EE5D3F3BEBB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericMethods", "GenericMethods\GenericMethods.csproj", "{20BB7547-0730-4EEF-AC1E-EE5D3F3BEBB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Object", "Object\Object.csproj", "{7D103830-D6ED-4DAD-893A-C3EAD05BB475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Object", "Object\Object.csproj", "{7D103830-D6ED-4DAD-893A-C3EAD05BB475}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericArrayCreator", "ArrayCreator\GenericArrayCreator.csproj", "{850994D6-2C23-47AE-A61A-F3BEBBB59135}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericArrayCreator", "ArrayCreator\GenericArrayCreator.csproj", "{850994D6-2C23-47AE-A61A-F3BEBBB59135}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConstraintsG", "ConstraintsG\ConstraintsG.csproj", "{B88C899C-114F-4DC4-88E9-45A89E65C7D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConstraintsG", "ConstraintsG\ConstraintsG.csproj", "{B88C899C-114F-4DC4-88E9-45A89E65C7D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericScale", "Scale\GenericScale.csproj", "{08579AD4-8322-45A8-952A-0A8BBE25F41E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenericScale", "Scale\GenericScale.csproj", "{08579AD4-8322-45A8-952A-0A8BBE25F41E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GG", "GG\GG.csproj", "{8596F6E2-6457-4B03-83B5-299FF71415C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GG", "GG\GG.csproj", "{8596F6E2-6457-4B03-83B5-299FF71415C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArrCrrr", "ArrCrrr\ArrCrrr.csproj", "{F6D83323-C201-40D5-86B2-0C44A36279A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArrCrrr", "ArrCrrr\ArrCrrr.csproj", "{F6D83323-C201-40D5-86B2-0C44A36279A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxOfT", "BoxOfT\BoxOfT.csproj", "{1E2572FB-85F6-4DB1-8A21-1C5BB4CAD738}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{F6D83323-C201-40D5-86B2-0C44A36279A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6D83323-C201-40D5-86B2-0C44A36279A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6D83323-C201-40D5-86B2-0C44A36279A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E2572FB-85F6-4DB1-8A21-1C5BB4CAD738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E2572FB-85F6-4DB1-8A21-1C5BB4CAD738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E2572FB-85F6-4DB1-8A21-1C5BB4CAD738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E2572FB-85F6-4DB1-8A21-1C5BB4CAD738}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

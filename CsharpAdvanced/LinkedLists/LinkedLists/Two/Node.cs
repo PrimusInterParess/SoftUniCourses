@@ -4,15 +4,15 @@ using System.Text;
 
 namespace Two
 {
-    public class Node
+    public class Node<T>
     {
 
-        public Node(int value)
+        public Node(T value)
         {
             Value = value;
         }
 
-        public int Value { get; set; }
+        public T Value { get; set; }
 
         public Node Next { get; set; }
 

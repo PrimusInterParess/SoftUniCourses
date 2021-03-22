@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.GenericBoxOfString", "01.GenericBoxOfString\01.GenericBoxOfString.csproj", "{2905367F-2782-4E76-8B90-690E11B2133A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.Tuple", "07.Tuple\07.Tuple.csproj", "{4AB87DC6-B518-4EC7-93A8-DCF9616E22FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2905367F-2782-4E76-8B90-690E11B2133A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2905367F-2782-4E76-8B90-690E11B2133A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2905367F-2782-4E76-8B90-690E11B2133A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2905367F-2782-4E76-8B90-690E11B2133A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB87DC6-B518-4EC7-93A8-DCF9616E22FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB87DC6-B518-4EC7-93A8-DCF9616E22FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB87DC6-B518-4EC7-93A8-DCF9616E22FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB87DC6-B518-4EC7-93A8-DCF9616E22FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EDC43254-1095-4519-9E29-FA75DE9B13C7}
+	EndGlobalSection
+EndGlobal
