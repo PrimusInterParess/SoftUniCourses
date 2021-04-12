@@ -3,15 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Library", "01.Library\01.Library.csproj", "{478A819A-908A-4F98-B152-FA5D08D18E88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.Library", "01.Library\01.Library.csproj", "{478A819A-908A-4F98-B152-FA5D08D18E88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "demo", "demo\demo.csproj", "{9ABD8F6A-53BC-4705-A8CA-5CEB5D47B0BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "demo", "demo\demo.csproj", "{9ABD8F6A-53BC-4705-A8CA-5CEB5D47B0BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumeratorDemo", "EnumeratorDemo\EnumeratorDemo.csproj", "{06DBE379-9549-47CE-8EEB-50CCF3DBFEC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumeratorDemo", "EnumeratorDemo\EnumeratorDemo.csproj", "{06DBE379-9549-47CE-8EEB-50CCF3DBFEC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YieledReturn", "YieledReturn\YieledReturn.csproj", "{A6178916-9317-4789-B2B7-13AC45D336D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YieledReturn", "YieledReturn\YieledReturn.csproj", "{A6178916-9317-4789-B2B7-13AC45D336D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomList", "CustomList\CustomList.csproj", "{B205459E-292F-4E0F-9769-33381006C02F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomList", "CustomList\CustomList.csproj", "{B205459E-292F-4E0F-9769-33381006C02F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onToTheNexOne", "onToTheNexOne\onToTheNexOne.csproj", "{CF6A4FB2-3CA6-4D5B-90CD-4585FA6DCECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enumerator", "enumerator\enumerator.csproj", "{E0FBFF4C-2CD9-4461-8771-3FA0DBBA2E2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yieledR", "yieledR\yieledR.csproj", "{20854AEE-F429-409C-873C-57E2FEE71B01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yieledRNumbs", "yieledRNumbs\yieledRNumbs.csproj", "{0FD823BE-EC5E-4184-BA0A-00EE5019100E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "simpleYieled", "simpleYieled\simpleYieled.csproj", "{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +49,26 @@ Global
 		{B205459E-292F-4E0F-9769-33381006C02F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B205459E-292F-4E0F-9769-33381006C02F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B205459E-292F-4E0F-9769-33381006C02F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF6A4FB2-3CA6-4D5B-90CD-4585FA6DCECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF6A4FB2-3CA6-4D5B-90CD-4585FA6DCECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF6A4FB2-3CA6-4D5B-90CD-4585FA6DCECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF6A4FB2-3CA6-4D5B-90CD-4585FA6DCECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0FBFF4C-2CD9-4461-8771-3FA0DBBA2E2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0FBFF4C-2CD9-4461-8771-3FA0DBBA2E2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0FBFF4C-2CD9-4461-8771-3FA0DBBA2E2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0FBFF4C-2CD9-4461-8771-3FA0DBBA2E2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20854AEE-F429-409C-873C-57E2FEE71B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20854AEE-F429-409C-873C-57E2FEE71B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20854AEE-F429-409C-873C-57E2FEE71B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20854AEE-F429-409C-873C-57E2FEE71B01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FD823BE-EC5E-4184-BA0A-00EE5019100E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FD823BE-EC5E-4184-BA0A-00EE5019100E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FD823BE-EC5E-4184-BA0A-00EE5019100E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FD823BE-EC5E-4184-BA0A-00EE5019100E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
