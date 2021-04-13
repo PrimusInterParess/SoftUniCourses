@@ -13,15 +13,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YieledReturn", "YieledRetur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomList", "CustomList\CustomList.csproj", "{B205459E-292F-4E0F-9769-33381006C02F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onToTheNexOne", "onToTheNexOne\onToTheNexOne.csproj", "{CF6A4FB2-3CA6-4D5B-90CD-4585FA6DCECD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "onToTheNexOne", "onToTheNexOne\onToTheNexOne.csproj", "{CF6A4FB2-3CA6-4D5B-90CD-4585FA6DCECD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enumerator", "enumerator\enumerator.csproj", "{E0FBFF4C-2CD9-4461-8771-3FA0DBBA2E2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "enumerator", "enumerator\enumerator.csproj", "{E0FBFF4C-2CD9-4461-8771-3FA0DBBA2E2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yieledR", "yieledR\yieledR.csproj", "{20854AEE-F429-409C-873C-57E2FEE71B01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yieledR", "yieledR\yieledR.csproj", "{20854AEE-F429-409C-873C-57E2FEE71B01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yieledRNumbs", "yieledRNumbs\yieledRNumbs.csproj", "{0FD823BE-EC5E-4184-BA0A-00EE5019100E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yieledRNumbs", "yieledRNumbs\yieledRNumbs.csproj", "{0FD823BE-EC5E-4184-BA0A-00EE5019100E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "simpleYieled", "simpleYieled\simpleYieled.csproj", "{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "simpleYieled", "simpleYieled\simpleYieled.csproj", "{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "parammms", "parammms\parammms.csproj", "{643EC258-516B-446A-900E-6441D7D6571F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IteratorsAndComparators", "Lib\IteratorsAndComparators.csproj", "{ADB9DB5A-C89A-4514-B685-39CCA570787A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Students", "Students\Students.csproj", "{49D3508D-3463-4A8E-9A7D-AEDC91747192}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,18 @@ Global
 		{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DCCDE7A-10B0-4AC5-8883-0340DD42CE2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643EC258-516B-446A-900E-6441D7D6571F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643EC258-516B-446A-900E-6441D7D6571F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643EC258-516B-446A-900E-6441D7D6571F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643EC258-516B-446A-900E-6441D7D6571F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADB9DB5A-C89A-4514-B685-39CCA570787A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADB9DB5A-C89A-4514-B685-39CCA570787A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADB9DB5A-C89A-4514-B685-39CCA570787A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADB9DB5A-C89A-4514-B685-39CCA570787A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49D3508D-3463-4A8E-9A7D-AEDC91747192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49D3508D-3463-4A8E-9A7D-AEDC91747192}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49D3508D-3463-4A8E-9A7D-AEDC91747192}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49D3508D-3463-4A8E-9A7D-AEDC91747192}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
