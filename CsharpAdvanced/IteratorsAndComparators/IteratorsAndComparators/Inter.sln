@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorsAndComparators", "IteratorsAndComparators\IteratorsAndComparators.csproj", "{D763190A-8AF0-4092-8C6A-948CDEB79AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IteratorsAndComparators", "IteratorsAndComparators\IteratorsAndComparators.csproj", "{D763190A-8AF0-4092-8C6A-948CDEB79AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnumeratorD", "EnumeratorD\EnumeratorD.csproj", "{171DDF82-F9B3-48E7-9601-07AF0F432280}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EnumeratorD", "EnumeratorD\EnumeratorD.csproj", "{171DDF82-F9B3-48E7-9601-07AF0F432280}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YieldReturn", "YieldReturn\YieldReturn.csproj", "{F9FBEDFA-513A-4CC0-93C3-E61C52A6E0FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YieldReturn", "YieldReturn\YieldReturn.csproj", "{F9FBEDFA-513A-4CC0-93C3-E61C52A6E0FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
