@@ -1,12 +1,20 @@
 ﻿using System;
 
-namespace _01.SingleInheritance
+
+namespace AccessModifiers
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+
+
+            Base baseObject = new Base();
+
+            baseObject.
+
+
+
         }
     }
 }

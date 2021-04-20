@@ -1,12 +1,16 @@
 ﻿using System;
 
-namespace Inherintance
+namespace HidingMethods
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Ball ball = new Ball(new Position(5,6),Direction.Right);
+            Student student = new Student();
+
+            student.Work();
+
+
         }
     }
 }

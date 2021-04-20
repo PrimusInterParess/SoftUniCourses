@@ -6,6 +6,16 @@ namespace Inherintance
 {
    public class GameObject
     {
+        public GameObject()
+        {
+            
+        }
+
+        public GameObject(Position startingPosition)
+        {
+            this.Position = startingPosition;
+        }
+
         public Position Position { get; set; }
 
 

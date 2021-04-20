@@ -6,11 +6,16 @@ namespace Inherintance
 {
    public class Ball : GameObject
     {
+        public Ball(Position position,Direction direction)
+        :base(position)
+
+        {
+            this.Position = position;
+            this.Direction = direction;
+        }
+
         public Direction Direction { get; set; }
     }
 
-   public enum Direction
-   {
-
-   }
+  
 }

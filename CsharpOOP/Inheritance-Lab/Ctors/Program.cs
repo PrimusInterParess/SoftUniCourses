@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Inherintance
+namespace Ctors
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Ball ball = new Ball(new Position(5,6),Direction.Right);
+            FrontEndProgrammer programmer = new FrontEndProgrammer("Bai ti Pehso", 200);
         }
     }
 }
