@@ -6,10 +6,7 @@ namespace Inherintance
 {
    public class GameObject
     {
-        public GameObject()
-        {
-            
-        }
+        
 
         public GameObject(Position startingPosition)
         {
@@ -19,7 +16,7 @@ namespace Inherintance
         public Position Position { get; set; }
 
 
-        public void Draw()
+        public virtual void Draw()
         {
             Console.WriteLine($"Drawing at {Position.X}:{Position.Y}");
         }

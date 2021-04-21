@@ -7,11 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Farm", "01.SingleInheritanc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Inherintance", "Inherintance\Inherintance.csproj", "{0CC8043F-C623-4490-828F-922BE71963F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ctors", "Ctors\Ctors.csproj", "{12CD0929-45C5-461C-87F3-B8DC2268F01E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ctors", "Ctors\Ctors.csproj", "{12CD0929-45C5-461C-87F3-B8DC2268F01E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HidingMethods", "HidingMethods\HidingMethods.csproj", "{D57B8419-CA33-49E4-BD08-0D847AB149EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HidingMethods", "HidingMethods\HidingMethods.csproj", "{D57B8419-CA33-49E4-BD08-0D847AB149EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accessmodifiers", "Accessmodifiers\Accessmodifiers.csproj", "{D56EC77B-A3BC-4F5D-A3C7-08271EE80FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Accessmodifiers", "Accessmodifiers\Accessmodifiers.csproj", "{D56EC77B-A3BC-4F5D-A3C7-08271EE80FB1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomRandomList", "RandomList\CustomRandomList.csproj", "{D39F8CAC-9705-4D1B-91FE-4B8BEF0D4449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomStack", "CustomStack\CustomStack.csproj", "{32504FCE-4A01-4CE4-B6BF-419A25D6769C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{D56EC77B-A3BC-4F5D-A3C7-08271EE80FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D56EC77B-A3BC-4F5D-A3C7-08271EE80FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D56EC77B-A3BC-4F5D-A3C7-08271EE80FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D39F8CAC-9705-4D1B-91FE-4B8BEF0D4449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D39F8CAC-9705-4D1B-91FE-4B8BEF0D4449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D39F8CAC-9705-4D1B-91FE-4B8BEF0D4449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D39F8CAC-9705-4D1B-91FE-4B8BEF0D4449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32504FCE-4A01-4CE4-B6BF-419A25D6769C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32504FCE-4A01-4CE4-B6BF-419A25D6769C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32504FCE-4A01-4CE4-B6BF-419A25D6769C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32504FCE-4A01-4CE4-B6BF-419A25D6769C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,6 +15,13 @@ namespace Inherintance
         }
 
         public Direction Direction { get; set; }
+
+        public override void Draw()
+        {
+            Console.SetCursorPosition(Position.Y,Position.X);
+
+            Console.Write("@");
+        }
     }
 
   

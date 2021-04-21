@@ -20,5 +20,12 @@ namespace AccessModifiers
         {
             
         }
+
+        public virtual void BaseMethod()
+        {
+            Console.WriteLine("I'm the base Method");
+        }
+
+        
     }
 }

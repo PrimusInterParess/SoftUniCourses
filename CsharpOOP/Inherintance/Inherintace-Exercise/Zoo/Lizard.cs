@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AccessModifiers;
 
-namespace Accessmodifiers
+namespace Zoo
 {
-    class Child : Base
+    class Lizard :Reptile
     {
-
-        public Child()
+        public Lizard(string name)
+        :base(name)
         {
             
         }
