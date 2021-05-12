@@ -27,6 +27,11 @@ namespace Problem01.List
             {
                 this.ValidateIndex(index);
                 return this._items[index];
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 326967a2049ae78b33e0e381db9f7c78f206bba3
             }
             set
             {
@@ -39,12 +44,19 @@ namespace Problem01.List
         {
             this.GrowIfNecessery();
             this._items[this.Count++] = item;
+<<<<<<< HEAD
+=======
+
+        }
+
+>>>>>>> 326967a2049ae78b33e0e381db9f7c78f206bba3
 
         }
 
         public void Insert(int index, T item)
         {
             this.ValidateIndex(index);
+<<<<<<< HEAD
             this.GrowIfNecessery();
 
             for (int i = Count; i > index; i--)
@@ -54,6 +66,21 @@ namespace Problem01.List
 
             this._items[index] = item;
             this.Count++;
+=======
+
+            this.EnsureNotEmpty();
+
+            for (int i = this.Count; i > index; i--)
+            {
+                this._items[i] = this._items[i - 1];
+            }
+
+            this._items[index] = item;
+
+            this.Count++;
+
+        }
+>>>>>>> 326967a2049ae78b33e0e381db9f7c78f206bba3
 
 
 
@@ -62,7 +89,11 @@ namespace Problem01.List
         public bool Contains(T item)
         {
             return this.IndexOf(item) != -1;
+<<<<<<< HEAD
         } 
+=======
+        }
+>>>>>>> 326967a2049ae78b33e0e381db9f7c78f206bba3
 
         public int IndexOf(T item)
         {
@@ -74,7 +105,10 @@ namespace Problem01.List
                     return i;
                 }
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 326967a2049ae78b33e0e381db9f7c78f206bba3
             return -1;
         }
 
@@ -96,6 +130,7 @@ namespace Problem01.List
         {
             this.ValidateIndex(index);
 
+<<<<<<< HEAD
             for (int i = index; i < this.Count - 1; i++)
             {
                 this._items[i] = this._items[i + 1];
@@ -109,14 +144,45 @@ namespace Problem01.List
         public IEnumerator<T> GetEnumerator()
         {
             for (int i = 0; i < Count; i++)
+=======
+            for (int i = index; i < Count - 1; i++)
+            {
+                this._items[i] = this._items[index + 1];
+            }
+
+            this._items[this.Count - 1] = default;
+
+            this.Count--;
+
+        }
+
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            for (int i = 0; i < this.Count; i++)
+>>>>>>> 326967a2049ae78b33e0e381db9f7c78f206bba3
             {
                 yield return this._items[i];
             }
         }
 
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+<<<<<<< HEAD
 
         private void GrowIfNecessery()
+=======
+
+
+        private void ValidateIndex(int index)
+        {
+            if (index < 0 || index >= this.Count)
+            {
+                throw new IndexOutOfRangeException($"The given index {index} is invalid!");
+            }
+        }
+
+        private void EnsureNotEmpty()
+>>>>>>> 326967a2049ae78b33e0e381db9f7c78f206bba3
         {
             if (this.Count == this._items.Length)
             {
