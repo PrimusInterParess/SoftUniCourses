@@ -18,16 +18,36 @@ namespace Telephony
 
             foreach (var number in numbersToCall)
             {
-                if (number.Length==10)
+                try
                 {
-                    statphone.Call(number);
+
+                    string res =
+                        number.Length == 10 ? 
+                            smart.Call(number) : 
+                            statphone.Call(number);
+
+                    Console.WriteLine(res);
                 }
-                else
+                catch (InvalidOperationException ex)
                 {
-                    statphone.Call(number);
+                    Console.WriteLine(ex.Message);
                 }
             }
 
+
+            foreach (var url in webSitesToBrows)
+            {
+                try
+                {
+                   var res = smart.Browse(url);
+                    Console.WriteLine(res);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    
+                }
+            }
         }
     }
 }

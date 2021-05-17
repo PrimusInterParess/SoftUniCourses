@@ -22,7 +22,7 @@ namespace Telephony
                 throw new InvalidOperationException("Invalid URL!");
             }
 
-            return $"Browsing: {url}";
+            return $"Browsing: {url}!";
         }
     }
 }
