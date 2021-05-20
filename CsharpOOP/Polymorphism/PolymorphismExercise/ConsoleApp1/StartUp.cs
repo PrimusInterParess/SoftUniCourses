@@ -56,6 +56,8 @@ namespace Vehicles
                
                 
                     vehicle.Drive(parameter);
+
+                    Console.WriteLine($"{vehicle.GetType().Name} travelled {parameter} km");
                 
                
             }
@@ -68,7 +70,9 @@ namespace Vehicles
 
                     ((Bus)vehicle).OnModifier();
 
-              
+                    Console.WriteLine($"{vehicle.GetType().Name} travelled {parameter} km");
+
+
             }
             else
             {

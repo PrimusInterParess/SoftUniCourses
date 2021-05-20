@@ -31,7 +31,7 @@ namespace Vehicles
         public double FuelQuantity
         {
             get => this.fuelQuantity;
-            private set
+            protected set
             {
                 if (value > this.TankCapacity)
                 {
