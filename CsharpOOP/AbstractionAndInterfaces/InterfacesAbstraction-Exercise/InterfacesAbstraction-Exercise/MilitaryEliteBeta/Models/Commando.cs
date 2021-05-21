@@ -5,11 +5,11 @@ using MilitaryElite.Contracts;
 
 namespace MilitaryElite.Models
 {
-    public class Comando : SpecialisedSoldier, IComando
+    public class Commando : SpecialisedSoldier, ICommando
     {
         private ICollection<IMission> missions;
 
-        public Comando(string id, string firstName, string lastName, decimal salary, string corps)
+        public Commando(string id, string firstName, string lastName, decimal salary, string corps)
             : base(id, firstName, lastName, salary, corps)
         {
             this.missions = new List<IMission>();

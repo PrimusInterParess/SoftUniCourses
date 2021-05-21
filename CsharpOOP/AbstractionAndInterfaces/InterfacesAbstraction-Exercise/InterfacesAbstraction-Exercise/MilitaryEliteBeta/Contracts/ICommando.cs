@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MilitaryElite.Contracts
 {
-  public  interface IComando:ISpecialisedSoldier
+  public  interface ICommando:ISpecialisedSoldier
   {
       IReadOnlyCollection<IMission> Missions { get; }
 
