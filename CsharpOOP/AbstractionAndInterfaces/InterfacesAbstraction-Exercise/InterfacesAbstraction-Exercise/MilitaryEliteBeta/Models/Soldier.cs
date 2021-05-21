@@ -1,9 +1,7 @@
-
-using MilitaryElite.Contracts;
+﻿using MilitaryElite.Contracts;
 
 namespace MilitaryElite.Models
 {
-
     public abstract class Soldier : ISoldier
     {
         protected Soldier(string id, string firstName, string lastName)
@@ -11,19 +9,17 @@ namespace MilitaryElite.Models
             this.Id = id;
             this.FirstName = firstName;
             this.LastName = lastName;
-
+            
         }
 
-        public string Id { get; }
-        public string FirstName { get; }
-        public string LastName { get; }
+        public string Id { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
 
 
         public override string ToString()
         {
             return $"Name: {this.FirstName} {this.LastName} Id: {this.Id}";
         }
-
     }
-
 }

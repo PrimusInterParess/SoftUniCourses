@@ -1,11 +1,10 @@
 ﻿using System;
-<<<<<<< HEAD
-=======
+
 using System.Collections.Generic;
 using MilitaryElite.Contracts;
 using MilitaryElite.Enums;
 using MilitaryElite.Models;
->>>>>>> 1da4f0a59048628ece27fd6c16b820c840615a92
+
 
 namespace MilitaryElite
 {
@@ -13,9 +12,9 @@ namespace MilitaryElite
     {
         public static void Main(string[] args)
         {
-<<<<<<< HEAD
+
             
-=======
+
             Dictionary<string, ISoldier> soldiers = new Dictionary<string, ISoldier>();
 
             while (true)
@@ -142,7 +141,7 @@ namespace MilitaryElite
             {
                 Console.WriteLine(soldier);
             }
->>>>>>> 1da4f0a59048628ece27fd6c16b820c840615a92
+
         }
     }
 }
