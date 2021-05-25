@@ -12,9 +12,11 @@ namespace OnlineShop.Models
 {
     public abstract class Computer : Product, IComputer
     {
-        private ICollection<IComponent> iComponents;
-        private ICollection<IPeripheral> iPeripherals;
+        private ICollection<IComponent> iComponents = null;
+        private ICollection<IPeripheral> iPeripherals = null;
+        private double overallPreform;
 
+        private decimal price;
 
 
         protected Computer(
@@ -27,6 +29,8 @@ namespace OnlineShop.Models
         {
             this.iComponents = new List<IComponent>();
             this.iPeripherals = new List<IPeripheral>();
+            this.OverallPerformance = overallPerformance;
+            this.Price = price;
 
         }
 
@@ -36,9 +40,7 @@ namespace OnlineShop.Models
 
         public void AddComponent(IComponent component)
         {
-            //If the components collection contains a component with the same component type,
-            //throw an ArgumentException with the message "Component {component type} already exists in {computer type} with Id {id}."
-            //Otherwise add the component in the components collection.
+
 
             var alreadyExists = iComponents.Any(x => x.GetType().Name == component.GetType().Name);
 
@@ -53,9 +55,7 @@ namespace OnlineShop.Models
 
         public IComponent RemoveComponent(string componentType)
         {
-            //If the components collection is empty or does not have a component of that type,
-            //throw an ArgumentException with the message "Component {component type} does not exist in {computer type} with Id {id}."
-            //Otherwise remove the component of that type and return it.
+
 
             var checkIfItemExists = iComponents.Any(x => x.GetType().Name == componentType);
 
@@ -84,9 +84,7 @@ namespace OnlineShop.Models
 
         public void AddPeripheral(IPeripheral peripheral)
         {
-            //If the peripherals collection contains a peripheral with the same peripheral type,
-            //throw an ArgumentException with the message "Peripheral {peripheral type} already exists in {computer type} with Id {id}."
-            //Otherwise add the peripheral in peripherals collection.
+
 
             var alreadyExists = iPeripherals.Any(x => x.GetType().Name == peripheral.GetType().Name);
 
@@ -131,42 +129,97 @@ namespace OnlineShop.Models
         {
             get
             {
-                if (this.iComponents.Count == 0)
+                if (iComponents != null && iComponents.Count != 0)
                 {
-                    return base.OverallPerformance;
+                   return this.overallPreform   += this.iComponents.Average(x => x.OverallPerformance);
+
                 }
 
-                return base.OverallPerformance + this.iComponents.Average(x => x.OverallPerformance);
+                return this.overallPreform;
             }
+            protected set
+            {
+
+
+
+                this.overallPreform = value;
+            }
+
+
         }
 
-        public override decimal Price =>
-            base.Price + this.iComponents.Sum(c => c.Price)
-                      + this.iPeripherals.Sum(p => p.Price);
+        public override decimal Price
+        {
+            get
+            {
+                if (iPeripherals != null && iComponents != null && iPeripherals.Count != 0 && iComponents.Count != 0)
+                {
+                    return this.price =price+ (this.iComponents.Sum(c => c.Price) + this.iPeripherals.Sum(p => this.Price));
+
+                }
+
+                return this.price;
+            }
+            protected set
+            {
+                this.price = value;
+            }
+
+
+
+
+        }
+
 
         public override string ToString()
         {
+
+
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine(base.ToString());
+            sb.AppendLine($"Overall Performance: {this.OverallPerformance}. Price: {this.Price} - {this.GetType().Name}: {this.Manufacturer} {this.Model} (Id: {this.Model})");
             sb.AppendLine($" Components ({this.Components.Count}):");
 
-            foreach (var component in this.Components)
+            if (iComponents.Count != 0)
             {
-                sb.AppendLine($"  {component.ToString()}");
+                foreach (var component in this.Components)
+                {
+                    sb.AppendLine($"  {component.ToString()}");
 
+
+                }
+            }
+            else if (iComponents.Count == 0)
+            {
+                sb.AppendLine(
+                    $" Components (0); Average Overall Performance (0.00):");
+            }
+
+
+
+            if (iPeripherals.Count != 0)
+            {
+                sb.AppendLine(
+                    $" Peripherals ({this.Peripherals.Count}); Average Overall Performance ({this.iPeripherals.Average(p => p.OverallPerformance):f2}):");
+
+
+                foreach (var peropheral in iPeripherals)
+                {
+                    sb.AppendLine($"  {peropheral.ToString()}");
+                }
+
+            }
+            else
+            {
+                sb.AppendLine(
+                    $" Peripherals (0); Average Overall Performance (0.00):");
 
             }
 
-            sb.AppendLine(
-                $" Peripherals ({this.Peripherals.Count}); Average Overall Performance ({this.iPeripherals.Average(p => p.OverallPerformance):f2}):");
 
-            foreach (var peropheral in iPeripherals)
-            {
-                sb.AppendLine($"  {peropheral.ToString()}");
-            }
 
             return sb.ToString().TrimEnd();
+
         }
     }
 }

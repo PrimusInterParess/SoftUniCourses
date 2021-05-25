@@ -12,5 +12,10 @@ namespace OnlineShop.Models.Products.Computers
             : base(id, manufacturer, model, price, OVERALL_PERFOR)
         {
         }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

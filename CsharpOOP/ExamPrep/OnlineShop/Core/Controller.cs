@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using OnlineShop.Common.Constants;
 using OnlineShop.Models.Products.Components;
 using OnlineShop.Models.Products.Computers;
 using OnlineShop.Models.Products.Peripherals;
@@ -10,21 +11,15 @@ namespace OnlineShop.Core
     public class Controller : IController
     {
         private ICollection<IComputer> computers;
-        private ICollection<IComponent> components;
-        private ICollection<IPeripheral> peripherals;
+       
 
         public Controller()
         {
             this.computers = new List<IComputer>();
-            this.components = new List<IComponent>();
-            this.peripherals = new List<IPeripheral>();
+           
         }
 
-        public IReadOnlyCollection<IPeripheral> Peripherals
-        {
-            get => ((IReadOnlyCollection<IPeripheral>)this.peripherals);
-            private set => this.peripherals = ((ICollection<IPeripheral>)value);
-        }
+      
 
         public IReadOnlyCollection<IComputer> Computers
         {
@@ -32,11 +27,7 @@ namespace OnlineShop.Core
             private set => this.computers = ((ICollection<IComputer>)value);
         }
 
-        public IReadOnlyCollection<IComponent> Components
-        {
-            get => ((IReadOnlyCollection<IComponent>)this.components);
-            private set => this.components = ((ICollection<IComponent>)value);
-        }
+       
 
         public string AddComputer(string computerType, int id, string manufacturer, string model, decimal price)
         {
@@ -46,7 +37,7 @@ namespace OnlineShop.Core
 
             if (compAlreadyExists)
             {
-                throw new ArgumentException("Computer with this id already exists.");
+                throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
             }
 
             if (computerType == nameof(Laptop))
@@ -58,6 +49,8 @@ namespace OnlineShop.Core
                 newComp = new DesktopComputer(id, manufacturer, model, price);
             }
 
+            this.computers.Add(newComp);
+
             return $"Computer with id {id} added successfully.";
         }
 
@@ -66,15 +59,14 @@ namespace OnlineShop.Core
         {
             IPeripheral compToAdd = null;
 
+            var comp = this.computers.FirstOrDefault(c => c.Id == computerId);
 
-            bool checksForExistingComputer = this.computers.Any(c => c.Id == computerId);
-
-            if (!checksForExistingComputer)
+            if (comp == null)
             {
-                throw new ArgumentException("Computer with this id does not exist.");
+                throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
             }
 
-            bool peripheralAlreadyExists = this.peripherals.Any(c => c.Id == id);
+            bool peripheralAlreadyExists = comp.Peripherals.Any(c => c.Id == id);
 
 
             if (peripheralAlreadyExists)
@@ -101,33 +93,25 @@ namespace OnlineShop.Core
 
             else
             {
-                throw new ArgumentException("Peripheral type is invalid.");
+                throw new ArgumentException(ExceptionMessages.InvalidPeripheralType);
             }
 
 
-            this.peripherals.Add(compToAdd);
+            comp.AddPeripheral(compToAdd);
 
             return $"Peripheral {peripheralType} with id {id} added successfully in computer with id {computerId}.";
         }
 
         public string RemovePeripheral(string peripheralType, int computerId)
         {
-            bool checksForExistingComputer = this.computers.Any(c => c.Id == computerId);
+            var comp = this.computers.FirstOrDefault(c => c.Id == computerId);
 
-            if (!checksForExistingComputer)
+            if (comp==null)
             {
-                throw new ArgumentException("Computer with this id does not exist.");
+                throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
             }
 
-            IPeripheral toRemove =
-                this.peripherals.FirstOrDefault(c =>
-                    c.GetType().Name == peripheralType);
-
-            if (toRemove != null)
-            {
-
-                this.peripherals.Remove(toRemove);
-            }
+           var toRemove= comp.RemovePeripheral(peripheralType);
 
             return $"Successfully removed {peripheralType} with id {toRemove.Id}.";
         }
@@ -135,54 +119,55 @@ namespace OnlineShop.Core
         public string AddComponent(int computerId, int id, string componentType, string manufacturer, string model, decimal price,
             double overallPerformance, int generation)
         {
-            IComponent compToAdd = null;
+            var comp = this.computers.FirstOrDefault(c => c.Id == computerId);
 
-            bool compAlreadyExists = this.components.Any(c => c.Id == id);
-
-            bool checksForExistingComputer = this.computers.Any(c => c.Id == computerId);
-
-            if (!checksForExistingComputer)
+            if (comp == null)
             {
-                throw new ArgumentException("Computer with this id does not exist.");
+                throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
             }
 
+            bool componentExcistence = comp.Components.Any(c => c.Id == id);
 
-            if (compAlreadyExists)
+
+            if (componentExcistence)
             {
                 throw new ArgumentException("Component with this id already exists.");
             }
 
             if (componentType == nameof(CentralProcessingUnit))
             {
-                compToAdd = new CentralProcessingUnit(id, manufacturer, model, price, overallPerformance, generation);
+                comp.AddComponent(new CentralProcessingUnit(id, manufacturer, model, price, overallPerformance, generation)); 
             }
             else if (componentType == nameof(Motherboard))
             {
-                compToAdd = new Motherboard(id, manufacturer, model, price, overallPerformance, generation);
+                comp.AddComponent(new Motherboard(id, manufacturer, model, price, overallPerformance, generation));
+
             }
             else if (componentType == nameof(PowerSupply))
             {
-                compToAdd = new PowerSupply(id, manufacturer, model, price, overallPerformance, generation);
+                comp.AddComponent(new PowerSupply(id, manufacturer, model, price, overallPerformance, generation));
+
             }
             else if (componentType == nameof(RandomAccessMemory))
             {
-                compToAdd = new RandomAccessMemory(id, manufacturer, model, price, overallPerformance, generation);
+                comp.AddComponent(new RandomAccessMemory(id, manufacturer, model, price, overallPerformance, generation));
+
             }
             else if (componentType == nameof(SolidStateDrive))
             {
-                compToAdd = new SolidStateDrive(id, manufacturer, model, price, overallPerformance, generation);
+                comp.AddComponent(new SolidStateDrive(id, manufacturer, model, price, overallPerformance, generation));
+
             }
             else if (componentType == nameof(VideoCard))
             {
-                compToAdd = new VideoCard(id, manufacturer, model, price, overallPerformance, generation);
+                comp.AddComponent(new VideoCard(id, manufacturer, model, price, overallPerformance, generation));
+
             }
             else
             {
-                throw new ArgumentException("Component type is invalid.");
+                throw new ArgumentException(ExceptionMessages.InvalidComponentType);
             }
 
-
-            this.components.Add(compToAdd);
 
             return $"Component {componentType} with id {id} added successfully in computer with id {computerId}.";
 
@@ -190,22 +175,14 @@ namespace OnlineShop.Core
 
         public string RemoveComponent(string componentType, int computerId)
         {
-            bool checksForExistingComputer = this.computers.Any(c => c.Id == computerId);
+            var comp = this.computers.FirstOrDefault(c => c.Id == computerId);
 
-            if (!checksForExistingComputer)
+            if (comp == null)
             {
-                throw new ArgumentException("Computer with this id does not exist.");
+                throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
             }
 
-            IComponent toRemove =
-                this.components.FirstOrDefault(c =>
-                    c.GetType().Name == componentType);
-
-            if (toRemove != null)
-            {
-
-                this.components.Remove(toRemove);
-            }
+           var toRemove= comp.RemoveComponent(componentType);
 
             return $"Successfully removed {componentType} with id {toRemove.Id}.";
 
@@ -217,7 +194,8 @@ namespace OnlineShop.Core
 
             if (compToRemove == null)
             {
-                throw new ArgumentException("Computer with this id does not exist.");
+                throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
+
             }
 
             this.computers.Remove(compToRemove);
@@ -232,7 +210,7 @@ namespace OnlineShop.Core
 
             if (this.computers.Count == 0)
             {
-                throw new ArgumentException($" Can't buy a computer with a budget of ${budget}.");
+                throw new ArgumentException($"Can't buy a computer with a budget of ${budget}.");
             }
 
             foreach (var computer in computers.OrderByDescending(c => c.OverallPerformance))
@@ -252,7 +230,7 @@ namespace OnlineShop.Core
 
             else
             {
-                throw new ArgumentException($" Can't buy a computer with a budget of ${budget}.");
+                throw new ArgumentException($"Can't buy a computer with a budget of ${budget}.");
             }
         }
 
@@ -260,12 +238,12 @@ namespace OnlineShop.Core
         {
             IComputer checksForExistingComputer = this.computers.FirstOrDefault(c => c.Id == id);
 
-            if (checksForExistingComputer!=null)
+            if (checksForExistingComputer != null)
             {
                 return checksForExistingComputer.ToString();
             }
 
-            throw new ArgumentException("Computer with this id does not exist.");
+            throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
         }
 
         public void Close()

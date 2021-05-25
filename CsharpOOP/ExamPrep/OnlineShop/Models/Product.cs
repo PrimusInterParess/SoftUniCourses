@@ -68,7 +68,7 @@ namespace OnlineShop.Models
         public virtual decimal Price
         {
             get => this.price;
-            private set
+            protected set
             {
                 if (value <= 0)
                 {

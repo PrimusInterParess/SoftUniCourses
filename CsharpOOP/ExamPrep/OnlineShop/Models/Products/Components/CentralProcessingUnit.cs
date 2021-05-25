@@ -17,6 +17,9 @@ namespace OnlineShop.Models.Products.Components
             double generation) 
             : base(id, manufacturer, model, price, overallPerformance, generation, COMP_MODIFIER)
         {
+            
         }
+
+
     }
 }

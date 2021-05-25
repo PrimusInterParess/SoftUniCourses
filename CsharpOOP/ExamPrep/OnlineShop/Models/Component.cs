@@ -11,13 +11,14 @@ namespace OnlineShop.Models.Products.Components
         private double Comp_Multiplier { get; set; }
 
         private int generation;
+        private double overallPerformance;
 
-        protected Component(int id, string manufacturer, string model, decimal price, double overallPerformance, double generation, double compMultiplier)
+        protected Component(int id, string manufacturer, string model, decimal price,double overallPerformance, double generation, double compMultiplier)
             : base(id, manufacturer, model, price, overallPerformance)
         {
             this.Generation = this.generation;
             this.Comp_Multiplier = compMultiplier;
-            overallPerformance *= Comp_Multiplier;
+            this.OverallPerformance=overallPerformance;
 
         }
 
@@ -25,6 +26,15 @@ namespace OnlineShop.Models.Products.Components
         {
             get => this.generation;
             private set => this.generation = value;
+        }
+
+        public override double OverallPerformance
+        {
+            get => this.overallPerformance;
+            protected set
+            {
+                this.overallPerformance = value *= Comp_Multiplier;
+            }
         }
 
         public override string ToString()
