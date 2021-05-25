@@ -8,7 +8,7 @@ using MilitaryElite.IO.Contracts;
 
 namespace MilitaryElite
 {
-    class StartUp
+   public class StartUp
     {
         static void Main(string[] args)
         {

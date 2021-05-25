@@ -99,7 +99,7 @@ namespace MilitaryElite.Core
 
 
                 }
-                if (soldierType == nameof(Comando))
+                if (soldierType == nameof(Commando))
                 {
                     decimal salary = decimal.Parse(commandArg[4]);
 
@@ -107,7 +107,7 @@ namespace MilitaryElite.Core
 
                     try
                     {
-                        IComando comando = new Comando(id, firstName, lastName, salary, corps);
+                        ICommando commando = new Commando(id, firstName, lastName, salary, corps);
 
                         string[] missionArgs = commandArg.Skip(6).ToArray();
 
@@ -121,18 +121,18 @@ namespace MilitaryElite.Core
 
                                 IMission mission = new Mission(mName, state);
 
-                                comando.AddMission(mission);
+                                commando.AddMission(mission);
                             }
-                            catch (InvalidMissionCopletionException ex)
+                            catch (InvalidStateExeption ex)
                             {
                                 continue;
                             }
 
                         }
 
-                        soldier = comando;
+                        soldier = commando;
                     }
-                    catch (InvalidCorpsExeption e)
+                    catch (InvalidMissionCopletionException ex)
                     {
                         continue;
                     }
