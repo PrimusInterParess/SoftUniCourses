@@ -49,6 +49,8 @@ namespace OnlineShop.Models
                 throw new ArgumentException($"Component {component.GetType().Name} already exists in {this.GetType().Name} with Id {this.Id}.");
             }
 
+            this.Price += component.Price;
+
             this.iComponents.Add(component);
 
         }
@@ -78,6 +80,8 @@ namespace OnlineShop.Models
                 }
             }
 
+            this.Price -= toReturn.Price;
+
             return toReturn;
 
         }
@@ -92,6 +96,8 @@ namespace OnlineShop.Models
             {
                 throw new ArgumentException($"Peripheral {peripheral.GetType().Name} already exists in {this.GetType().Name} with Id {this.Id}.");
             }
+
+            this.price += peripheral.Price;
 
             this.iPeripherals.Add(peripheral);
 
@@ -121,21 +127,27 @@ namespace OnlineShop.Models
                 }
             }
 
+            this.Price -= toReturn.Price;
+
             return toReturn;
 
         }
 
-        public override double OverallPerformance
+        public  override double OverallPerformance
         {
             get
             {
-                if (iComponents != null && iComponents.Count != 0)
+                if (iComponents.Count == 0)
                 {
-                   return this.overallPreform   += this.iComponents.Average(x => x.OverallPerformance);
+                    return this.overallPreform;
 
                 }
 
-                return this.overallPreform;
+                var average = this.iComponents.Average(c => c.OverallPerformance);
+
+                return this.overallPreform  + average;
+
+
             }
             protected set
             {
@@ -148,20 +160,20 @@ namespace OnlineShop.Models
 
         }
 
-        public override decimal Price
+        public  override decimal Price
         {
             get
             {
-                if (iPeripherals != null && iComponents != null && iPeripherals.Count != 0 && iComponents.Count != 0)
-                {
-                    return this.price =price+ (this.iComponents.Sum(c => c.Price) + this.iPeripherals.Sum(p => this.Price));
-
-                }
 
                 return this.price;
             }
             protected set
             {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Price can not be less or equal than 0.");
+                }
+
                 this.price = value;
             }
 
@@ -177,7 +189,7 @@ namespace OnlineShop.Models
 
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"Overall Performance: {this.OverallPerformance}. Price: {this.Price} - {this.GetType().Name}: {this.Manufacturer} {this.Model} (Id: {this.Model})");
+            sb.AppendLine($"Overall Performance: {this.OverallPerformance:F2}. Price: {this.Price} - {this.GetType().Name}: {this.Manufacturer} {this.Model} (Id: {this.Id})");
             sb.AppendLine($" Components ({this.Components.Count}):");
 
             if (iComponents.Count != 0)
@@ -221,5 +233,7 @@ namespace OnlineShop.Models
             return sb.ToString().TrimEnd();
 
         }
+
+       
     }
 }

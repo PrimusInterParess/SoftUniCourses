@@ -37,7 +37,7 @@ namespace OnlineShop.Core
 
             if (compAlreadyExists)
             {
-                throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
+                throw new ArgumentException(ExceptionMessages.ExistingComputerId);
             }
 
             if (computerType == nameof(Laptop))
@@ -47,6 +47,10 @@ namespace OnlineShop.Core
             else if (computerType == nameof(DesktopComputer))
             {
                 newComp = new DesktopComputer(id, manufacturer, model, price);
+            }
+            else
+            {
+                throw new ArgumentException(ExceptionMessages.InvalidComputerType);
             }
 
             this.computers.Add(newComp);

@@ -14,7 +14,7 @@ namespace OnlineShop.Models.Products.Components
             string model,
             decimal price,
             double overallPerformance,
-            double generation) 
+            int generation) 
             : base(id, manufacturer, model, price, overallPerformance, generation, COMP_MODIFIER)
         {
             

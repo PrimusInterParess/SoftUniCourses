@@ -70,12 +70,12 @@ namespace OnlineShop.Models
             get => this.price;
             protected set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Price can not be less or equal than 0.");
-                }
+                    if (value <= 0)
+                    {
+                        throw new ArgumentException("Price can not be less or equal than 0.");
+                    }
 
-                this.price = value;
+                    this.price = value;
             }
         }
 

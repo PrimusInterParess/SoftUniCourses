@@ -13,9 +13,6 @@ namespace OnlineShop.Models.Products.Computers
         {
         }
 
-        public override string ToString()
-        {
-            return base.ToString();
-        }
+       
     }
 }

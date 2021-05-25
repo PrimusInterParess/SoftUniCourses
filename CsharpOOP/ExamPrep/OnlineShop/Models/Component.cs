@@ -13,12 +13,12 @@ namespace OnlineShop.Models.Products.Components
         private int generation;
         private double overallPerformance;
 
-        protected Component(int id, string manufacturer, string model, decimal price,double overallPerformance, double generation, double compMultiplier)
+        protected Component(int id, string manufacturer, string model, decimal price, double overallPerformance, int generation, double compMultiplier)
             : base(id, manufacturer, model, price, overallPerformance)
         {
-            this.Generation = this.generation;
+            this.Generation = generation;
             this.Comp_Multiplier = compMultiplier;
-            this.OverallPerformance=overallPerformance;
+            this.OverallPerformance = overallPerformance;
 
         }
 
@@ -33,6 +33,11 @@ namespace OnlineShop.Models.Products.Components
             get => this.overallPerformance;
             protected set
             {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Overall Performance can not be less or equal than 0.");
+                }
+
                 this.overallPerformance = value *= Comp_Multiplier;
             }
         }
