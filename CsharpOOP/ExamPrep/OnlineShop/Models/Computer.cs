@@ -110,7 +110,7 @@ namespace OnlineShop.Models
 
             IPeripheral toReturn = null;
 
-            if (this.iComponents.Count == 0 || !checkIfItemExists)
+            if (this.iPeripherals.Count == 0 || !checkIfItemExists)
             {
                 throw new ArgumentException(
                     $"Peripheral {peripheralType} does not exist in {this.GetType().Name} with Id {this.Id}.");
@@ -189,7 +189,7 @@ namespace OnlineShop.Models
 
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine($"Overall Performance: {this.OverallPerformance:F2}. Price: {this.Price} - {this.GetType().Name}: {this.Manufacturer} {this.Model} (Id: {this.Id})");
+            sb.AppendLine($"Overall Performance: {this.OverallPerformance:F2}. Price: {this.Price:F2} - {this.GetType().Name}: {this.Manufacturer} {this.Model} (Id: {this.Id})");
             sb.AppendLine($" Components ({this.Components.Count}):");
 
             if (iComponents.Count != 0)

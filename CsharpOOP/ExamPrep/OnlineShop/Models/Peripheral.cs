@@ -24,7 +24,7 @@ namespace OnlineShop.Models
 
         public override string ToString()
         {
-            return $"{base.ToString()} + Connection Type: {this.ConnectionType}";
+            return $"{base.ToString()} Connection Type: {this.ConnectionType}";
         }
     }
 }

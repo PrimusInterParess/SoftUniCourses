@@ -11,15 +11,14 @@ namespace OnlineShop.Core
     public class Controller : IController
     {
         private ICollection<IComputer> computers;
-       
+
 
         public Controller()
         {
             this.computers = new List<IComputer>();
-           
         }
 
-      
+
 
         public IReadOnlyCollection<IComputer> Computers
         {
@@ -27,7 +26,7 @@ namespace OnlineShop.Core
             private set => this.computers = ((ICollection<IComputer>)value);
         }
 
-       
+
 
         public string AddComputer(string computerType, int id, string manufacturer, string model, decimal price)
         {
@@ -110,12 +109,12 @@ namespace OnlineShop.Core
         {
             var comp = this.computers.FirstOrDefault(c => c.Id == computerId);
 
-            if (comp==null)
+            if (comp == null)
             {
                 throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
             }
 
-           var toRemove= comp.RemovePeripheral(peripheralType);
+            var toRemove = comp.RemovePeripheral(peripheralType);
 
             return $"Successfully removed {peripheralType} with id {toRemove.Id}.";
         }
@@ -140,7 +139,7 @@ namespace OnlineShop.Core
 
             if (componentType == nameof(CentralProcessingUnit))
             {
-                comp.AddComponent(new CentralProcessingUnit(id, manufacturer, model, price, overallPerformance, generation)); 
+                comp.AddComponent(new CentralProcessingUnit(id, manufacturer, model, price, overallPerformance, generation));
             }
             else if (componentType == nameof(Motherboard))
             {
@@ -186,7 +185,7 @@ namespace OnlineShop.Core
                 throw new ArgumentException(ExceptionMessages.NotExistingComputerId);
             }
 
-           var toRemove= comp.RemoveComponent(componentType);
+            var toRemove = comp.RemoveComponent(componentType);
 
             return $"Successfully removed {componentType} with id {toRemove.Id}.";
 
@@ -223,6 +222,7 @@ namespace OnlineShop.Core
                 {
                     toReturnn = computer;
                     computers.Remove(computer);
+                    break;
                 }
             }
 
@@ -232,10 +232,7 @@ namespace OnlineShop.Core
 
             }
 
-            else
-            {
-                throw new ArgumentException($"Can't buy a computer with a budget of ${budget}.");
-            }
+            throw new ArgumentException($"Can't buy a computer with a budget of ${budget}.");
         }
 
         public string GetComputerData(int id)

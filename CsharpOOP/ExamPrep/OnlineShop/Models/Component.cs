@@ -44,7 +44,7 @@ namespace OnlineShop.Models.Products.Components
 
         public override string ToString()
         {
-            return $"{base.ToString()} + Generation: {this.Generation}";
+            return $"{base.ToString()} Generation: {this.Generation}";
         }
 
 
