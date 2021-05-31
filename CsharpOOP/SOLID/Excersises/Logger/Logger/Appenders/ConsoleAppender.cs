@@ -1,26 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Logger.Appenders;
 using SOLID.Layouts;
+using SOLID.ReportLevels;
 
-
-namespace SOLID
+namespace SOLID.Appenders
 {
-  public  class ConsoleAppender:Appender
+    public class ConsoleAppender:Appender
     {
         public ConsoleAppender(ILayout layout) 
             : base(layout)
         {
         }
 
-        public override void Append(string date, string reportLevel, string message)
+        public override void Append(string date, ReportLevel reportLevel, string message)
         {
-            string content = string.Format(this.layout.Template, date, reportLevel, message);
+            if (this.CanAppend(reportLevel))
+            {
+                this.MessagesCount+=1;
 
-            Console.WriteLine(content);
+                string content = string.Format(this.layout.Template, date, reportLevel, message);
+
+                Console.WriteLine(content);
+            }
+
+             
         }
-
-       
     }
 }

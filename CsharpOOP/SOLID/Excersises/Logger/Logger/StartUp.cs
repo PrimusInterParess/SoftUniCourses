@@ -1,22 +1,36 @@
 ﻿using System;
-using Logger.Appenders;
+using System.Collections.Generic;
 using SOLID.Appenders;
+using SOLID.Core;
+using SOLID.Core.Factories;
+using SOLID.Core.IO;
 using SOLID.Layouts;
 using SOLID.Loggers;
+using SOLID.ReportLevels;
+
 
 namespace SOLID
 {
     public class StartUp
     {
+      
+
         static void Main(string[] args)
         {
-            ILayout simpleLayout = new SimpleLayout();
-            IAppender consoleAppender = new ConsoleAppender(simpleLayout);
-            ILogger logger = new Logger(consoleAppender);
 
-            logger.Error("3/26/2015 2:08:11 PM", "Error parsing JSON.");
-            logger.Info("3/26/2015 2:08:11 PM", "User Pesho successfully registered.");
+            IAppenderFactory appenderFactory = new AppenderFactory();
 
+            ILayoutFactory layoutFactory = new LayoutFactory();
+
+            IReader reader = new FileReader();
+
+
+            IEngine engine = new Engine(appenderFactory, layoutFactory, reader);
+
+            engine.Run();
         }
+
+      
     }
+
 }
