@@ -21,7 +21,20 @@ namespace CommandPattern.Core
 
         public void Run()
         {
-            throw new NotImplementedException();
+            while (true)
+            {
+                string line = Console.ReadLine();
+
+                string result = commandInterpreter.Read(line);
+
+                if (result==null)
+                {
+                    break;
+                    ;
+                }
+
+                Console.WriteLine(result);
+            }
         }
     }
 }

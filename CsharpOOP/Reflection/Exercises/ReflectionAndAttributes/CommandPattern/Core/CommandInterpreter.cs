@@ -11,6 +11,11 @@ namespace CommandPattern.Core
     {
         private readonly ICommandFactory commandFactory;
 
+        public CommandInterpreter()
+        {
+            this.commandFactory = new CommandFactory();
+        }
+
         //Когато искаме да създадем отделен клас,
         //в който да изнесем част отлогиката на настоящ такъв,
         //трябва да създадем инстанция в текущия.Така новия клас върши част от работата.SOLID!!!

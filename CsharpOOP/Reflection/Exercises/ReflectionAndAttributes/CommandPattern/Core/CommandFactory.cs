@@ -16,7 +16,7 @@ namespace CommandPattern.Core
         {
           
 
-          Type type = Assembly.GetCallingAssembly()
+          Type type = Assembly.GetEntryAssembly()
                .GetTypes()
                .FirstOrDefault(t => t.Name == $"{commandType}{CommandSufix}");
 

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CommandPattern.Core.Contracts;
 
 namespace CommandPattern.Commands
 {
-    public class ExitCommand : ICommand
+    public class HelloCommand : ICommand
     {
         public string Execute(string[] args)
         {
-            return null;
+            return $"Hello, {args[0]}";
         }
     }
 }

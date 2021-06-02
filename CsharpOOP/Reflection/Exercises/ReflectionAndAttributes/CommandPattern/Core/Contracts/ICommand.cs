@@ -1,4 +1,4 @@
-﻿namespace CommandPattern.Commands
+﻿namespace CommandPattern.Core.Contracts
 
 {
     public interface ICommand
