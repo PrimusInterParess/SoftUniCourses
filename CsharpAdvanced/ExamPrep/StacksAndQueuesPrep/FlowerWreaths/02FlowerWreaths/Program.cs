@@ -16,10 +16,13 @@ namespace _02FlowerWreaths
             Queue<int> rosesQ = EnqueRosesInQ(roses);
 
             int wreaths = 0;
+            int needed = 5;
 
+            int storedFlowers = 0;
 
             while (true)
             {
+
                 if (IsStorageEmpty(lilliesS, rosesQ))
                 {
                     break;
@@ -35,22 +38,60 @@ namespace _02FlowerWreaths
                 }
                 else if (wreath > 15)
                 {
-                    bool created = false;
 
-                    while (true)
+
+                    int rose = rosesQ.Peek();
+                    int lily = lilliesS.Peek();
+
+                    while (lily >= 0)
                     {
-                        int wreath = rosesQ.Peek() + lilliesS.Peek() - 2;
+
+                        lily -= 2;
+                        wreath = rose + lily;
+                        if (wreath == 15)
+                        {
+                            PushAndDeque(lilliesS, rosesQ);
+
+                            wreaths++;
+
+                            break;
+                        }
+                        else if (wreath < 15)
+                        {
+                            storedFlowers += wreath;
+                            PushAndDeque(lilliesS, rosesQ);
+                            break;
+
+                        }
 
                     }
+
+                }
+                else if (wreath < 15)
+                {
+                    storedFlowers += wreath;
+                    PushAndDeque(lilliesS, rosesQ);
                 }
 
 
 
-
             }
+
+            if (storedFlowers >= 15)
+            {
+                while (storedFlowers > 15)
+                {
+                    wreaths++;
+                    storedFlowers -= 15;
+                }
+            }
+
+            Console.WriteLine(wreaths >= 5
+                ? $"You made it, you are going to the competition with {wreaths} wreaths!"
+                : $"You didn't make it, you need {needed - wreaths} wreaths more!");
         }
 
-        private static void PushAndDeque(Stack<int> lilliesS,Queue<int> rosesQ)
+        private static void PushAndDeque(Stack<int> lilliesS, Queue<int> rosesQ)
         {
             lilliesS.Pop();
             rosesQ.Dequeue();
@@ -58,7 +99,7 @@ namespace _02FlowerWreaths
 
         private static bool IsStorageEmpty(Stack<int> lilies, Queue<int> roses)
         {
-            if (lilies.Count == 0 && roses.Count == 0)
+            if (lilies.Count == 0 || roses.Count == 0)
             {
                 return true;
             }
