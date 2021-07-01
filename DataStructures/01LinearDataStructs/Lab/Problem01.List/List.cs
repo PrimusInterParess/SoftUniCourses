@@ -13,9 +13,10 @@
 
         public List(int capacity = DEFAULT_CAPACITY)
         {
+
             if (capacity <= 0)
             {
-                throw new AggregateException(nameof(capacity));
+                throw new AggregateException($"Cannot Initialize List with zaro or negative capacity!");
             }
 
             this._items = new T[capacity];
@@ -25,50 +26,65 @@
         {
             get
             {
-                this.ValidateIndex(index);
+                ValidateIndex(index);
+
                 return this._items[index];
+
+
             }
             set
             {
-                this.ValidateIndex(index);
+                ValidateIndex(index);
+
                 this._items[index] = value;
             }
         }
 
-        public int Count { get; private set; }
+
+
+        public int Count
+        {
+            get;
+            private set;
+
+        }
 
         public void Add(T item)
         {
-            this.GrowIfNecessery();
-            this._items[Count++] = item;
-        }
+            this.CheckCapacity();
 
+            this._items[this.Count] = item;
+            this.Count++;
+        }
 
 
 
         public bool Contains(T item)
         {
-            return this.IndexOf(item) != -1;
+            return IndexOf(item) != -1;
         }
 
 
         public int IndexOf(T item)
         {
+            int index = -1;
+
             for (int i = 0; i < this.Count; i++)
             {
                 if (_items[i].Equals(item))
                 {
-                    return i;
+                    index = i;
                 }
             }
 
-            return -1;
+            return index;
         }
 
         public void Insert(int index, T item)
         {
             this.ValidateIndex(index);
-            this.GrowIfNecessery();
+
+            this.CheckCapacity();
 
             for (int i = Count; i > index; i--)
             {
@@ -77,29 +93,26 @@
 
             this._items[index] = item;
             this.Count++;
-
-
         }
 
         public bool Remove(T item)
         {
-            int indexOf = this.IndexOf(item);
+            int index = this.IndexOf(item);
 
-            if (indexOf == -1)
+            if (index == -1)
             {
                 return false;
             }
 
-            this.RemoveAt(indexOf);
-
+            this.RemoveAt(index);
             return true;
         }
-       
+
         public void RemoveAt(int index)
         {
-            this.ValidateIndex(index);
+            ValidateIndex(index);
 
-            for (int i = index; i < Count - 1; i++)
+            for (int i = index; i < this.Count - 1; i++)
             {
                 this._items[i] = this._items[i + 1];
             }
@@ -110,7 +123,7 @@
 
         public IEnumerator<T> GetEnumerator()
         {
-            for (int i = 0; i < Count; i++)
+            for (int i = 0; i < this.Count; i++)
             {
                 yield return this._items[i];
             }
@@ -119,31 +132,35 @@
         IEnumerator IEnumerable.GetEnumerator()
             => this.GetEnumerator();
 
-        private void GrowIfNecessery()
-        {
-            if (this.Count == this._items.Length)
-            {
-                this._items = this.Grow();
-            }
-        }
-
-        private T[] Grow()
-        {
-            T[] newArr = new T[Count * 2];
-            for (int i = 0; i < Count; i++)
-            {
-                newArr[i] = this._items[i];
-            }
-
-            return newArr;
-        }
 
         private void ValidateIndex(int index)
         {
             if (index < 0 || index >= this.Count)
             {
-                throw new IndexOutOfRangeException(nameof(index));
+                throw new IndexOutOfRangeException($"Invalid index");
             }
+        }
+
+        private void CheckCapacity()
+        {
+            if (this._items.Length == this.Count)
+            {
+                this._items = Grow();
+            }
+        }
+
+        private T[] Grow()
+        {
+            int doubleCapacity = this._items.Length * 2;
+
+            T[] newArr = new T[doubleCapacity];
+
+            for (int i = 0; i < doubleCapacity; i++)
+            {
+                newArr[i] = this._items[i];
+            }
+
+            return newArr;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _03.Bee
+namespace Selling
 {
     class Program
     {
@@ -20,16 +20,12 @@ namespace _03.Bee
 
             string input = String.Empty; ;
 
-            while ((input = Console.ReadLine()) != "End")
+            while (sum <= 50)
             {
-                if (sum >= 50)
-                {
-                    break;
-                }
 
-                string command = input;
+                string command = Console.ReadLine();
 
-                matrix[playerPosition[0]][playerPosition[1]] = '.';
+                matrix[playerPosition[0]][playerPosition[1]] = '-';
 
                 Movement(matrix, playerPosition, command);
 
@@ -46,16 +42,19 @@ namespace _03.Bee
 
                 if (char.IsDigit(matrix[playerPosition[0]][playerPosition[1]]))
                 {
-                    sum += int.Parse(matrix[playerPosition[0]][playerPosition[1]]);
+                    string str = matrix[playerPosition[0]][playerPosition[1]].ToString();
+
+
+                    sum += int.Parse(str);
                     matrix[playerPosition[0]][playerPosition[1]] = 'S';
 
                 }
 
                 else if (matrix[playerPosition[0]][playerPosition[1]] == 'O')
                 {
-                    matrix[playerPosition[0]][playerPosition[1]] = '.';
+                    matrix[playerPosition[0]][playerPosition[1]] = '-';
 
-                    CheckForOther(matrix, playerPosition);
+                    CheckForOther(playerPosition,matrix);
                 }
 
 
@@ -82,7 +81,7 @@ namespace _03.Bee
 
             for (int r = 0; r < matrix.GetLength(0); r++)
             {
-                for (int c = 0; c < matrix.GetLength(1); c++)
+                for (int c = 0; c < matrix.GetLength(0); c++)
                 {
                     if (matrix[r][c] == 'O')
                     {
