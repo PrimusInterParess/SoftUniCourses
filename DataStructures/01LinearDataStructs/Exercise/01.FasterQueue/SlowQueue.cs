@@ -44,11 +44,7 @@
 
         public void Enqueue(T item)
         {
-            var newNode = new Node<T>
-            {
-                Item = item,
-                Next = null
-            };
+            var newNode = new Node<T>(item);
 
             if (this._head is null)
             {

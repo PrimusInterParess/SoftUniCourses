@@ -19,7 +19,7 @@
         public FastQueue(Node<T> head)
         {
             this._head = _tail = head;
-           
+
             this.Count++;
         }
 
@@ -27,20 +27,42 @@
 
         public bool Contains(T item)
         {
-            throw new NotImplementedException();
+            var current = this._head;
+
+            while (current != null)
+            {
+                if (current.Item.Equals(item))
+                {
+                    return true;
+                }
+
+                current = current.Next;
+            }
+
+            return false;
         }
 
         public T Dequeue()
         {
-            throw new NotImplementedException();
+            this.EnsureNotEmpty();
+            Node<T> toReturn = this._head;
+
+            if (this.Count == 1)
+            {
+                this._head = _tail = null;
+            }
+            else
+            {
+                this._head = this._head.Next;
+            }
+
+            this.Count--;
+            return toReturn.Item;
         }
 
         public void Enqueue(T item)
         {
-            Node<T> toInsert = new Node<T>
-            {
-                Item = item
-            };
+            Node<T> toInsert = new Node<T>(item);
 
             if (this.Count == 0)
             {
@@ -50,25 +72,40 @@
             {
                 this._tail.Next = toInsert;
                 this._tail = toInsert;
-
             }
+
+            this.Count++;
+
         }
 
-        
+
 
         public T Peek()
         {
-            throw new NotImplementedException();
+            this.EnsureNotEmpty();
+
+            return this._head.Item;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            var current = this._head;
+            while (current != null)
+            {
+                yield return current.Item;
+                current = current.Next;
+            }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+        
+            
+        
+
+        private void EnsureNotEmpty()
         {
-            throw new NotImplementedException();
+            if (this.Count == 0)
+                throw new InvalidOperationException();
         }
     }
 }

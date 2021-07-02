@@ -6,13 +6,40 @@
 
     public class DoublyLinkedList<T> : IAbstractLinkedList<T>
     {
-        private Node<T> head;
+        private Node<T> _head;
+        private Node<T> _tail;
+
+
+        public DoublyLinkedList()
+        {
+            this._head = this._tail = null;
+        }
+        public DoublyLinkedList(Node<T> head)
+        {
+            this._head = this._tail = head;
+            this.Count = 1;
+        }
 
         public int Count { get; private set; }
 
         public void AddFirst(T item)
         {
-            throw new NotImplementedException();
+            Node<T> toInsert = new Node<T>
+            {
+                Item = item,
+            };
+
+            if (this.Count == 0)
+            {
+                this._head = this._tail = null;
+            }
+            else
+            {
+                this._head.Previous = toInsert;
+                toInsert.Next = this._head;
+                this._head = toInsert;
+            }
+            this.Count++;
         }
 
         public void AddLast(T item)
