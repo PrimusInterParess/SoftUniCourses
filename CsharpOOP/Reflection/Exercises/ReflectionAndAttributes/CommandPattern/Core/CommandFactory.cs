@@ -14,7 +14,6 @@ namespace CommandPattern.Core
 
         public ICommand CreateCommand(string commandType)
         {
-          
 
           Type type = Assembly.GetEntryAssembly()
                .GetTypes()

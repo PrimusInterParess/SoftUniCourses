@@ -10,9 +10,9 @@ namespace _03.Bee
 
             char[][] matrix = new char[n][];
 
-            int[] beePosition = LoadingMatrix(matrix);
+            int[] playerPosition = LoadingMatrix(matrix);
 
-            int pollinated = 0;
+            int sum = 0;
 
             bool isOver = false;
 
@@ -22,69 +22,84 @@ namespace _03.Bee
 
             while ((input = Console.ReadLine()) != "End")
             {
+                if (sum >= 50)
+                {
+                    break;
+                }
 
                 string command = input;
 
-                matrix[beePosition[0]][beePosition[1]] = '.';
+                matrix[playerPosition[0]][playerPosition[1]] = '.';
 
-                Movement(matrix, beePosition, command);
+                Movement(matrix, playerPosition, command);
 
-                isOver = ChecksIsBeeInMatrix(beePosition, n);
+                isOver = ChecksIsInMatrix(playerPosition, n);
 
                 if (isOver)
                 {
-                    Console.WriteLine("The bee got lost!");
+                    Console.WriteLine("Bad news, you are out of the bakery.");
 
 
                     break;
 
                 }
 
-                if (matrix[beePosition[0]][beePosition[1]] == 'f')
+                if (char.IsDigit(matrix[playerPosition[0]][playerPosition[1]]))
                 {
-                    matrix[beePosition[0]][beePosition[1]] = 'B';
+                    sum += int.Parse(matrix[playerPosition[0]][playerPosition[1]]);
+                    matrix[playerPosition[0]][playerPosition[1]] = 'S';
 
-                    pollinated++;
                 }
 
-                if (matrix[beePosition[0]][beePosition[1]] == 'O')
+                else if (matrix[playerPosition[0]][playerPosition[1]] == 'O')
                 {
-                    matrix[beePosition[0]][beePosition[1]] = '.';
+                    matrix[playerPosition[0]][playerPosition[1]] = '.';
 
-                    Movement(matrix, beePosition, command);
-
-                    isOver = ChecksIsBeeInMatrix(beePosition, n);
-
-                    if (isOver)
-                    {
-                        Console.WriteLine("The bee got lost!");
-
-
-                        break;
-
-                    }
-
-                    if (matrix[beePosition[0]][beePosition[1]] == 'f')
-                    {
-                        matrix[beePosition[0]][beePosition[1]] = 'B';
-
-                        pollinated++;
-                    }
+                    CheckForOther(matrix, playerPosition);
                 }
 
 
 
-                matrix[beePosition[0]][beePosition[1]] = 'B';
+                matrix[playerPosition[0]][playerPosition[1]] = 'S';
 
 
             }
 
-            Console.WriteLine(pollinated >=5
-                ? $"Great job, the bee managed to pollinate {pollinated} flowers!"
-                : $"The bee couldn't pollinate the flowers, she needed {5 - pollinated} flowers more");
+            if (!isOver)
+            {
+                Console.WriteLine("Good news! You succeeded in collecting enough money!");
+            }
+
+            Console.WriteLine($"Money: {sum}");
 
             PrintMatrix(matrix);
 
+        }
+
+        private static void CheckForOther(int[] playerPosition, char[][] matrix)
+        {
+            bool isFound = false;
+
+            for (int r = 0; r < matrix.GetLength(0); r++)
+            {
+                for (int c = 0; c < matrix.GetLength(1); c++)
+                {
+                    if (matrix[r][c] == 'O')
+                    {
+                        playerPosition[0] = r;
+                        playerPosition[1] = c;
+                        isFound = true;
+                        break;
+
+                    }
+                }
+
+                if (isFound)
+                {
+                    break;
+
+                }
+            }
         }
 
         private static void PrintMatrix(char[][] matrix)
@@ -95,15 +110,15 @@ namespace _03.Bee
             }
         }
 
-        private static bool ChecksIsBeeInMatrix(int[] beePosition, int n)
+        private static bool ChecksIsInMatrix(int[] position, int n)
         {
 
-            if (beePosition[0] < 0 || beePosition[1] < 0)
+            if (position[0] < 0 || position[1] < 0)
             {
                 return true;
             }
 
-            if (beePosition[0] >= n || beePosition[1] >= n)
+            if (position[0] >= n || position[1] >= n)
             {
                 return true;
             }
@@ -144,7 +159,7 @@ namespace _03.Bee
 
         private static int[] LoadingMatrix(char[][] matrix)
         {
-            int[] beePosition = new int[2];
+            int[] position = new int[2];
 
             bool isFound = false;
 
@@ -158,10 +173,10 @@ namespace _03.Bee
                 {
                     for (int col = 0; col < matrix[row].Length; col++)
                     {
-                        if (matrix[row][col] == 'B')
+                        if (matrix[row][col] == 'S')
                         {
-                            beePosition[0] = row;
-                            beePosition[1] = col;
+                            position[0] = row;
+                            position[1] = col;
 
                             isFound = true;
 
@@ -172,7 +187,7 @@ namespace _03.Bee
 
             }
 
-            return beePosition;
+            return position;
         }
     }
 }

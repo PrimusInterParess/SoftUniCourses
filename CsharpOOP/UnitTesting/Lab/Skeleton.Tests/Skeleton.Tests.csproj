@@ -12,4 +12,11 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
   </ItemGroup>
 
+<<<<<<< HEAD
+=======
+  <ItemGroup>
+    <ProjectReference Include="..\Skeleton\Skeleton.csproj" />
+  </ItemGroup>
+
+>>>>>>> a46c38cc30528473311063b476212d7a11da7644
 </Project>
