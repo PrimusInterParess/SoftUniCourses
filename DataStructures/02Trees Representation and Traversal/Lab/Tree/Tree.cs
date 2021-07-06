@@ -1,4 +1,6 @@
-﻿namespace Tree
+﻿using System.Linq;
+
+namespace Tree
 {
     using System;
     using System.Collections.Generic;
@@ -52,19 +54,47 @@
 
         public ICollection<T> OrderDfs()
         {
-            var result = new List<T>();
-            this.Dfs(this, result);
-            return result;
+            //var result = new List<T>();
+            //this.Dfs(this, result);
+            //return result;
+
+            return this.OrderDfsWithStack();
         }
 
         private void Dfs(Tree<T> tree, List<T> result)
         {
             foreach (var child in tree.Children)
             {
-                this.Dfs(child,result);
+                this.Dfs(child, result);
             }
 
             result.Add(tree.Value);
+        }
+
+        private ICollection<T> OrderDfsWithStack()
+        {
+            var result = new Stack<T>();
+
+            var toTraverse = new Stack<Tree<T>>();
+
+            toTraverse.Push(this);
+
+            while (toTraverse.Count > 0)
+            {
+                var subTree = toTraverse.Pop();
+
+                foreach (var child in subTree.Children)
+                {
+                    toTraverse.Push(child);
+                }
+
+                result.Push(subTree.Value);
+
+
+            }
+
+            return result.ToList();
+
         }
 
         public void AddChild(T parentKey, Tree<T> child)
