@@ -54,11 +54,11 @@ namespace Tree
 
         public ICollection<T> OrderDfs()
         {
-            //var result = new List<T>();
-            //this.Dfs(this, result);
-            //return result;
+            var result = new List<T>();
+            this.Dfs(this, result);
+            return result;
 
-            return this.OrderDfsWithStack();
+            //  return this.OrderDfsWithStack();
         }
 
         private void Dfs(Tree<T> tree, List<T> result)
@@ -70,6 +70,8 @@ namespace Tree
 
             result.Add(tree.Value);
         }
+
+
 
         private ICollection<T> OrderDfsWithStack()
         {
@@ -99,7 +101,18 @@ namespace Tree
 
         public void AddChild(T parentKey, Tree<T> child)
         {
-            throw new NotImplementedException();
+            var parent = FindDfs(parentKey, this);
+            this.CheckIfEmptyNode(parent);
+            parent._children.Add(child);
+
+        }
+
+        private void CheckIfEmptyNode(Tree<T> parent)
+        {
+            if (parent is null)
+            {
+                throw new ArgumentNullException(" Value cannot be null.");
+            }
         }
 
         public void RemoveNode(T nodeKey)
@@ -110,6 +123,52 @@ namespace Tree
         public void Swap(T firstKey, T secondKey)
         {
             throw new NotImplementedException();
+        }
+
+        private Tree<T> FindBfs(T value)
+        {
+            var queue = new Queue<Tree<T>>();
+            queue.Enqueue(this);
+
+            while (queue.Count > 0)
+            {
+                var currentTree = queue.Dequeue();
+
+                if (currentTree.Value.Equals(value))
+                {
+                    return currentTree;
+                }
+
+                foreach (var child in currentTree.Children)
+                {
+                    queue.Enqueue(child);
+                }
+
+            }
+
+            return null;
+        }
+
+        private Tree<T> FindDfs(T value, Tree<T> subTree)
+        {
+
+            foreach (var chlid in subTree.Children)
+            {
+                Tree<T> current = FindDfs(value, chlid);
+
+                if (current != null && current.Value.Equals(value))
+                {
+                    return current;
+                }
+            }
+
+            if (subTree.Value.Equals(value))
+            {
+                return subTree;
+            }
+
+            return null;
+
         }
     }
 }
