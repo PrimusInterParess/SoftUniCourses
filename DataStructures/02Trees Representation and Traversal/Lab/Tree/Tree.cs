@@ -26,6 +26,7 @@ namespace Tree
             }
         }
 
+        public bool IsRootDeleted { get; private set; }
         public T Value { get; private set; }
         public Tree<T> Parent { get; private set; }
         public IReadOnlyCollection<Tree<T>> Children => this._children.AsReadOnly();
@@ -33,6 +34,11 @@ namespace Tree
         public ICollection<T> OrderBfs()
         {
             var result = new List<T>();
+
+            if (IsRootDeleted)
+            {
+                return result;
+            }
 
             var queue = new Queue<Tree<T>>();
 
@@ -55,6 +61,11 @@ namespace Tree
         public ICollection<T> OrderDfs()
         {
             var result = new List<T>();
+
+            if (IsRootDeleted)
+            {
+                return result;
+            }
             this.Dfs(this, result);
             return result;
 
@@ -117,12 +128,77 @@ namespace Tree
 
         public void RemoveNode(T nodeKey)
         {
-            throw new NotImplementedException();
+            var currentNode = this.FindBfs(nodeKey);
+            this.CheckIfEmptyNode(currentNode);
+
+            foreach (var chlidChild in currentNode.Children)
+            {
+                chlidChild.Parent = null;
+            }
+
+            currentNode._children.Clear();
+
+            var nodeParent = currentNode.Parent;
+
+            if (nodeParent is null)
+            {
+                IsRootDeleted = true;
+
+            }
+            else
+            {
+                nodeParent._children.Remove(currentNode);
+                currentNode.Parent = null;
+
+            }
+
+            currentNode.Value = default(T);
+
         }
 
         public void Swap(T firstKey, T secondKey)
         {
-            throw new NotImplementedException();
+            var firstNode = FindBfs(firstKey);
+            var secondNode = FindBfs(secondKey);
+
+            CheckIfEmptyNode(firstNode);
+            CheckIfEmptyNode(secondNode);
+
+            var firstParent = firstNode.Parent;
+            var secondParent = secondNode.Parent;
+
+            if (firstParent==null)
+            {
+               SwapRoot(secondNode);
+               return;
+               
+            }
+
+            if (secondParent==null)
+            {
+                SwapRoot(firstNode);
+                return;
+            }
+
+            firstNode.Parent = secondParent;
+            secondNode.Parent = firstParent;
+
+            int indexOfFirst = firstParent._children.IndexOf(firstNode);
+            int indexOfSecond = secondParent._children.IndexOf(secondNode);
+
+            firstParent._children[indexOfFirst] = secondNode;
+            secondParent._children[indexOfSecond] = firstNode;
+        }
+
+        private void SwapRoot(Tree<T> tree)
+        {
+            this.Value = tree.Value;
+            this._children.Clear();
+
+            foreach (var child in tree.Children)
+            {
+                this._children.Add(child);
+            }
         }
 
         private Tree<T> FindBfs(T value)
