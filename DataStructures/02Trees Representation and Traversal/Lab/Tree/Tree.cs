@@ -66,10 +66,10 @@ namespace Tree
             {
                 return result;
             }
-            this.Dfs(this, result);
-            return result;
+            //this.Dfs(this, result);
+            //return result;
 
-            //  return this.OrderDfsWithStack();
+              return this.OrderDfsWithStack();
         }
 
         private void Dfs(Tree<T> tree, List<T> result)

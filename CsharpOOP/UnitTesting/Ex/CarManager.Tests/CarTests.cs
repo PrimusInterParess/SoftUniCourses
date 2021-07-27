@@ -4,6 +4,8 @@ namespace Tests
 {
     public class CarTests
     {
+        private Car
+
         [SetUp]
         public void Setup()
         {

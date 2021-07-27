@@ -86,7 +86,7 @@ namespace Tree
             return toReturnTree;
         }
 
-       
+
 
 
         public List<T> GetLeafKeys()
@@ -156,13 +156,43 @@ namespace Tree
 
         public List<List<T>> PathsWithGivenSum(int sum)
         {
-            throw new NotImplementedException();
+            var result = new List<List<T>>();
+            var currentPath = new List<T>();
+
+            currentPath.Add(this.Key);
+            int currentSum = Convert.ToInt32(this.Key);
+
+            this.GetPathsWithSumDfs(this, result, currentPath, ref currentSum, sum);
+
+            return result;
         }
+
+
 
         public List<Tree<T>> SubTreesWithGivenSum(int sum)
         {
-            throw new NotImplementedException();
+            var allNotes = this.GetListOfTrees();
+
+            var result = new List<Tree<T>>();
+
+            foreach (var node in allNotes)
+            {
+
+
+
+                int subTreeSum = this.GetSubTreeSumDfs(node);
+
+                if (subTreeSum == sum)
+                {
+                    result.Add(node);
+                }
+
+            }
+
+            return result;
         }
+
+
 
 
         private void GetLeafKeysByDfs(Tree<T> tree, List<T> leafkeys)
@@ -194,7 +224,7 @@ namespace Tree
             return toReturn;
         }
 
-        private List<Tree<T>> GetListOfTrees(Func<Tree<T>,bool> predicate)
+        private List<Tree<T>> GetListOfTrees(Func<Tree<T>, bool> predicate = null)
         {
             List<Tree<T>> toReturn = new List<Tree<T>>();
 
@@ -205,18 +235,24 @@ namespace Tree
             while (toTraverse.Count > 0)
             {
                 var current = toTraverse.Dequeue();
-
-                if (predicate(current))
+                if (predicate!=null)
                 {
-                    toReturn.Add(current);
+                    if (predicate(current))
+                    {
+                        toReturn.Add(current);
+                    }
                 }
                 else
                 {
+                    toReturn.Add(current);
+                }
+              
+                
                     foreach (var child in current.Children)
                     {
                         toTraverse.Enqueue(child);
                     }
-                }
+                
 
 
             }
@@ -224,7 +260,7 @@ namespace Tree
             return toReturn;
         }
 
-        private List<T> OrderBfs(Func<Tree<T>, bool> predicate)
+        private List<T> OrderBfs(Func<Tree<T>, bool> predicate = null)
         {
             var result = new List<T>();
 
@@ -281,6 +317,47 @@ namespace Tree
         private bool IsRoot(Tree<T> node)
         {
             return node.Parent == null;
+        }
+
+        private void GetPathsWithSumDfs(Tree<T> currentTree,
+            List<List<T>> wantedPaths,
+            List<T> currentPath,
+            ref int currentSum,
+            int wantedSum)
+        {
+            foreach (var child in currentTree.Children)
+            {
+                currentPath.Add(child.Key);
+                currentSum += Convert.ToInt32(child.Key);
+                this.GetPathsWithSumDfs(
+                    child,
+                    wantedPaths,
+                    currentPath,
+                    ref currentSum,
+                    wantedSum);
+            }
+
+            if (currentSum == wantedSum)
+            {
+                wantedPaths.Add(new List<T>(currentPath));
+            }
+
+            currentSum -= Convert.ToInt32(currentTree.Key);
+            currentPath.RemoveAt(currentPath.Count - 1);
+        }
+
+        private int GetSubTreeSumDfs(Tree<T> currentNode)
+        {
+            int currentSum = Convert.ToInt32(currentNode.Key);
+            int childSum = 0;
+
+
+            foreach (var child in currentNode.Children)
+            {
+                childSum += GetSubTreeSumDfs(child);
+            }
+
+            return currentSum + childSum;
         }
     }
 }

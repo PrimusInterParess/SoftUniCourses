@@ -32,7 +32,6 @@ namespace Tests
 
             this.database = new Database(dataToInitialize);
 
-
             Assert.That(database.Fetch(),Is.EquivalentTo(dataToInitialize));
         }
 
