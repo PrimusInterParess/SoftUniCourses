@@ -178,8 +178,6 @@ namespace Tree
             foreach (var node in allNotes)
             {
 
-
-
                 int subTreeSum = this.GetSubTreeSumDfs(node);
 
                 if (subTreeSum == sum)
@@ -191,9 +189,6 @@ namespace Tree
 
             return result;
         }
-
-
-
 
         private void GetLeafKeysByDfs(Tree<T> tree, List<T> leafkeys)
         {
@@ -235,7 +230,7 @@ namespace Tree
             while (toTraverse.Count > 0)
             {
                 var current = toTraverse.Dequeue();
-                if (predicate!=null)
+                if (predicate != null)
                 {
                     if (predicate(current))
                     {
@@ -246,14 +241,11 @@ namespace Tree
                 {
                     toReturn.Add(current);
                 }
-              
-                
-                    foreach (var child in current.Children)
-                    {
-                        toTraverse.Enqueue(child);
-                    }
-                
 
+                foreach (var child in current.Children)
+                {
+                    toTraverse.Enqueue(child);
+                }
 
             }
 

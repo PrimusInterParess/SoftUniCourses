@@ -31,6 +31,20 @@ namespace _03.PriorityQueue
 
         }
 
+        public void Add(T element)
+        {
+            this.priorityQ.Add(element);
+
+            this.HeapifyUp(element);
+        }
+
+        public T Peek()
+        {
+            this.EnsureNotEmpty();
+
+            return this.priorityQ[0];
+        }
+
         private void HeapifyDown(int current)
         {
             int leftChildIndex = this.GetLeftChildIndex(current);
@@ -76,19 +90,7 @@ namespace _03.PriorityQueue
             return current * 2 + 2;
         }
 
-        public void Add(T element)
-        {
-            this.priorityQ.Add(element);
-
-            this.HeapifyUp(element);
-        }
-
-        public T Peek()
-        {
-            this.EnsureNotEmpty();
-
-            return this.priorityQ[0];
-        }
+     
 
         private void EnsureNotEmpty()
         {

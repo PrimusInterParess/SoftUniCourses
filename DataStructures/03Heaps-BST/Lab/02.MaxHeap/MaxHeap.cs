@@ -7,21 +7,21 @@ namespace _02.MaxHeap
     public class MaxHeap<T> : IAbstractHeap<T>
         where T : IComparable<T>
     {
-        private List<T> _maxHeap;
+        private List<T> list;
 
         public MaxHeap()
         {
-            this._maxHeap = new List<T>();
+            this.list = new List<T>();
         }
 
         public int Size
         {
-            get { return this._maxHeap.Count; }
+            get { return this.list.Count; }
         }
 
         public void Add(T element)
         {
-            this._maxHeap.Add(element);
+            this.list.Add(element);
 
             this.HeapifyUp(element);
         }
@@ -30,14 +30,14 @@ namespace _02.MaxHeap
         {
             this.EnsureNotEmpty();
 
-            return this._maxHeap[0];
+            return this.list[0];
         }
 
         private void EnsureNotEmpty()
         {
             if (this.Size == 0)
             {
-                throw new InvalidOperationException("ex");
+                throw new InvalidOperationException("What up ?");
             }
         }
 
@@ -45,30 +45,38 @@ namespace _02.MaxHeap
         {
             int currentIndex = this.Size - 1;
 
-            int parentIndex = this.GetParentIndex(currentIndex);
+            int paretnIndex = this.GetParentIndex(currentIndex);
 
-            while (this.ValideteCurrentIndex(currentIndex) &&
-                   this.IsGreater(currentIndex, parentIndex))
+            while (this.ValidateIndex(currentIndex)
+                   && this.IsGreater(currentIndex, paretnIndex))
             {
-                this.Swap(currentIndex, parentIndex);
-                currentIndex = parentIndex;
-                parentIndex = this.GetParentIndex(currentIndex);
+                this.Swap(currentIndex, paretnIndex);
+
+                currentIndex = paretnIndex;
+                paretnIndex = this.GetParentIndex(currentIndex);
             }
         }
 
-        private void Swap(int currentIndex, int parentIndex)
+        private void Swap(
+            int currentIndex,
+            int paretnIndex)
         {
-            var temp = _maxHeap[currentIndex];
-            _maxHeap[currentIndex] = _maxHeap[parentIndex];
-            _maxHeap[parentIndex] = temp;
+            var temp = this.list[currentIndex];
+            this.list[currentIndex] = this.list[paretnIndex];
+            this.list[paretnIndex] = temp;
         }
 
-        private bool IsGreater(int currentIndex, int parentIndex)
+        private bool IsGreater(int currentIndex, int paretnIndex)
         {
-            return this._maxHeap[currentIndex].CompareTo(this._maxHeap[parentIndex]) > 0;
+            return this.list[currentIndex].CompareTo(this.list[paretnIndex]) > 0;
         }
 
-        private bool ValideteCurrentIndex(int currentIndex)
+        private bool IsLess(int currentIndex, int paretnIndex)
+        {
+            return this.list[currentIndex].CompareTo(this.list[paretnIndex]) < 0;
+        }
+
+        private bool ValidateIndex(int currentIndex)
         {
             return currentIndex > 0;
         }
@@ -76,7 +84,7 @@ namespace _02.MaxHeap
         private int GetParentIndex(int currentIndex)
         {
             return (currentIndex - 1) / 2;
-
         }
+
     }
 }

@@ -32,7 +32,8 @@
 
         public bool Contains(T element)
         {
-            var current = this.Root;
+            throw new NotImplementedException();
+
         }
 
         public void Insert(T element)

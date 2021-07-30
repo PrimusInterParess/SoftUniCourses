@@ -7,9 +7,7 @@ namespace _01.BinaryTree
 
     public class BinaryTree<T> : IAbstractBinaryTree<T>
     {
-        public BinaryTree(T value
-            , IAbstractBinaryTree<T> leftChild
-            , IAbstractBinaryTree<T> rightChild)
+        public BinaryTree(T value, IAbstractBinaryTree<T> leftChild, IAbstractBinaryTree<T> rightChild)
         {
             this.Value = value;
             this.LeftChild = leftChild;
@@ -24,94 +22,82 @@ namespace _01.BinaryTree
 
         public string AsIndentedPreOrder(int indent)
         {
-            StringBuilder preOrderString = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
-            this.PreOrderDfs(this, preOrderString, indent);
+            this.AsIndentedPreOrderDfs(this, sb, indent);
 
-            return preOrderString.ToString();
+            return sb.ToString().TrimEnd();
         }
 
-        private void PreOrderDfs(IAbstractBinaryTree<T> binaryTree, StringBuilder preOrderString, int indent)
-        {
-            preOrderString.AppendLine(new string(' ', indent) + binaryTree.Value);
-
-            if (binaryTree.LeftChild != null)
-            {
-                this.PreOrderDfs(binaryTree.LeftChild, preOrderString, indent + 2);
-            }
-
-            if (binaryTree.RightChild != null)
-            {
-                this.PreOrderDfs(binaryTree.RightChild, preOrderString, indent + 2);
-            }
-        }
 
         public List<IAbstractBinaryTree<T>> InOrder()
         {
-            List<IAbstractBinaryTree<T>> listToreturn = new List<IAbstractBinaryTree<T>>();
-
-
-            if (this.LeftChild != null)
-            {
-                listToreturn.AddRange(this.LeftChild.InOrder());
-            }
-
-            listToreturn.Add(this);
-
+            List<IAbstractBinaryTree<T>> trees = new List<IAbstractBinaryTree<T>>();
 
             if (this.LeftChild != null)
             {
-                listToreturn.AddRange(this.RightChild.InOrder());
-
-                return listToreturn;
+                trees.AddRange(this.LeftChild.InOrder());
             }
 
-            return listToreturn;
+            trees.Add(this);
 
+            if (this.RightChild != null)
+            {
+                trees.AddRange(this.RightChild.InOrder());
+            }
+
+            return trees;
         }
 
         public List<IAbstractBinaryTree<T>> PostOrder()
         {
-            List<IAbstractBinaryTree<T>> listToreturn = new List<IAbstractBinaryTree<T>>();
+            List<IAbstractBinaryTree<T>> trees = new List<IAbstractBinaryTree<T>>();
 
             if (this.LeftChild != null)
             {
-                listToreturn.AddRange(this.LeftChild.PostOrder());
+                trees.AddRange(this.LeftChild.PostOrder());
             }
 
-            if (this.LeftChild != null)
+
+            if (this.RightChild != null)
             {
-                listToreturn.AddRange(this.RightChild.PostOrder());
+                trees.AddRange(this.RightChild.PostOrder());
             }
 
-            listToreturn.Add(this);
+            trees.Add(this);
 
-            return listToreturn;
+
+            return trees;
+
         }
 
         public List<IAbstractBinaryTree<T>> PreOrder()
         {
-            List<IAbstractBinaryTree<T>> listToreturn = new List<IAbstractBinaryTree<T>>();
+            List<IAbstractBinaryTree<T>> trees = new List<IAbstractBinaryTree<T>>();
 
-            listToreturn.Add(this);
+            trees.Add(this);
+
 
             if (this.LeftChild != null)
             {
-                listToreturn.AddRange(this.LeftChild.PreOrder());
+                trees.AddRange(this.LeftChild.PreOrder());
             }
+
 
             if (this.RightChild != null)
             {
-                listToreturn.AddRange(this.RightChild.PreOrder());
+                trees.AddRange(this.RightChild.PreOrder());
             }
 
-            return listToreturn;
+
+
+            return trees;
+
 
         }
 
         public void ForEachInOrder(Action<T> action)
         {
-
             if (this.LeftChild != null)
             {
                 this.LeftChild.ForEachInOrder(action);
@@ -125,6 +111,24 @@ namespace _01.BinaryTree
 
             }
 
+        }
+
+        private void AsIndentedPreOrderDfs(
+            IAbstractBinaryTree<T> binaryTree,
+            StringBuilder sb, int indent)
+        {
+            sb.AppendLine(new string(' ', indent) + binaryTree.Value);
+
+            if (binaryTree.LeftChild != null)
+            {
+                this.AsIndentedPreOrderDfs(binaryTree.LeftChild, sb, indent + 2);
+            }
+
+            if (binaryTree.RightChild != null)
+            {
+                this.AsIndentedPreOrderDfs(binaryTree.RightChild, sb, indent + 2);
+
+            }
         }
     }
 }
