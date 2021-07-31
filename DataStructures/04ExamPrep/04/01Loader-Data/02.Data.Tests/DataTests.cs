@@ -92,7 +92,7 @@
         }
 
         [Test]
-        public void TestCopyWorksCorrectly()
+            public void TestCopyWorksCorrectly()
         {
             var copy = this._data.Copy();
             var dataAll = this._data.GetAll();

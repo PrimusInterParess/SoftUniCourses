@@ -7,7 +7,7 @@
         int Size { get; }
 
         void Add(IEntity entity);
-
+            
         IEntity GetById(int id);
 
         List<IEntity> GetByParentId(int parentId);
