@@ -69,7 +69,7 @@ namespace FightingArena
         }
 
         public void Attack(Warrior warrior)
-        {
+        {   
             if (this.HP <= MIN_ATTACK_HP)
             {
                 throw new InvalidOperationException("Your HP is too low in order to attack other warriors!");
@@ -88,7 +88,7 @@ namespace FightingArena
             this.HP -= warrior.Damage;
 
             if (this.Damage > warrior.HP)
-            {
+            {   
                 warrior.HP = 0;
             }
             else
