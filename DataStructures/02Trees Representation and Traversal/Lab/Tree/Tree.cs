@@ -54,11 +54,11 @@ namespace Tree
 
         public ICollection<T> OrderDfs()
         {
-            //var result = new List<T>();
-            //this.Dfs(this, result);
-            //return result;
+            var result = new List<T>();
+            this.Dfs(this, result);
+            return result;
 
-            return this.OrderDfsWithStack();
+            // return this.OrderDfsWithStack();
         }
 
         private void Dfs(Tree<T> tree, List<T> result)
@@ -99,8 +99,12 @@ namespace Tree
 
         public void AddChild(T parentKey, Tree<T> child)
         {
-            throw new NotImplementedException();
+            var parentNode = FindDfs(parentKey, this);
+            this.CheckEmptyNOde(parentNode);
+            parentNode._children.Add(child);
         }
+
+
 
         public void RemoveNode(T nodeKey)
         {
@@ -110,6 +114,64 @@ namespace Tree
         public void Swap(T firstKey, T secondKey)
         {
             throw new NotImplementedException();
+        }
+
+        private Tree<T> FindBfs(T value)
+        {
+            var queue = new Queue<Tree<T>>();
+
+            queue.Enqueue(this);
+
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+
+                if (current.Value.Equals(value))
+                {
+                    return current;
+                }
+
+                foreach (var child in current.Children)
+                {
+
+                    queue.Enqueue(child);
+                }
+            }
+
+            return null;
+        }
+
+        private Tree<T> FindDfs(T value, Tree<T> subTree)
+        {
+
+            foreach (var child in subTree.Children)
+            {
+                Tree<T> current = this.FindDfs(value, child);
+
+
+                if (current != null && current.Equals(value))
+                {
+                    return current;
+                }
+
+
+            }
+
+            if (subTree.Value.Equals(value))
+            {
+                return subTree;
+            }
+
+            return null;
+        }
+
+
+        private void CheckEmptyNOde(Tree<T> parentNode)
+        {
+            if (parentNode is null)
+            {
+                throw new ArgumentNullException("Really?");
+            }
         }
     }
 }
