@@ -109,6 +109,7 @@
         {
             var current = this.Root;
 
+
             while (current != null && !AreEqual(element, current.Value))
             {
                 if (this.IsLess(element, current.Value))
