@@ -24,8 +24,8 @@ namespace Bakery.Models.Tables
             this.drinkOrders = new List<IDrink>();
         }
 
-        public IReadOnlyCollection<IBakedFood> FoodOrders => this.foodOrders;
-        public IReadOnlyCollection<IDrink> DrinkOrders => this.drinkOrders;
+       // public IReadOnlyCollection<IBakedFood> FoodOrders => this.foodOrders;
+        //public IReadOnlyCollection<IDrink> DrinkOrders => this.drinkOrders;
 
         public int TableNumber { get; private set; }
 
@@ -34,7 +34,7 @@ namespace Bakery.Models.Tables
             get => this.capacity;
             private set
             {
-                if (value < 0)
+                if (value <=0)
                 {
                     throw new ArgumentException(Utilities.Messages.ExceptionMessages.InvalidTableCapacity);
                 }
@@ -109,7 +109,7 @@ namespace Bakery.Models.Tables
             sb.AppendLine($"Table: {this.TableNumber}");
             sb.AppendLine($"Type: {this.GetType().Name}");
             sb.AppendLine($"Capacity: {this.Capacity}");
-            sb.AppendLine($"Capacity: {this.PricePerPerson}");
+            sb.AppendLine($"Price per Person: {this.PricePerPerson:F2}");
 
             return sb.ToString().TrimEnd();
         }
