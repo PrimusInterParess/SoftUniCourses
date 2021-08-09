@@ -146,6 +146,6 @@ namespace EasterRaces.Core
             this.raceRepository.Remove(race);
 
             return sb.ToString().TrimEnd();
-        }
+        }       
     }
 }

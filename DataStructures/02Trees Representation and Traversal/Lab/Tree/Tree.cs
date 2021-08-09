@@ -61,12 +61,12 @@ namespace Tree
         public ICollection<T> OrderDfs()
         {
             var result = new List<T>();
-<<<<<<< HEAD
+
             this.Dfs(this, result);
             return result;
 
             // return this.OrderDfsWithStack();
-=======
+
 
             if (IsRootDeleted)
             {
@@ -76,7 +76,7 @@ namespace Tree
             //return result;
 
               return this.OrderDfsWithStack();
->>>>>>> 01f83e8e3eaca74878cb428b6b7ed7af96dfd9ce
+
         }
 
         private void Dfs(Tree<T> tree, List<T> result)
@@ -119,14 +119,10 @@ namespace Tree
 
         public void AddChild(T parentKey, Tree<T> child)
         {
-<<<<<<< HEAD
+
             var parentNode = FindDfs(parentKey, this);
             this.CheckEmptyNOde(parentNode);
             parentNode._children.Add(child);
-=======
-            var parent = FindDfs(parentKey, this);
-            this.CheckIfEmptyNode(parent);
-            parent._children.Add(child);
 
         }
 
@@ -136,7 +132,7 @@ namespace Tree
             {
                 throw new ArgumentNullException(" Value cannot be null.");
             }
->>>>>>> 01f83e8e3eaca74878cb428b6b7ed7af96dfd9ce
+
         }
 
 
@@ -216,7 +212,7 @@ namespace Tree
             }
         }
 
-        private Tree<T> FindBfs(T value)
+        private Tree<T> FindBfs(Tree<T> value)
         {
             var queue = new Queue<Tree<T>>();
             queue.Enqueue(this);
@@ -240,27 +236,7 @@ namespace Tree
             return null;
         }
 
-        private Tree<T> FindDfs(T value, Tree<T> subTree)
-        {
-
-            foreach (var chlid in subTree.Children)
-            {
-                Tree<T> current = FindDfs(value, chlid);
-
-                if (current != null && current.Value.Equals(value))
-                {
-                    return current;
-                }
-            }
-
-            if (subTree.Value.Equals(value))
-            {
-                return subTree;
-            }
-
-            return null;
-
-        }
+       
 
         private Tree<T> FindBfs(T value)
         {
