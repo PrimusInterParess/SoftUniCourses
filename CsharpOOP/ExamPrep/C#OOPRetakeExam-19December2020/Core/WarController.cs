@@ -13,11 +13,12 @@ namespace WarCroft.Core
     public class WarController
     {
         private List<Character> party;
-        private List<Item> pool;
+        private Stack<Item> pool;
 
         public WarController()
         {
             this.party = new List<Character>();
+            this.pool = new Stack<Item>();
         }
 
         public string JoinParty(string[] args)
@@ -25,7 +26,7 @@ namespace WarCroft.Core
             string characterType = args[0];
             string name = args[1];
 
-            if (characterType != "Priest" || characterType != "Warrior")
+            if (characterType != "Priest" && characterType != "Warrior")
             {
                 throw new ArgumentException(string.Format(Constants.ExceptionMessages.InvalidCharacterType,
                     characterType));
@@ -56,7 +57,7 @@ namespace WarCroft.Core
             string itemName = args[0];
 
 
-            if (itemName != "FirePotion" || itemName != "HealthPotion")
+            if (itemName != "FirePotion" && itemName != "HealthPotion")
             {
                 throw new ArgumentException(string.Format(Constants.ExceptionMessages.InvalidItem, itemName));
             }
@@ -73,7 +74,7 @@ namespace WarCroft.Core
                     break;
             }
 
-            this.pool.Add(item);
+            this.pool.Push(item);
 
             return string.Format(Constants.SuccessMessages.AddItemToPool, itemName);
         }
@@ -94,7 +95,7 @@ namespace WarCroft.Core
                 throw new InvalidOperationException(Constants.ExceptionMessages.ItemPoolEmpty);
             }
 
-            Item item = this.pool[this.pool.Count - 1];
+            Item item = this.pool.Pop();
 
             character.Bag.AddItem(item);
 
@@ -137,10 +138,10 @@ namespace WarCroft.Core
         public string Attack(string[] args)
         {
             string attackerName = args[0];
-            string attackedName = args[1];
+            string receiverName = args[1];
 
             var characterAttacker = this.party.FirstOrDefault(c => c.Name == attackerName);
-            var characterAttacked = this.party.FirstOrDefault(c => c.Name == attackedName);
+            var characterAttacked = this.party.FirstOrDefault(c => c.Name == receiverName);
 
             if (characterAttacker == null)
             {
@@ -151,7 +152,7 @@ namespace WarCroft.Core
             if (characterAttacked == null)
             {
                 throw new ArgumentException(
-                    string.Format(Constants.ExceptionMessages.CharacterNotInParty, attackedName));
+                    string.Format(Constants.ExceptionMessages.CharacterNotInParty, receiverName));
             }
 
             if (characterAttacker.GetType().Name != "Warrior")
@@ -164,12 +165,61 @@ namespace WarCroft.Core
 
             warrior.Attack(characterAttacked);
 
-            return string.Format(SuccessMessages.AttackCharacter,warrior.Name,attackedName,warrior.AbilityPoints,characterAttacked.Name,characterAttacked.Health,characterAttacked.)
+
+            string toReturn = string.Format(SuccessMessages.AttackCharacter,
+                warrior.Name,
+                receiverName,
+                warrior.AbilityPoints,
+                characterAttacked.Name,
+                characterAttacked.Health,
+                characterAttacked.BaseHealth,
+                characterAttacked.Armor,
+                characterAttacked.BaseArmor);
+
+            if (characterAttacked.IsAlive == false)
+            {
+                toReturn += Environment.NewLine +
+                  string.Format(SuccessMessages.AttackKillsCharacter, characterAttacked.Name).TrimEnd();
+            }
+
+            return toReturn.TrimEnd();
+
         }
 
         public string Heal(string[] args)
         {
-            throw new NotImplementedException();
+            string healerName = args[0];
+            string healingReceiverName = args[1];
+
+            Character healer = this.party.FirstOrDefault(c => c.Name == healerName);
+
+            Character receiver = this.party.FirstOrDefault(c => c.Name == healingReceiverName);
+
+            if (healer == null)
+            {
+                throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty, healerName));
+            }
+
+            if (healingReceiverName == null)
+            {
+                throw new ArgumentException(string.Format(ExceptionMessages.CharacterNotInParty, healingReceiverName));
+            }
+
+            if (healer.GetType().Name != "Priest")
+            {
+                throw new ArgumentException(ExceptionMessages.HealerCannotHeal, healerName);
+            }
+
+            Priest priest = (Priest)healer;
+
+            priest.Heal(receiver);
+
+            return string.Format(SuccessMessages.HealCharacter,
+                healer.Name,
+                receiver.Name,
+                healer.AbilityPoints,
+                receiver.Name,
+                receiver.Health).TrimEnd();
         }
     }
 }

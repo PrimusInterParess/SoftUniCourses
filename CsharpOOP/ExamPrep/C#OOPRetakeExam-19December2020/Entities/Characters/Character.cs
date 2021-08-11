@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Transactions;
 using WarCroft.Constants;
 using WarCroft.Entities.Inventory;
 using WarCroft.Entities.Items;
@@ -48,7 +48,10 @@ namespace WarCroft.Entities.Characters.Contracts
             }
         }
 
-      
+        public double BaseArmor => this.baseArmor;
+
+        public double BaseHealth => this.baseHealth;
+
         public double AbilityPoints => this.abilityPoints;
 
         public double Health
@@ -59,7 +62,15 @@ namespace WarCroft.Entities.Characters.Contracts
             {
                 ///????????? Health (current health) should never be more than the BaseHealth or less than 0.
 
-                if (value >= 0 && value <= this.baseHealth)
+                if (value < 0)
+                {
+                    this.health = 0;
+                }
+                else if (value > baseHealth)
+                {
+                    this.health = baseHealth;
+                }
+                else
                 {
                     this.health = value;
                 }
@@ -77,7 +88,11 @@ namespace WarCroft.Entities.Characters.Contracts
             get => this.armor;
             private set
             {
-                if (value > 0)
+                if (value < 0)
+                {
+                    this.armor = 0;
+                }
+                else
                 {
                     this.armor = value;
                 }
@@ -93,18 +108,32 @@ namespace WarCroft.Entities.Characters.Contracts
             var reducedHitpoints = 0.0;
 
             this.EnsureAlive();
-            if (this.armor >= hitPoints)
-            {
-                this.armor -= hitPoints;
-            }
-            else
-            {
-                reducedHitpoints = hitPoints - this.armor;
 
-                armor -= hitPoints;
+            var toReduce = hitPoints - this.Armor;
+            this.Armor -= hitPoints;
+
+            if (toReduce > 0)
+            {
+                this.Health -= toReduce;
             }
 
-            this.health -= reducedHitpoints;
+            if (this.Health == 0)
+            {
+                this.IsAlive = false;
+            }
+
+            //if (this.armor >= hitPoints)
+            //{
+            //    this.armor -= hitPoints;
+            //}
+            //else
+            //{
+            //    reducedHitpoints = hitPoints - this.armor;
+
+            //    armor -= hitPoints;
+            //}
+
+            //this.health -= reducedHitpoints;
 
             if (this.health <= 0)
             {
