@@ -48,7 +48,8 @@ namespace WarCroft.Entities.Characters.Contracts
             }
         }
 
-
+      
+        public double AbilityPoints => this.abilityPoints;
 
         public double Health
         {
@@ -57,13 +58,13 @@ namespace WarCroft.Entities.Characters.Contracts
             set
             {
                 ///????????? Health (current health) should never be more than the BaseHealth or less than 0.
-                
+
                 if (value >= 0 && value <= this.baseHealth)
                 {
                     this.health = value;
                 }
 
-                
+
             }
         }
 
@@ -83,7 +84,7 @@ namespace WarCroft.Entities.Characters.Contracts
             }
         }
 
-        public IBag Bag { get;  set; }
+        public IBag Bag { get; set; }
 
 
 
@@ -128,6 +129,11 @@ namespace WarCroft.Entities.Characters.Contracts
             {
                 throw new InvalidOperationException(ExceptionMessages.AffectedCharacterDead);
             }
+        }
+
+        public override string ToString()
+        {
+            return string.Format(SuccessMessages.CharacterStats, this.Name, this.Health, this.baseHealth, this.Armor, this.baseArmor, this.IsAlive == true ? "Alive" : "Dead");
         }
     }
 }
