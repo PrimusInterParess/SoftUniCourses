@@ -9,13 +9,14 @@ namespace _02.DOM
 
     public class DocumentObjectModel : IDocument
     {
-        public DocumentObjectModel(IHtmlElement root)
+        public DocumentObjectModel(IHtmlElement parent)
         {
-            this.Root = root;
+            this.Root = parent;
 
         }
 
         public IHtmlElement Root { get; set; }
+
 
         public IHtmlElement GetElementByType(ElementType type)
         {
@@ -48,12 +49,14 @@ namespace _02.DOM
 
             var result = new List<IHtmlElement>();
 
-                this.Dfs(this.Root, result,type);
+            this.Dfs(this.Root, result, type);
 
-                return result;
+            return result;
 
 
         }
+
+
 
         public bool Contains(IHtmlElement htmlElement)
         {
@@ -84,14 +87,14 @@ namespace _02.DOM
 
             var father = this.FindTreeDfs(parent, this.Root);
 
-            if (father== null)
+            if (father == null)
             {
                 throw new InvalidOperationException();
             }
 
             child.Parent = father;
-            parent.Children.Insert(0,child);
-            
+            parent.Children.Insert(0, child);
+
 
             //var queue = new Queue<IHtmlElement>();
             //bool hasParent = false;
@@ -124,10 +127,10 @@ namespace _02.DOM
 
         private IHtmlElement FindTreeDfs(IHtmlElement parent, IHtmlElement root)
         {
-            
+
             foreach (var child in root.Children)
             {
-               IHtmlElement current = FindTreeDfs(parent, child);
+                IHtmlElement current = FindTreeDfs(parent, child);
 
                 if (current != null && current.Equals(parent))
                 {
@@ -162,7 +165,7 @@ namespace _02.DOM
 
             IHtmlElement current = FindTreeBfs(htmlElement);
 
-            if (current==null)
+            if (current == null)
             {
                 throw new InvalidOperationException();
             }
@@ -176,14 +179,14 @@ namespace _02.DOM
 
             var parent = current.Parent;
 
-                parent.Children.Remove(current);
-                current.Parent = null;
-            
+            parent.Children.Remove(current);
+            current.Parent = null;
 
-           
+
+
         }
 
-        
+
 
         public void RemoveAll(ElementType elementType)
         {
@@ -205,18 +208,18 @@ namespace _02.DOM
                     currentNode.Parent.Children.Remove(currentNode);
                     currentNode.Parent = null;
                     currentNode.Children.Clear();
-                    
+
                 }
             }
 
-           
+
         }
 
         public bool AddAttribute(string attrKey, string attrValue, IHtmlElement htmlElement)
         {
             IHtmlElement element = FindTreeBfs(htmlElement);
 
-            if (element==null)
+            if (element == null)
             {
                 throw new InvalidOperationException();
             }
@@ -226,7 +229,7 @@ namespace _02.DOM
                 return false;
             }
 
-            element.Attributes.Add(attrKey,attrValue);
+            element.Attributes.Add(attrKey, attrValue);
 
             return true;
         }
@@ -269,11 +272,11 @@ namespace _02.DOM
             {
                 var subTree = queue.Dequeue();
 
-               
+
 
                 if (subTree.Attributes.ContainsKey("id"))
                 {
-                    if (subTree.Attributes["id"]==idValue)
+                    if (subTree.Attributes["id"] == idValue)
                     {
                         return subTree;
                     }
@@ -288,7 +291,7 @@ namespace _02.DOM
 
             return null;
 
-           
+
         }
 
         private void Dfs(IHtmlElement tree, List<IHtmlElement> result, ElementType type)
@@ -296,7 +299,7 @@ namespace _02.DOM
 
             foreach (var child in tree.Children)
             {
-                this.Dfs(child, result,type);
+                this.Dfs(child, result, type);
 
             }
 
