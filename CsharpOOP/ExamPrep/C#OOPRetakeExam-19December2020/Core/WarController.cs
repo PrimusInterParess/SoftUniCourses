@@ -178,7 +178,7 @@ namespace WarCroft.Core
 
             if (characterAttacked.IsAlive == false)
             {
-                toReturn += Environment.NewLine +
+                toReturn +=
                   string.Format(SuccessMessages.AttackKillsCharacter, characterAttacked.Name).TrimEnd();
             }
 

@@ -65,6 +65,7 @@ namespace WarCroft.Entities.Characters.Contracts
                 if (value < 0)
                 {
                     this.health = 0;
+                    this.IsAlive = false;
                 }
                 else if (value > baseHealth)
                 {
@@ -92,6 +93,10 @@ namespace WarCroft.Entities.Characters.Contracts
                 {
                     this.armor = 0;
                 }
+                else if (value > this.baseArmor)
+                {
+                    this.armor = baseArmor;
+                }
                 else
                 {
                     this.armor = value;
@@ -99,7 +104,7 @@ namespace WarCroft.Entities.Characters.Contracts
             }
         }
 
-        public IBag Bag { get; set; }
+        public Bag Bag { get; private set; }
 
 
 
@@ -135,10 +140,7 @@ namespace WarCroft.Entities.Characters.Contracts
 
             //this.health -= reducedHitpoints;
 
-            if (this.health <= 0)
-            {
-                this.IsAlive = false;
-            }
+          
         }
 
         public void UseItem(Item item)
