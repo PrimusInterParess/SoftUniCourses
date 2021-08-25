@@ -19,7 +19,7 @@
 
         public bool IsThreeNode()
         {
-            return RightKey != null;
+            return RightKey != null; 
         }
 
         public bool IsTwoNode()
