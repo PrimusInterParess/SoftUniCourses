@@ -42,3 +42,14 @@ values
 ('HTML',3),
 ('PHP',4),
 ('CSS',1)
+
+
+CREATE TABLE StudentsInCourses
+(
+
+	StudentId INT REFERENCES Students(Id),
+	CourseId INT REFERENCES Course(Id),
+	Mark DECIMAL(3,2),
+	CONSTRAINT PK_StudentsCourses
+	PRIMARY KEY(StudentId,CourseId)
+)
