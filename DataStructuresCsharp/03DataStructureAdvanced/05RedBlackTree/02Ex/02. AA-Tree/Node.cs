@@ -14,5 +14,7 @@ namespace _02._AA_Tree
         public Node<T> Right { get; set; }
         public Node<T> Left { get; set; }
         public int Level { get; set; }
+
+       
     }
 }
