@@ -53,10 +53,6 @@ namespace HashTable
 
         }
 
-
-
-
-
         public bool AddOrReplace(TKey key, TValue value)
         {
             this.CheckGrowth();
@@ -86,8 +82,7 @@ namespace HashTable
 
             return false;
         }
-
-
+        
         public TValue Get(TKey key)
         {
             KeyValue<TKey, TValue> pair = this.Find(key);
