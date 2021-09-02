@@ -7,11 +7,17 @@ namespace _01.RoyaleArena
     public class RoyaleArena : IArena
     {
         private Dictionary<int, BattleCard> cardsById;
-        private SortedSet<>
+
+        private SortedSet<BattleCard> cards = new SortedSet<BattleCard>();
+
+        private SortedDictionary<string, List<BattleCard>> byType;
 
         public RoyaleArena()
         {
             this.cardsById = new Dictionary<int, BattleCard>();
+
+            this.cards = new SortedSet<BattleCard>();
+            this.byType = new SortedDictionary<string, List<BattleCard>>();
         }
 
         public double Swag { get; set; }
@@ -25,32 +31,67 @@ namespace _01.RoyaleArena
             if (!this.cardsById.ContainsKey(card.Id))
             {
                 this.cardsById.Add(card.Id, card);
+
+                if (!byType.ContainsKey(card.Type.ToString()))
+                {
+                    byType.Add(card.Type.ToString(),new List<BattleCard>());
+                }
+
+                byType[card.Type.ToString()].Add(card);
             }
-
-
         }
 
         public bool Contains(BattleCard card)
         {
-
             return this.cardsById.ContainsKey(card.Id);
         }
 
-        public int Count { get; }
+        public int Count
+        {
+            get => this.cardsById.Count;
+        }
 
         public void ChangeCardType(int id, CardType type)
         {
-            throw new NotImplementedException();
+            if (!this.cardsById.ContainsKey(id))
+            {
+                throw new InvalidOperationException();
+            }
+
+            string old = cardsById[id].Type.ToString();
+
+            BattleCard toChange = this.byType[old].Find(c => c.Equals(cardsById[id]));
+            this.byType[old].Remove(toChange);
+            this.cardsById[id].Type = type;
+
+            string newTyp = cardsById[id].Type.ToString();
+
+            if (!this.byType.ContainsKey(newTyp))
+            {
+                byType[newTyp] = new List<BattleCard>();
+            }
+            byType[newTyp].Add(cardsById[id]);
+
         }
 
         public BattleCard GetById(int id)
         {
-            throw new NotImplementedException();
+            if (!this.cardsById.ContainsKey(id))
+            {
+                throw new InvalidOperationException();
+            }
+
+            return this.cardsById[id];
         }
 
         public void RemoveById(int id)
         {
-            throw new NotImplementedException();
+            if (!this.cardsById.ContainsKey(id))
+            {
+                throw new InvalidOperationException();
+            }
+
+            this.cardsById.Remove(id);
         }
 
         public IEnumerable<BattleCard> GetByCardType(CardType type)
