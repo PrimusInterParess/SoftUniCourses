@@ -54,5 +54,36 @@ SELECT FirstName,LastName
 	FROM Employees
 	WHERE LEN(LastName)=5
 
-	SELECT 
-	FROM Employees
+	SELECT * FROM(
+	SELECT EmployeeID,FirstName,LastName,Salary,
+	DENSE_RANK() OVER  (PARTITION BY Salary
+						ORDER BY EmployeeID ) AS Rank
+						FROM Employees
+						WHERE Salary>=10000 AND Salary <=50000 						
+						 )
+						AS Res
+						where Rank=2
+						ORDER BY  Salary DESC
+
+USE Geography		
+select CountryName,IsoCode
+from Countries
+where CountryName like '%a%a%a%'
+ORDER BY IsoCode
+
+SELECT PeakName,RiverName,
+LOWER(LEFT(PeakName,LEN(PeakName)-1)+RiverName) AS Mix
+FROM Peaks,Rivers
+WHERE RIGHT(PeakName,1) = LEFT(RiverName,1)
+order by Mix
+
+
+
+						
+						
+						
+
+
+
+						
+					
