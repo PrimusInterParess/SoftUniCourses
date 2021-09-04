@@ -8,23 +8,16 @@ namespace _01.RoyaleArena
     {
         private Dictionary<int, BattleCard> cardsById;
 
-        private SortedSet<BattleCard> cards = new SortedSet<BattleCard>();
+        private SortedDeckDamage _sortedDeckDamage;
 
-        private SortedDictionary<string, List<BattleCard>> byType;
-
+        private SortedDeckSwag _sortedDeckSwag;
         public RoyaleArena()
         {
             this.cardsById = new Dictionary<int, BattleCard>();
+            this._sortedDeckDamage = new SortedDeckDamage();
+            this._sortedDeckSwag = new SortedDeckSwag();
 
-            this.cards = new SortedSet<BattleCard>();
-            this.byType = new SortedDictionary<string, List<BattleCard>>();
         }
-
-        public double Swag { get; set; }
-        public double Damage { get; set; }
-        public string Name { get; private set; }
-        public CardType Type { get;  set; }
-        public int Id { get; private set; }
 
         public void Add(BattleCard card)
         {
@@ -32,12 +25,10 @@ namespace _01.RoyaleArena
             {
                 this.cardsById.Add(card.Id, card);
 
-                if (!byType.ContainsKey(card.Type.ToString()))
-                {
-                    byType.Add(card.Type.ToString(),new List<BattleCard>());
-                }
+                this._sortedDeckDamage.Add(card);
 
-                byType[card.Type.ToString()].Add(card);
+                this._sortedDeckSwag.Add(card);
+
             }
         }
 
@@ -58,19 +49,11 @@ namespace _01.RoyaleArena
                 throw new InvalidOperationException();
             }
 
-            string old = cardsById[id].Type.ToString();
+            this._sortedDeckDamage.ChangeType(cardsById[id], type);
 
-            BattleCard toChange = this.byType[old].Find(c => c.Equals(cardsById[id]));
-            this.byType[old].Remove(toChange);
+            this._sortedDeckSwag.ChangeType(cardsById[id],type);
+
             this.cardsById[id].Type = type;
-
-            string newTyp = cardsById[id].Type.ToString();
-
-            if (!this.byType.ContainsKey(newTyp))
-            {
-                byType[newTyp] = new List<BattleCard>();
-            }
-            byType[newTyp].Add(cardsById[id]);
 
         }
 
@@ -80,7 +63,6 @@ namespace _01.RoyaleArena
             {
                 throw new InvalidOperationException();
             }
-
             return this.cardsById[id];
         }
 
@@ -91,42 +73,48 @@ namespace _01.RoyaleArena
                 throw new InvalidOperationException();
             }
 
+            BattleCard card = cardsById[id];
+
+            this._sortedDeckDamage.Remove(card);
+
+            this._sortedDeckSwag.Remove(card);
+
             this.cardsById.Remove(id);
         }
 
         public IEnumerable<BattleCard> GetByCardType(CardType type)
         {
-            throw new NotImplementedException();
+            return this._sortedDeckDamage.ReturnCollection(type);
         }
 
         public IEnumerable<BattleCard> GetByTypeAndDamageRangeOrderedByDamageThenById(CardType type, int lo, int hi)
         {
-            throw new NotImplementedException();
+            return this._sortedDeckDamage.Range(type, lo, hi);
         }
 
         public IEnumerable<BattleCard> GetByCardTypeAndMaximumDamage(CardType type, double damage)
         {
-            throw new NotImplementedException();
+            return this._sortedDeckDamage.MaxCard(type, damage);
         }
 
         public IEnumerable<BattleCard> GetByNameOrderedBySwagDescending(string name)
         {
-            throw new NotImplementedException();
+            return this._sortedDeckSwag.CollectionBattleCardsName(name);
         }
 
         public IEnumerable<BattleCard> GetByNameAndSwagRange(string name, double lo, double hi)
         {
-            throw new NotImplementedException();
+            return this._sortedDeckSwag.Range(name, lo, hi);
         }
 
         public IEnumerable<BattleCard> FindFirstLeastSwag(int n)
         {
-            throw new NotImplementedException();
+            return this._sortedDeckSwag.Least(n);
         }
 
         public IEnumerable<BattleCard> GetAllInSwagRange(double lo, double hi)
         {
-            throw new NotImplementedException();
+            return this._sortedDeckSwag.Range(lo, hi);
         }
 
 
