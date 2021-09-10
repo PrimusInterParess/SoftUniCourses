@@ -2,8 +2,9 @@ namespace _01.DogVet
 {
     using System;
 
-    public class Dog :IComparable<Dog>
+    public class Dog : IComparable<Dog>
     {
+
 
         public Dog(string id, string name, Breed breed, int age, int vaccines)
         {
@@ -17,7 +18,6 @@ namespace _01.DogVet
         public Owner Owner { get; set; }
 
         public string Id { get; set; }
-
         public string Name { get; set; }
 
         public Breed Breed { get; set; }
@@ -31,7 +31,7 @@ namespace _01.DogVet
         {
             int comp = this.Age.CompareTo(other.Age);
 
-            if (comp==0)
+            if (comp == 0)
             {
                 this.Name.CompareTo(other.Name);
             }
@@ -39,6 +39,11 @@ namespace _01.DogVet
             if (comp==0)
             {
                 this.Owner.Name.CompareTo(other.Owner.Name);
+            }
+
+            if (comp==0)
+            {
+               comp= this.Id.CompareTo(other.Id);
             }
 
             return comp;
