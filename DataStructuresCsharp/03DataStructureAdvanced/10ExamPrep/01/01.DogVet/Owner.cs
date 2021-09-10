@@ -9,16 +9,12 @@ namespace _01.DogVet
         {
             this.Id = id;
             this.Name = name;
-            this.DogsbyI = new Dictionary<string, Dog>();
-            this.DogsByName = new Dictionary<string, Dog>();
             this.Dogs = new SortedSet<Dog>();
+            this.dogsByName = new Dictionary<string, Dog>();
         }
 
         public SortedSet<Dog> Dogs;
-
-        public Dictionary<string, Dog> DogsbyI;
-
-        public Dictionary<string, Dog> DogsByName;
+        public Dictionary<string, Dog> dogsByName;
 
         public string Id { get; set; }
 

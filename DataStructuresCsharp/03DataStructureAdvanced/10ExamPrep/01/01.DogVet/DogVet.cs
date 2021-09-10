@@ -10,78 +10,61 @@ namespace _01.DogVet
 
     public class DogVet : IDogVet
     {
-
         private Dictionary<string, Owner> ownersById;
-        private SortedSet<Dog> dogsInVet;
-        private Dictionary<Enum, SortedSet<Dog>> dogsByBreed;
-        private Dictionary<int, SortedSet<Dog>> byAge;
-        private SortedSet<Dog> rangeOrdered;
+        private Dictionary<string, Dog> vetClinic;
+        private Dictionary<Enum, SortedSet<Dog>> byBreed;
+        private HashSet<Dog> ageSorted;
 
         public DogVet()
         {
             this.ownersById = new Dictionary<string, Owner>();
-            this.dogsInVet = new SortedSet<Dog>();
-            this.dogsByBreed = new Dictionary<Enum, SortedSet<Dog>>();
-            this.byAge = new Dictionary<int, SortedSet<Dog>>();
-            this.rangeOrdered = new SortedSet<Dog>();
+            this.vetClinic = new Dictionary<string, Dog>();
+            this.ageSorted = new HashSet<Dog>();
+            this.byBreed = new Dictionary<Enum, SortedSet<Dog>>();
         }
 
         public int Size
         {
-            get => this.dogsInVet.Count;
+            get => this.vetClinic.Count;
         }
 
         public void AddDog(Dog dog, Owner owner)
         {
+            if (this.vetClinic.ContainsKey(dog.Id))
+            {
+                throw new ArgumentException();
+            }
+
+            if (!this.byBreed.ContainsKey(dog.Breed))
+            {
+                this.byBreed.Add(dog.Breed,new SortedSet<Dog>());
+            }
+
             if (!this.ownersById.ContainsKey(owner.Id))
             {
                 this.ownersById.Add(owner.Id, owner);
             }
 
-            if (ownersById[owner.Id].DogsbyI.ContainsKey(dog.Id) &&
-                ownersById[owner.Id].DogsByName.ContainsKey(dog.Name))
+            if (this.ownersById[owner.Id].dogsByName.ContainsKey(dog.Name))
             {
                 throw new ArgumentException();
             }
 
             dog.Owner = owner;
 
-            this.rangeOrdered.Add(dog);
 
-            this.ownersById[owner.Id].DogsbyI.Add(dog.Id, dog);
+            this.vetClinic[dog.Id] = dog;
+            this.ageSorted.Add(dog);
 
-            this.ownersById[owner.Id].DogsByName.Add(dog.Name, dog);
-
-            if (!this.ownersById[owner.Id].Dogs.Contains(dog))
-            {
-                this.ownersById[owner.Id].Dogs.Add(dog);
-
-            }
-
-            if (!this.dogsByBreed.ContainsKey(dog.Breed))
-            {
-                this.dogsByBreed.Add(dog.Breed, new SortedSet<Dog>());
-            }
-
-            this.dogsByBreed[dog.Breed].Add(dog);
-
-            if (!this.dogsInVet.Contains(dog))
-            {
-                this.dogsInVet.Add(dog);
-            }
-
-            if (!this.byAge.ContainsKey(dog.Age))
-            {
-                this.byAge.Add(dog.Age, new SortedSet<Dog>());
-            }
-
-            this.byAge[dog.Age].Add(dog);
+            this.byBreed[dog.Breed].Add(dog);
+            this.ownersById[owner.Id].dogsByName.Add(dog.Name, dog);
+            this.ownersById[owner.Id].Dogs.Add(dog);
 
         }
 
         public bool Contains(Dog dog)
         {
-            return this.dogsInVet.Contains(dog);
+            return this.vetClinic[dog.Id] == dog;
         }
 
         public Dog GetDog(string name, string ownerId)
@@ -91,12 +74,12 @@ namespace _01.DogVet
                 throw new ArgumentException();
             }
 
-            if (!this.ownersById[ownerId].DogsByName.ContainsKey(name))
+            if (!this.ownersById[ownerId].dogsByName.ContainsKey(name))
             {
                 throw new ArgumentException();
             }
 
-            return this.ownersById[ownerId].DogsByName[name];
+            return this.ownersById[ownerId].dogsByName[name];
         }
 
         public Dog RemoveDog(string name, string ownerId)
@@ -106,28 +89,21 @@ namespace _01.DogVet
                 throw new ArgumentException();
             }
 
-            if (!this.ownersById[ownerId].DogsByName.ContainsKey(name))
+            if (!this.ownersById[ownerId].dogsByName.ContainsKey(name))
             {
                 throw new ArgumentException();
             }
 
-            Dog toRemove = this.ownersById[ownerId].DogsByName[name];
+            Dog toRemove = this.ownersById[ownerId].dogsByName[name];
 
-            this.dogsInVet.Remove(toRemove);
-
-            this.byAge[toRemove.Age].Remove(toRemove);
-
-            this.ownersById[ownerId].DogsbyI.Remove(toRemove.Id);
-
-            this.ownersById[ownerId].DogsByName.Remove(name);
-
+            this.ownersById[ownerId].dogsByName.Remove(name);
             this.ownersById[ownerId].Dogs.Remove(toRemove);
-
-            this.dogsByBreed[toRemove.Breed].Remove(toRemove);
-
-            this.rangeOrdered.Remove(toRemove);
+            this.vetClinic.Remove(toRemove.Id);
+            this.ageSorted.Remove(toRemove);
+            this.byBreed[toRemove.Breed].Remove(toRemove);
 
             return toRemove;
+
         }
 
         public IEnumerable<Dog> GetDogsByOwner(string ownerId)
@@ -142,17 +118,12 @@ namespace _01.DogVet
 
         public IEnumerable<Dog> GetDogsByBreed(Breed breed)
         {
-            if (!this.dogsByBreed.ContainsKey(breed))
+            if (!this.byBreed.ContainsKey(breed))
             {
                 throw new ArgumentException();
             }
 
-            if (this.dogsByBreed[breed].Count == 0)
-            {
-                throw new ArgumentException();
-            }
-
-            return this.dogsByBreed[breed];
+            return this.byBreed[breed];
         }
 
         public void Vaccinate(string name, string ownerId)
@@ -162,12 +133,12 @@ namespace _01.DogVet
                 throw new ArgumentException();
             }
 
-            if (!this.ownersById[ownerId].DogsByName.ContainsKey(name))
+            if (!this.ownersById[ownerId].dogsByName.ContainsKey(name))
             {
                 throw new ArgumentException();
             }
 
-            this.ownersById[ownerId].DogsByName[name].Vaccines++;
+            this.ownersById[ownerId].dogsByName[name].Vaccines++;
             //????????????????????????????????????????????????????????
 
         }
@@ -179,48 +150,33 @@ namespace _01.DogVet
                 throw new ArgumentException();
             }
 
-            if (!this.ownersById[ownerId].DogsByName.ContainsKey(oldName))
+            if (!this.ownersById[ownerId].dogsByName.ContainsKey(oldName))
             {
                 throw new ArgumentException();
             }
 
-            this.ownersById[ownerId].DogsByName[oldName].Name = newName;
+            this.ownersById[ownerId].dogsByName[oldName].Name = newName;
 
-            var value = this.ownersById[ownerId].DogsByName[oldName];
+            var value = this.ownersById[ownerId].dogsByName[oldName];
 
-            this.ownersById[ownerId].DogsByName.Remove(oldName);
+            this.ownersById[ownerId].dogsByName.Remove(oldName);
 
-            this.ownersById[ownerId].DogsByName.Add(value.Name, value);
+            this.ownersById[ownerId].dogsByName.Add(value.Name, value);
         }
 
         public IEnumerable<Dog> GetAllDogsByAge(int age)
         {
-            if (!this.byAge.ContainsKey(age))
-            {
-                throw new ArgumentException();
-            }
-
-            return this.byAge[age];
+            return this.ageSorted.Where(d => d.Age == age);
         }
 
         public IEnumerable<Dog> GetDogsInAgeRange(int lo, int hi)
         {
-            SortedSet<Dog> result = new SortedSet<Dog>();
-            foreach (var dog in dogsInVet)
-            {
-                if (dog.Age >= lo && dog.Age <= hi)
-                {
-                    result.Add(dog);
-                }
-            }
-
-
-            return result;
+            return this.ageSorted.Where(d => d.Age >= lo && d.Age <= hi);
         }
 
         public IEnumerable<Dog> GetAllOrderedByAgeThenByNameThenByOwnerNameAscending()
         {
-            return this.dogsInVet;
+            return this.ageSorted;
         }
     }
 }
