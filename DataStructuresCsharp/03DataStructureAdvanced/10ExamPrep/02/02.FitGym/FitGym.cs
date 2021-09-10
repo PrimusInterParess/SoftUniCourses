@@ -17,7 +17,6 @@ namespace _02.FitGym
 
         SortedDictionary<Trainer, HashSet<Member>> trainersMembers;
 
-
         public FitGym()
         {
             this.trainers = new HashSet<Trainer>();
@@ -27,6 +26,7 @@ namespace _02.FitGym
             this.trainersMembers = new SortedDictionary<Trainer, HashSet<Member>>();
 
         }
+
         public void AddMember(Member member)
         {
             if (this.members.Contains(member))

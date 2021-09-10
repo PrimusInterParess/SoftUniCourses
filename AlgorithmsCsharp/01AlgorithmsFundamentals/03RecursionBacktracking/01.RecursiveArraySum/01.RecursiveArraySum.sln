@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Recurtion", "Recurtion\01.Recurtion.csproj", "{3F15EF1E-0F79-4910-80A8-6D0906FEE3B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02Drawing", "02Drawing\02Drawing.csproj", "{E97F53AF-5726-4247-AD97-FE2757F02A99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.Generating01Vectors", "03.Generating01Vectors\03.Generating01Vectors.csproj", "{0DF6AEC6-7DBB-4060-BE60-A2429E4F9275}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.Recursive Factorial", "04.Recursive Factorial\04.Recursive Factorial.csproj", "{976D5625-82AE-4EA3-BD5A-BDDD2F7F6A82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F15EF1E-0F79-4910-80A8-6D0906FEE3B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F15EF1E-0F79-4910-80A8-6D0906FEE3B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F15EF1E-0F79-4910-80A8-6D0906FEE3B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F15EF1E-0F79-4910-80A8-6D0906FEE3B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E97F53AF-5726-4247-AD97-FE2757F02A99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E97F53AF-5726-4247-AD97-FE2757F02A99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E97F53AF-5726-4247-AD97-FE2757F02A99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E97F53AF-5726-4247-AD97-FE2757F02A99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DF6AEC6-7DBB-4060-BE60-A2429E4F9275}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF6AEC6-7DBB-4060-BE60-A2429E4F9275}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF6AEC6-7DBB-4060-BE60-A2429E4F9275}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF6AEC6-7DBB-4060-BE60-A2429E4F9275}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976D5625-82AE-4EA3-BD5A-BDDD2F7F6A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976D5625-82AE-4EA3-BD5A-BDDD2F7F6A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976D5625-82AE-4EA3-BD5A-BDDD2F7F6A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976D5625-82AE-4EA3-BD5A-BDDD2F7F6A82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BC57AB1F-A255-406D-8C8F-613767D1E851}
+	EndGlobalSection
+EndGlobal
