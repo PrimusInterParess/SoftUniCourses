@@ -20,14 +20,6 @@ namespace _01.DogVet
         {
             this.Id = id;
             this.Name = name;
-<<<<<<< HEAD
-            this.Dogs = new SortedSet<Dog>();
-            this.dogsByName = new Dictionary<string, Dog>();
-        }
-
-        public SortedSet<Dog> Dogs;
-        public Dictionary<string, Dog> dogsByName;
-=======
             this.DogsByName = new Dictionary<string, Dog>();
             this.Dogs = new SortedSet<Dog>(new DogComparer());
         }
@@ -35,7 +27,6 @@ namespace _01.DogVet
         public Dictionary<string,Dog> DogsByName { get; set; }
 
         public SortedSet<Dog> Dogs { get; set; }
->>>>>>> c95aeb6797ce3635cbccc835de79501dce9dfe3f
 
         public string Id { get; set; }
 

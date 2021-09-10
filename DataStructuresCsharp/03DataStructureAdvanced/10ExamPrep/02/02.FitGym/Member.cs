@@ -2,7 +2,7 @@ namespace _02.FitGym
 {
     using System;
 
-    public class Member : IComparable<Member>
+    public class Member:IComparable<Member>
     {
         public Member(int id, string name, DateTime registrationDate, int visits)
         {
@@ -27,6 +27,5 @@ namespace _02.FitGym
         {
             return this.Id.CompareTo(other.Id);
         }
-
     }
 }

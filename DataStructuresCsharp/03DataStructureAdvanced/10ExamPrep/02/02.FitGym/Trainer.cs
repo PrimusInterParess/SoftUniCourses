@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace _02.FitGym
 {
@@ -10,10 +11,10 @@ namespace _02.FitGym
             this.Id = id;
             this.Name = name;
             this.Popularity = popularity;
-            this.Members = new HashSet<Member>();
+            this.Members=new HashSet<Member>();
         }
 
-        public HashSet<Member> Members { get; set; }
+        public HashSet<Member> Members;
 
         public int Id { get; set; }
 

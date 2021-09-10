@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace _02.FitGym
 {
     using System;
@@ -5,18 +7,24 @@ namespace _02.FitGym
 
     public class FitGym : IGym
     {
-        private HashSet<Member> members;
+       
+
         private HashSet<Trainer> trainers;
+        private HashSet<Member> members;
+
+        private Dictionary<int, Member> membersById;
         private Dictionary<int, Trainer> trainersById;
-        private Dictionary<int, Member> memberById;
+
+        SortedDictionary<Trainer, HashSet<Member>> trainersMembers;
 
         public FitGym()
         {
-            this.members  = new HashSet<Member>();
             this.trainers = new HashSet<Trainer>();
+            this.members = new HashSet<Member>();
             this.trainersById = new Dictionary<int, Trainer>();
-            this.memberById = new Dictionary<int, Member>();
-            
+            this.membersById = new Dictionary<int, Member>();
+            this.trainersMembers = new SortedDictionary<Trainer, HashSet<Member>>();
+
         }
 
         public void AddMember(Member member)
@@ -25,8 +33,10 @@ namespace _02.FitGym
             {
                 throw new ArgumentException();
             }
-            this.memberById.Add(member.Id,member);
+
             this.members.Add(member);
+            this.membersById[member.Id] = member;
+
         }
 
         public void HireTrainer(Trainer trainer)
@@ -36,8 +46,9 @@ namespace _02.FitGym
                 throw new ArgumentException();
             }
 
-            this.trainersById.Add(trainer.Id, trainer);
 
+            this.trainersMembers[trainer] = new HashSet<Member>();
+            this.trainersById[trainer.Id] = trainer;
             this.trainers.Add(trainer);
         }
 
@@ -51,6 +62,7 @@ namespace _02.FitGym
             if (!this.members.Contains(member))
             {
                 this.members.Add(member);
+                this.membersById[member.Id] = member;
             }
 
             if (member.Trainer != null || trainer.Members.Contains(member))
@@ -81,59 +93,91 @@ namespace _02.FitGym
 
             Trainer toRemove = this.trainersById[id];
 
-            this.trainersById.Remove(id);
             this.trainers.Remove(toRemove);
+            this.trainersById.Remove(id);
+            this.trainersMembers.Remove(toRemove);
 
             return toRemove;
         }
 
         public Member RemoveMember(int id)
         {
-            if (!this.memberById.ContainsKey(id))
+            if (!this.membersById.ContainsKey(id))
             {
                 throw new ArgumentException();
             }
 
-            Member toRemove = this.memberById[id];
+            Member toRemove = this.membersById[id];
 
-            this.memberById.Remove(id);
+            this.members.Remove(toRemove);
+            this.membersById.Remove(id);
 
             return toRemove;
         }
 
         public int MemberCount
         {
-            get => this.MemberCount;
+            get => this.members.Count;
         }
-        public int TrainerCount { get=>this.trainers.Count; }
+        public int TrainerCount { get => this.trainers.Count; }
 
         public IEnumerable<Member>
             GetMembersInOrderOfRegistrationAscendingThenByNamesDescending()
         {
-            throw new NotImplementedException();
+            if (this.members.Count == 0)
+            {
+                return new List<Member>();
+            }
+
+            return this.members
+                .OrderBy(m => m.RegistrationDate)
+                .ThenByDescending(n => n.Name);
         }
 
         public IEnumerable<Trainer> GetTrainersInOrdersOfPopularity()
         {
-            throw new NotImplementedException();
+            if (this.trainers.Count == 0)
+            {
+                return new List<Trainer>();
+            }
+
+            return this.trainers.OrderBy(t => t.Popularity);
         }
 
         public IEnumerable<Member>
             GetTrainerMembersSortedByRegistrationDateThenByNames(Trainer trainer)
         {
-            throw new NotImplementedException();
+            if (trainer.Members.Count == 0)
+            {
+                return new List<Member>();
+            }
+
+            return trainer.Members.OrderBy(m => m.RegistrationDate).ThenBy(m => m.Name);
         }
 
         public IEnumerable<Member>
             GetMembersByTrainerPopularityInRangeSortedByVisitsThenByNames(int lo, int hi)
         {
-            throw new NotImplementedException();
+            List<Member> toReturn = new List<Member>();
+
+            foreach (var trainer in trainers)
+            {
+                if (trainer.Popularity >= lo && trainer.Popularity <= hi)
+                {
+
+                    toReturn.AddRange(trainer.Members);
+                }
+            }
+
+            return toReturn.OrderBy(m => m.Visits).ThenBy(m => m.Name);
         }
 
         public Dictionary<Trainer, HashSet<Member>>
             GetTrainersAndMemberOrderedByMembersCountThenByPopularity()
         {
-            throw new NotImplementedException();
+            return new Dictionary<Trainer, HashSet<Member>>(this.trainersMembers).OrderBy(t => t.Key.Members.Count)
+                .ThenBy(t => t.Key.Popularity).ToDictionary(t => t.Key, m => m.Value);
         }
+
     }
 }
