@@ -148,11 +148,89 @@ SELECT TOP(5) C.CountryName,
 	 WHERE C.ContinentCode = 'AF'
 	 ORDER BY C.CountryName ASC
 
+	 USE SoftUni
+	 SELECT E.EmployeeID,E.JobTitle,E.AddressID,A.AddressText
+	 FROM Employees AS E
+	  JOIN Addresses AS A ON E.AddressID=A.AddressID
 
+	SELECT TOP(50) E.FirstName,E.LastName,T.[Name],A.AddressText
+	FROM Employees AS E
+	LEFT JOIN Addresses AS A ON E.AddressID=A.AddressID
+	LEFT JOIN Towns AS T ON T.TownID=A.TownID
+	ORDER BY E.FirstName ASC,E.LastName
 
+	SELECT TOP(5) E.EmployeeID, E.FirstName ,E.Salary,D.Name
+	FROM Employees AS E
+	LEFT JOIN Departments AS D ON D.DepartmentID =E.DepartmentID
+	ORDER BY D.DepartmentID ASC
 
+	SELECT * FROM Projects
+	SELECT * FROM EmployeesProjects
+
+	SELECT E.EmployeeID,E.FirstName
+	FROM Employees AS E
+	LEFT JOIN EmployeesProjects AS EP ON EP.EmployeeID = E.EmployeeID
+	WHERE EP.EmployeeID IS NULL
+	ORDER BY E.EmployeeID ASC
+
+	SELECT E.FirstName,E.LastName,E.HireDate,D.Name 
+	FROM Employees AS E
+	LEFT JOIN Departments AS D ON D.DepartmentID =E.DepartmentID
+	WHERE D.Name IN('Sales','Finance')
+	ORDER BY E.HireDate ASC
 	
 
+	SELECT top(5) E.EmployeeID,E.FirstName, P.Name AS [ProjectName]
+	FROM Employees AS E
+ LEFT JOIN EmployeesProjects AS EP ON EP.EmployeeID=E.EmployeeID
+	JOIN Projects AS P ON EP.ProjectID=P.ProjectID
+	WHERE P.StartDate> '08.13.2002' and ep.EmployeeID is not null
+	ORDER BY E.EmployeeID ASC
 
+	SELECT TOP(5) E.[EmployeeID],E.[FirstName],PRJ.[Name] AS [ProjectName]
+		FROM Employees AS E
+				LEFT JOIN EmployeesProjects AS P ON E.[EmployeeID] = P.[EmployeeID]
+				JOIN Projects AS PRJ ON PRJ.ProjectID=P.ProjectID
+			 WHERE P.[EmployeeID] IS Not NULL and PRJ.StartDate>'08.13.2002'
+		ORDER BY E.[EmployeeID] ASC
+
+
+USE SOFTUNI
+
+
+								--SUBQUERIES
+
+
+SELECT
+E.FirstName,
+E.LastName,
+E.HireDate,
+D.Name as DeptName,
+(SELECT COUNT(*) FROM Employees
+WHERE D.DepartmentID=E.DepartmentID) AS EmployeesCount
+FROM Employees AS E
+JOIN Departments AS D ON E.DepartmentID=D.DepartmentID
+WHERE E.HireDate>'1999-01-01' AND 
+D.Name IN (SELECT D.Name 
+			FROM Departments 
+			WHERE Name LIKE'E%')
+ORDER BY HireDate
+
+--???????????????????????????????????????????
+SELECT * FROM
+(
+SELECT FirstName,LastName
+FROM Employees
+) AS COOL
+
+---------
 			
-
+SELECT TOP(1)
+D.DepartmentID,
+D.Name,
+ISNULL((SELECT AVG(Salary)
+FROM Employees AS E
+WHERE E.DepartmentID = D.DepartmentID),0) AS AVERAGEsALARY
+FROM Departments AS D
+--WHERE (SELECT COUNT(*) FROM Employees AS E WHERE E.DepartmentID=D.DepartmentID )>0
+ORDER BY AVERAGEsALARY ASC
