@@ -234,3 +234,26 @@ WHERE E.DepartmentID = D.DepartmentID),0) AS AVERAGEsALARY
 FROM Departments AS D
 --WHERE (SELECT COUNT(*) FROM Employees AS E WHERE E.DepartmentID=D.DepartmentID )>0
 ORDER BY AVERAGEsALARY ASC
+
+
+
+USE SoftUni
+
+	SELECT E.EmployeeID,E.FirstName,EP.EmployeeID,EP.
+	FROM Employees AS E
+		LEFT JOIN EmployeesProjects AS EP ON EP.EmployeeID=E.EmployeeID
+
+
+SELECT E.EmployeeID,E.FirstName,P.Name AS ProjectName,P.StartDate,P.EndDate
+FROM Employees AS E
+JOIN EmployeesProjects AS EP ON E.EmployeeID=EP.EmployeeID
+JOIN Projects AS P ON  EP.ProjectID=P.ProjectID
+WHERE P.StartDate > '2002-08-13'
+ORDER BY E.EmployeeID ASC
+
+
+SELECT E.EmployeeID,E.FirstName,P.Name
+FROM Employees AS E
+LEFT JOIN EmployeesProjects AS EP ON E.EmployeeID=EP.EmployeeID
+ JOIN Projects AS P ON EP.ProjectID = P.ProjectID
+WHERE EP.EmployeeID =24
