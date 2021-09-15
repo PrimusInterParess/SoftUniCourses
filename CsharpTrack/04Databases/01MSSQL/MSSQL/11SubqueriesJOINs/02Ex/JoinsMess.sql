@@ -90,14 +90,7 @@ SELECT E.[FirstName],E.[LastName],E.[HireDate],D.[Name] AS [DeptName]
 			ORDER BY E.EmployeeID ASC
 
 
-SELECT TOP(50) E.[EmployeeID],
-	   E.[FirstName] + ' ' + E.[LastName],
-	   M.[FirstName] + ' ' + M.[LastName] AS [ManagerName],
-	   D.[Name] AS [DepartmentName]
-			FROM Employees AS E
-				JOIN Employees AS M ON E.ManagerID = M.EmployeeID
-					JOIN Departments AS D ON E.DepartmentID = D.DepartmentID
-		ORDER BY E.EmployeeID
+
 
 	SELECT * from Departments
 	ORDER BY DepartmentID
@@ -257,3 +250,105 @@ FROM Employees AS E
 LEFT JOIN EmployeesProjects AS EP ON E.EmployeeID=EP.EmployeeID
  JOIN Projects AS P ON EP.ProjectID = P.ProjectID
 WHERE EP.EmployeeID =24
+
+USE SoftUni
+
+SELECT E.EmployeeID,E.FirstName,E.ManagerID,M.[FirstName] AS [ManagerName]			
+			FROM Employees AS E
+				JOIN Employees AS M ON E.ManagerID = M.EmployeeID
+				WHERE M.EmployeeID IN(3,7)
+			ORDER BY E.EmployeeID ASC
+
+SELECT E.EmployeeID,E.FirstName,E.ManagerID,EM.FirstName AS ManagerName
+FROM Employees AS E
+ JOIN Employees AS EM ON EM.EmployeeID=E.ManagerID
+ WHERE EM.EmployeeID IN (3,7)
+ ORDER BY E.EmployeeID ASC
+
+ SELECT top(50) E.EmployeeID,E.FirstName+' '+ E.LastName AS EmployeeName , M.FirstName + ' '+ M.LastName,D.Name AS DepartmentName
+ FROM Employees AS E
+ JOIN Employees AS M ON M.EmployeeID=E.ManagerID
+ JOIN Departments AS D ON E.DepartmentID=D.DepartmentID 
+ ORDER BY E.EmployeeID
+
+ SELECT TOP(50) E.[EmployeeID],
+	   E.[FirstName] + ' ' + E.[LastName],
+	   M.[FirstName] + ' ' + M.[LastName] AS [ManagerName],
+	   D.[Name] AS [DepartmentName]
+			FROM Employees AS E
+			JOIN Employees AS M ON E.ManagerID = M.EmployeeID
+					JOIN Departments AS D ON E.DepartmentID = D.DepartmentID
+		ORDER BY E.EmployeeID
+
+
+		--11.MinAverageSalary
+		SELECT TOP(1)
+D.DepartmentID,
+D.Name,
+ISNULL((SELECT AVG(Salary)
+FROM Employees AS E
+WHERE E.DepartmentID = D.DepartmentID),0) AS AVERAGEsALARY
+FROM Departments AS D
+--WHERE (SELECT COUNT(*) FROM Employees AS E WHERE E.DepartmentID=D.DepartmentID )>0
+ORDER BY AVERAGEsALARY ASC
+
+
+ USE Geography
+
+
+ --12.HighestPeaskInBulgaria
+ SELECT C.CountryCode, M.MountainRange,P.PeakName,P.Elevation
+ FROM Countries AS C
+ JOIN MountainsCountries AS MC ON C.CountryCode = MC.CountryCode
+ JOIN Mountains AS M ON MC.MountainId=M.Id
+ JOIN Peaks AS P ON M.Id = P.MountainId
+ WHERE C.CountryName = 'Bulgaria'
+ ORDER BY P.Elevation DESC
+
+
+--13.CountMountainRanges
+
+SELECT C.CountryCode,
+(
+SELECT COUNT(M.MountainRange)
+FROM MountainsCountries AS MC
+JOIN Mountains AS M ON MC.MountainId = M.Id
+WHERE C.CountryCode IN ('BG','US','RU')
+) AS mc
+FROM Countries AS C
+
+
+
+
+SELECT C.CountryCode,COUNT(*) AS 'MountainRanges'
+		FROM Countries AS C
+		JOIN MountainsCountries AS MC ON MC.CountryCode=C.CountryCode
+			WHERE C.CountryCode IN ('BG','US','RU')
+		GROUP BY C.CountryCode
+
+SELECT C.CountryCode,
+FROM Countries AS C
+JOIN MountainsCountries AS MC ON MC.CountryCode=C.CountryCode
+JOIN Mountains AS M ON M.Id=MC.MountainId
+WHERE C.CountryCode IN ('BG')
+
+
+SELECT COUNT(*) 
+FROM Mountains AS M
+JOIN MountainsCountries AS MC ON MC.MountainId=M.Id
+JOIN Countries AS C ON C.CountryCode=MC.CountryCode
+WHERE C.CountryCode IN ('BG','US','RU')
+
+SELECT 
+(
+SELECT COUNT(MR.MountainId)
+FROM Mountains AS M
+JOIN MountainsCountries AS MR ON MR.MountainId = M.Id
+JOIN Countries AS C ON MR.CountryCode = C.CountryCode
+)
+FROM Countries AS C
+WHERE C.CountryCode IN ('BG','US','RU')
+
+
+
+
