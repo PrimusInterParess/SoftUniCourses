@@ -350,5 +350,44 @@ FROM Countries AS C
 WHERE C.CountryCode IN ('BG','US','RU')
 
 
+--16 Countries without mountains
+
+SELECT COUNT(*)
+FROM Countries AS C
+LEFT JOIN MountainsCountries AS MC ON MC.CountryCode = C.CountryCode
+WHERE MountainId IS NULL
+
+--17 HIGHEST PEEK AND LOGNEST RIVER BY COUNTRY
+
+
+SELECT TOP(5) CountryName,MAX(P.Elevation) AS HighestPeak,MAX(R.Length) AS LongestRiver
+FROM Countries AS C
+LEFT JOIN MountainsCountries AS MC ON MC.CountryCode=C.CountryCode
+LEFT JOIN Mountains AS M ON M.Id = MC.MountainId
+LEFT JOIN Peaks AS P ON P.MountainId = M.Id
+LEFT JOIN CountriesRivers AS CR ON CR.CountryCode=C.CountryCode
+LEFT JOIN Rivers AS R ON R.Id=CR.RiverId
+GROUP BY CountryName 
+ORDER BY HighestPeak DESC,LongestRiver DESC,CountryName 
+
+
+--18 
+
+SELECT top(5) k.CountryName,k.PeakName,k.MountainRange,k.HighestPeak,k.PeakName
+FROM(
+SELECT
+CountryName,
+ISNULL(P.PeakName,'(no heisht peak)') AS PeakName,
+ISNULL(M.MountainRange,'(no mountain)') AS MountainRange,
+ISNULL(MAX(P.Elevation),0) AS HighestPeak,
+DENSE_RANK () OVER (PARTITION BY CountryName ORDER BY MAX(P.ELEVATION ) DESC) AS RANKED
+FROM
+Countries AS C
+LEFT JOIN MountainsCountries AS MC ON MC.CountryCode=C.CountryCode
+LEFT JOIN Mountains AS M ON M.Id = MC.MountainId
+LEFT JOIN Peaks AS P ON P.MountainId = M.Id
+GROUP BY CountryName ,P.PeakName,M.MountainRange) as k
+where RANKED =1
+ORDER BY CountryName,PeakName
 
 
