@@ -106,8 +106,84 @@ ORDER BY W.DepositGroup DESC,W.IsDepositExpired ASC
 
 --12.RichWizard,PoorWizard
 
+
+
 SELECT SUM(GUEST.DepositAmount-HOST.DepositAmount)
 FROM WizzardDeposits AS HOST
 JOIN WizzardDeposits AS GUEST ON GUEST.Id+1 = HOST.Id
 
+USE SoftUni
 
+--13.DepartmentsTotalSalaries
+
+SELECT DepartmentID,SUM(Salary) AS 'TotalSalary'
+FROM Employees AS E
+GROUP BY DepartmentID
+ORDER BY DepartmentID
+
+
+--14. Employees Minimum Salaries
+
+SELECT DepartmentID,MIN(E.Salary)
+FROM Employees AS E
+WHERE DepartmentID IN(2,5,7) and HireDate >'01-01-2000'
+GROUP BY DepartmentID
+ORDER BY DepartmentID
+
+--15. Employees Average Salaries
+
+SELECT * INTO CustomTable
+from Employees
+WHERE Salary> 30000
+
+
+DELETE FROM CustomTable
+WHERE ManagerID=42
+
+UPDATE CustomTable
+SET SALARY +=5000
+WHERE DepartmentID=1
+
+SELECT DepartmentID,AVG(Salary) AS AverageSalary
+FROM CustomTable
+GROUP BY DepartmentID
+
+--16EmployeesMaxSalary
+
+SELECT DepartmentID,MAX(Salary) AS 'MaxSalary'
+FROM Employees AS E
+GROUP BY DepartmentID
+HAVING MAX(Salary)<=30000 OR MAX(Salary)>=70000
+
+SELECT DepartmentID,MAX(Salary) AS 'MaxSalary'
+FROM Employees AS E
+GROUP BY DepartmentID
+HAVING MAX(Salary) NOT BETWEEN 30000 AND 70000
+
+--17SalariesCount
+
+SELECT COUNT(E.Salary) AS 'Count'
+FROM Employees AS E
+WHERE E.ManagerID IS NULL
+
+
+--18. 3rd Highest Salary
+
+SELECT DISTINCT COLUMNS.DepartmentID,COLUMNS.Salary
+FROM 
+(
+SELECT E.DepartmentID,E.Salary,
+DENSE_RANK() OVER(PARTITION BY DepartmentID ORDER BY SALARY DESC ) AS Ranked
+FROM Employees AS E) AS COLUMNS
+WHERE COLUMNS.Ranked=3
+
+--19 SalaryChalange
+
+
+SELECT TOP(10) E.FirstName,E.LastName,E.DepartmentID
+FROM Employees AS E
+WHERE Salary>(
+SELECT AVG(Salary)
+FROM Employees 
+WHERE E.DepartmentID=DepartmentID
+GROUP BY DepartmentID)
