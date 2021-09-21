@@ -21,7 +21,26 @@ namespace Exam.MobileX
                 return comp;
             }
         }
+        private class VipPriceIdComparer : IComparer<Vehicle>
+        {
+            public int Compare(Vehicle x, Vehicle y)
+            {
 
+                int comp = y.IsVIP.CompareTo(x.IsVIP);
+
+                if (comp == 0)
+                {
+                    comp = x.Price.CompareTo(y.Price);
+                }
+
+                if (comp == 0)
+                {
+                    comp = x.Id.CompareTo(y.Id);
+                }
+
+                return comp;
+            }
+        }
         private class HorsePowerDCSPriceASCSellerASC : IComparer<Vehicle>
         {
             public int Compare(Vehicle x, Vehicle y)
@@ -46,7 +65,6 @@ namespace Exam.MobileX
                 return comp;
             }
         }
-
         private class brandOrderer : IComparer<Vehicle>
         {
             public int Compare(Vehicle x, Vehicle y)
@@ -194,7 +212,17 @@ namespace Exam.MobileX
 
         public IEnumerable<Vehicle> GetVehicles(List<string> keywords)
         {
-            throw new NotImplementedException();
+            SortedSet<Vehicle> orderd = new SortedSet<Vehicle>(new VipPriceIdComparer());
+
+            foreach (var vehicle in this.longSorted)
+            {
+                if (vehicle.fundamentals.Intersect(keywords).Any())
+                {
+                    orderd.Add(vehicle);
+                }
+            }
+
+            return orderd;
         }
 
         public IEnumerable<Vehicle> GetVehiclesBySeller(string sellerName)

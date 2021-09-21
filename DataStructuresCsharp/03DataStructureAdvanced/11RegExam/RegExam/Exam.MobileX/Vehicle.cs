@@ -1,18 +1,23 @@
-﻿namespace Exam.MobileX
+﻿using System.Collections.Generic;
+
+namespace Exam.MobileX
 {
     public class Vehicle
     {
         public Vehicle(string id, string brand, string model, string location, string color, int horsepower, double price, bool isVIP)
         {
-            Id = id;
-            Brand = brand;
-            Model = model;
-            Location = location;
-            Color = color;
-            Horsepower = horsepower;
-            Price = price;
-            IsVIP = isVIP;
+            this.Id = id;
+            this.Brand = brand;
+            this.Model = model;
+            this.Location = location;
+            this.Color = color;
+            this.Horsepower = horsepower;
+            this.Price = price;
+            this.IsVIP = isVIP;
+            this.fundamentals = new List<string> {brand, model, location, color};
         }
+
+        public List<string> fundamentals { get; set; }
 
         public string SellerName { get; set; }
 

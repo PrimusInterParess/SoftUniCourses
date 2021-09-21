@@ -46,6 +46,7 @@ namespace Exam.MobileX.Tests
             Assert.IsTrue(this.vehicleRepository.Contains(vehicle));
         }
 
+        [Test]
         [Category("Correctness")]
         public void TestGetVehicles_WithExistentVehicles_ShouldCorrectlyOrderedVehicles()
         {
