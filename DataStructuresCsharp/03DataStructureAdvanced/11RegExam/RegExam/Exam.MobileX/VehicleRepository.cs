@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Exam.MobileX
 {
-    public class VehicleRepository : IVehicleRepository, IEnumerable<Vehicle>
+    public class VehicleRepository : IVehicleRepository
     {
         private class HorsePowerOrderer : IComparer<Vehicle>
         {
@@ -79,38 +79,10 @@ namespace Exam.MobileX
                 return comp;
             }
         }
-        private class vipOrderer : IComparer<Vehicle>
-        {
-            public int Compare(Vehicle x, Vehicle y)
-            {
-                int comp = x.Price.CompareTo(y.Price);
-
-                if (comp == 0)
-                {
-                    comp = x.Id.CompareTo(y.Id);
-                }
-
-                return comp;
-            }
-        }
-        private class priceOrderer : IComparer<Vehicle>
-        {
-            public int Compare(Vehicle x, Vehicle y)
-            {
-                int comp = x.Price.CompareTo(y.Price);
-
-                if (comp == 0)
-                {
-                    comp = x.Id.CompareTo(y.Id);
-                }
-
-                return comp;
-            }
-
-        }
+    
+       
 
         private HashSet<string> sellerName;
-        private SortedSet<Vehicle> vipSorted;
         private SortedSet<Vehicle> longSorted;
 
         private Dictionary<double, SortedSet<Vehicle>> priceHorsepowerOrdered;
@@ -124,7 +96,6 @@ namespace Exam.MobileX
         public VehicleRepository()
         {
             this.sellerName = new HashSet<string>();
-            this.vipSorted = new SortedSet<Vehicle>(new vipOrderer());
             this.brandCarsSorted = new Dictionary<string, SortedSet<Vehicle>>();
             this.sellerNameVehicles = new Dictionary<string, List<Vehicle>>();
             this.priceHorsepowerOrdered = new Dictionary<double, SortedSet<Vehicle>>();
@@ -141,10 +112,6 @@ namespace Exam.MobileX
 
             vehicle.SellerName = sellerName;
 
-            if (vehicle.IsVIP)
-            {
-                this.vipSorted.Add(vehicle);
-            }
 
             if (!this.brandCarsSorted.ContainsKey(vehicle.Brand))
             {
@@ -154,7 +121,7 @@ namespace Exam.MobileX
             if (!this.sellerNameVehicles.ContainsKey(sellerName))
             {
                 this.sellerNameVehicles[sellerName] = new List<Vehicle>();
-                this.sellerOrderdCars[sellerName] = new SortedSet<Vehicle>(new priceOrderer());
+                this.sellerOrderdCars[sellerName] = new SortedSet<Vehicle>(new brandOrderer());
             }
 
             if (!priceHorsepowerOrdered.ContainsKey(vehicle.Price))
@@ -165,13 +132,15 @@ namespace Exam.MobileX
             if (!this.carsById.ContainsKey(vehicle.Id))
             {
                 this.carsById.Add(vehicle.Id, vehicle);
+
+                this.longSorted.Add(vehicle);
+                this.sellerOrderdCars[sellerName].Add(vehicle);
+                this.priceHorsepowerOrdered[vehicle.Price].Add(vehicle);
+                this.sellerNameVehicles[sellerName].Add(vehicle);
+                this.brandCarsSorted[vehicle.Brand].Add(vehicle);
             }
 
-            this.longSorted.Add(vehicle);
-            this.sellerOrderdCars[sellerName].Add(vehicle);
-            this.priceHorsepowerOrdered[vehicle.Price].Add(vehicle);
-            this.sellerNameVehicles[sellerName].Add(vehicle);
-            this.brandCarsSorted[vehicle.Brand].Add(vehicle);
+            
 
         }
 
@@ -216,7 +185,10 @@ namespace Exam.MobileX
 
             foreach (var vehicle in this.longSorted)
             {
-                if (vehicle.fundamentals.Intersect(keywords).Any())
+                if (keywords.Contains(vehicle.Model) ||
+                    keywords.Contains(vehicle.Brand) ||
+                    keywords.Contains(vehicle.Location)||
+                    keywords.Contains(vehicle.Color))
                 {
                     orderd.Add(vehicle);
                 }
@@ -262,7 +234,6 @@ namespace Exam.MobileX
 
             Vehicle toRemove = this.carsById[vehicleId];
 
-            this.vipSorted.Remove(toRemove);
             this.longSorted.Remove(toRemove);
             this.priceHorsepowerOrdered[toRemove.Price].Remove(toRemove);
             this.brandCarsSorted[toRemove.Brand].Remove(toRemove);
@@ -272,17 +243,6 @@ namespace Exam.MobileX
 
         }
 
-        public IEnumerator<Vehicle> GetEnumerator()
-        {
-            foreach (var car in carsById.Values)
-            {
-                yield return car;
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+       
     }
 }

@@ -61,8 +61,8 @@ namespace Exam.MobileX.Tests
             Vehicle vehicle8 = new Vehicle(8 + "", "Ford", "Mustang", "Plovdiv", "Black", 600, 110000, true);
 
             this.vehicleRepository.AddVehicleForSale(vehicle, "George");
-            this.vehicleRepository.AddVehicleForSale(vehicle2, "Jack");
-            this.vehicleRepository.AddVehicleForSale(vehicle3, "Phill");
+            this.vehicleRepository.AddVehicleForSale(vehicle2, "George");
+            this.vehicleRepository.AddVehicleForSale(vehicle3, "George");
             this.vehicleRepository.AddVehicleForSale(vehicle4, "Isacc");
             this.vehicleRepository.AddVehicleForSale(vehicle5, "Igor");
             this.vehicleRepository.AddVehicleForSale(vehicle6, "Donald");

@@ -14,11 +14,9 @@ namespace Exam.MobileX
             this.Horsepower = horsepower;
             this.Price = price;
             this.IsVIP = isVIP;
-            this.fundamentals = new List<string> {brand, model, location, color};
         }
 
-        public List<string> fundamentals { get; set; }
-
+      
         public string SellerName { get; set; }
 
         public string Id { get; set; }
