@@ -35,7 +35,7 @@ SELECT CASE @Year
 	GO
 --loops
  
-
+ use SoftUni
 DECLARE @Year SMALLINT = 2000;
 SELECT @Year,COUNT(*) FROM Employees WHERE YEAR(HireDate) = @Year
 
@@ -63,22 +63,81 @@ SELECT @Year,COUNT(*) FROM Employees WHERE YEAR(HireDate) = @Year
 END
 
 --FUNKS
+go
 
-CREATE FUNCTION udf_CustomPowerFunk(@Base INT,@Ext INT)
-RETURNS INT
+--CREATE FUNCTION udf_CustomPowerFunk(@Base INT,@Ext INT)
+--RETURNS decimal(38)
+--AS
+--BEGIN
+--	DECLARE @Result DECIMAL(38) =1;
+
+--		WHILE(@Ext >0)
+--	BEGIN 
+--			SET @Result = @Result * @Base;
+--			SET	@Ext -=1;
+--	END
+
+-- RETURN @Result;
+--END
+
+SELECT dbo.udf_CustomPowerFunk(2,100)
+
+
+
+--wiew
+
+CREATE OR ALTER VIEW EmployeesByYear AS
+SELECT * 
+FROM Employees AS E
+WHERE E.HireDate>'2000'
+
+--FUNK
+
+CREATE or ALTER FUNCTION udf_EmployeeByYear(@Year SMALLINT)
+RETURNS TABLE
+AS 
+RETURN
+(
+SELECT * FROM Employees
+WHERE YEAR(HireDate)=@Year
+)
+
+SELECT * FROM udf_EmployeeByYear(1999)
+
+SELECT * FROM dbo.udf_AllPowers(100)
+
+CREATE FUNCTION udf_AllPowers(@MaxPower INT)
+RETURNS @Table TABLE(Id INT IDENTITY PRIMARY KEY,SQUARE BIGINT)
 AS
 BEGIN
-	DECLARE @Base INT =2;
-	DECLARE @Ext INT =126;
-	DECLARE REsult DECIMAL(38) =1;
-
-		WHILE(@Ext >0)
-	BEGIN 
-			SET @Result = @Result * @Base;
-			SET	@EXT -=1;
+	DECLARE @I INT =1;
+	WHILE(@MaxPower >=@I)
+	BEGIN
+	INSERT INTO @Table (SQUARE) VALUES (@I * @I)
+	SET @I=@I+1;
 	END
-
- RETURN @Result;
+	RETURN
 END
 
-SELECT @Result
+
+go
+
+CREATE OR ALTER FUNCTION ufn_GetSalaryLevel(@Salary MONEY)
+RETURNS nVARCHAR(max)
+AS
+BEGIN
+	
+	IF @Salary< 30000
+		RETURN 'Low'
+	ELSE IF  @Salary<=50000
+		RETURN 'Average'
+	
+		RETURN 'High'
+END
+
+SELECT FirstName,LastName,Salary, dbo.ufn_GetSalaryLevel(Salary)
+FROM Employees
+
+
+
+
