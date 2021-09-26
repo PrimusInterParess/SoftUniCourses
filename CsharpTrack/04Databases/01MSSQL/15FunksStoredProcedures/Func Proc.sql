@@ -122,8 +122,8 @@ END
 
 go
 
-CREATE OR ALTER FUNCTION ufn_GetSalaryLevel(@Salary MONEY)
-RETURNS nVARCHAR(max)
+Create FUNCTION ufn_GetSalaryLevel(@Salary MONEY)
+RETURNS VARCHAR(max)
 AS
 BEGIN
 	
@@ -131,12 +131,30 @@ BEGIN
 		RETURN 'Low'
 	ELSE IF  @Salary<=50000
 		RETURN 'Average'
-	
+
 		RETURN 'High'
 END
 
-SELECT FirstName,LastName,Salary, dbo.ufn_GetSalaryLevel(Salary)
+go
+
+use SoftUni
+
+SELECT FirstName,LastName,Salary,dbo.ufn_GetSalaryLevel(Salary)
 FROM Employees
+
+go
+
+CREATE PROCEDURE dbo.usp_SlectEmployeesBySeniority
+AS
+	SELECT * 
+		FROM Employees
+		WHERE DATEDIFF(YEAR,HireDate,GETDATE()) >20
+GO
+
+EXEC dbo.usp_SlectEmployeesBySeniority
+
+GO
+
 
 
 
