@@ -139,10 +139,13 @@ go
 
 use SoftUni
 
+
+
 SELECT FirstName,LastName,Salary,dbo.ufn_GetSalaryLevel(Salary)
 FROM Employees
 
 go
+
 
 CREATE PROCEDURE dbo.usp_SlectEmployeesBySeniority
 AS
@@ -155,7 +158,151 @@ EXEC dbo.usp_SlectEmployeesBySeniority
 
 GO
 
+USE SoftUni
+GO
+--1.	Employees with Salary Above 35000
+
+CREATE PROCEDURE usp_GetEmployeesSalaryAbove35000
+AS
+	SELECT FirstName,LastName
+		FROM Employees
+		WHERE Salary>35000
+GO
+
+EXEC dbo.usp_GetEmployeesSalaryAbove35000
+
+GO
+--2.	Employees with Salary Above Number
+CREATE PROCEDURE usp_GetEmployeesSalaryAboveNumber(@Number DECIMAL(18,4))
+AS
+	SELECT FirstName,LastName
+		FROM Employees
+		WHERE SALARY >= @Number
+		
+		GO
+
+EXEC dbo.usp_GetEmployeesSalaryAboveNumber 48100
 
 
 
+
+GO
+
+--3.	Town Names Starting With
+
+CREATE PROCEDURE usp_GetTownsStartingWith(@StartsWith NVARCHAR(50))
+AS
+	SELECT [Name] 
+		FROM Towns
+		WHERE [Name] like @StartsWith + '%'
+
+
+
+GO
+
+EXEC dbo.usp_GetTownsStartingWith b
+
+go
+--4.	Employees from Town
+CREATE PROCEDURE usp_GetEmployeesFromTown(@TownName VARCHAR(50))
+AS
+	SELECT E.FirstName,E.LastName
+		FROM Employees AS E
+		JOIN Addresses AS ADR ON ADR.AddressID=E.AddressID
+		JOIN Towns AS T ON T.TownID=ADR.TownID
+		WHERE T.Name=@TownName
+
+		GO
+
+EXEC dbo.usp_GetEmployeesFromTown Sofia
+
+go
+
+--5.	Salary Level Function
+
+
+CREATE or alter FUNCTION ufn_GetSalaryLevel(@salary DECIMAL(18,4))
+RETURNS NVARCHAR(50)
+AS
+	BEGIN
+		IF @salary<30000
+			RETURN 'Low'
+		ELSE IF @salary BETWEEN 30000 AND 50000
+			RETURN 'Average'
+		ELSE 
+			RETURN 'High'
+
+			RETURN NULL
+	END
+
+SELECT Salary ,dbo.ufn_GetSalaryLevel(Salary) AS [Salary level]
+FROM Employees
+
+
+--6.	Employees by Salary Level
+GO
+
+CREATE PROCEDURE usp_EmployeesBySalaryLevel(@SalaryLevel NVARCHAR(50))
+AS
+	SELECT ToSort.FirstName,LastName
+	FROM
+	(
+	SELECT e.FirstName,e.LastName,dbo.ufn_GetSalaryLevel(Salary) as SalaryLevel
+		FROM Employees AS E) AS ToSort
+		where ToSort.SalaryLevel like @SalaryLevel
+
+
+go
+
+--7.	Define Function
+
+GO
+
+CREATE FUNCTION ufn_IsWordComprised(@setOfLetters NVARCHAR(MAX), @word NVARCHAR(MAX))
+RETURNS BIT
+AS
+BEGIN
+
+	DECLARE @Lenght int = LEN(@word)
+	DECLARE @Ind int = 1
+
+	WHILE(@Lenght >= @Ind)
+	BEGIN
+			DECLARE @currentLetter char(1) = substring(@word,@Ind,1)
+
+			IF(CHARINDEX(@currentLetter,@setOfLetters)=0)
+				return 0
+
+		SET @Ind+=1
+	END
+
+RETURN 1
+
+END
+go
+
+SELECT dbo.ufn_IsWordComprised ('oistmiahf','Sofia')
+
+go
+
+
+
+USE Bank
+
+SELECT * FROM AccountHolders
+
+SELECT * FROM Accounts
+
+GO
+CREATE PROC usp_GetHoldersWithBalanceHigherThan(@Number MONEY)
+AS
+	SELECT RES.FirstName,RES.LastName
+	FROM
+	(
+	SELECT SUM(A.Balance)AS [SUM],FirstName,LastName
+	FROM AccountHolders AS AH
+	JOIN Accounts AS A ON A.AccountHolderId=AH.Id) AS RES
+	WHERE [SUM]>@Number
+	ORDER BY FirstName,LastName
+	
 
