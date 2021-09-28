@@ -306,3 +306,135 @@ AS
 	ORDER BY FirstName,LastName
 	
 
+	--8. Delete Employees and Department
+GO
+
+	USE SoftUni
+
+ALTER TABLE Departments
+ALTER column ManagerId INT NULL
+
+GO
+
+CREATE PROC usp_DeleteEmployeesFromDepartment(@departmentId INT) 
+AS
+	ALTER TABLE Departments
+	ALTER column ManagerId INT NULL
+
+	DELETE FROM EmployeesProjects
+			WHERE EmployeeID IN (SELECT EmployeeID FROM Employees 
+									WHERE DepartmentID LIKE @departmentId)
+	UPDATE Employees
+		SET ManagerID = NULL
+			WHERE EmployeeID IN (SELECT EmployeeID FROM Employees 
+										WHERE DepartmentID LIKE @departmentId)
+	UPDATE Employees
+		SET ManagerID = NULL
+			WHERE ManagerID IN (SELECT EmployeeID FROM Employees 
+										WHERE DepartmentID LIKE @departmentId)	
+	UPDATE Departments
+		SET ManagerID = NULL
+			WHERE DepartmentID LIKE @departmentId
+
+	DELETE FROM Employees
+		WHERE DepartmentID=@departmentId
+
+	DELETE FROM Departments
+		WHERE DepartmentID=@departmentId
+
+
+	SELECT COUNT(*)
+		FROM Departments
+			WHERE DepartmentID=@departmentId
+
+
+--9 	Find Full Name
+
+GO
+
+USE Bank
+
+GO
+
+CREATE PROC usp_GetHoldersFullName
+AS
+	SELECT FirstName + ' ' + LastName AS [Full Name]
+		FROM AccountHolders
+
+
+--10.	People with Balance Higher Than
+
+go
+
+CREATE PROC usp_GetHoldersWithBalanceHigherThan(@TargetAmount money)
+AS	
+
+		SELECT A.FirstName,A.LastName
+		FROM Accounts AS AH
+		JOIN AccountHolders AS A ON A.Id=AH.AccountHolderId
+		GROUP BY AccountHolderId,A.FirstName,A.LastName
+		HAVING SUM(AH.Balance) >@TargetAmount
+		ORDER BY A.FirstName,A.LastName
+
+
+
+GO
+
+--11.	Future Value Function
+GO
+
+CREATE FUNCTION ufn_CalculateFutureValue(@Sum DECIMAL(15,4),@Yearly  FLOAT,@Years INT)
+RETURNS DECIMAL(15,4)
+BEGIN
+	   DECLARE @Result DECIMAL(15,4) 
+	   SET @Result=(@sum*POWER((1+@Yearly),@Years))
+	   RETURN @Result
+END
+
+GO
+USE Bank
+
+select dbo.ufn_CalculateFutureValue(1000,0.1,5)
+
+
+go
+
+--12.	Calculating Interest
+
+CREATE PROC usp_CalculateFutureValueForAccount( @AccountId INT,@Yearly  FLOAT)
+AS
+	SELECT AH.Id,AH.FirstName,LastName,a.Balance,dbo.ufn_CalculateFutureValue(a.Balance,@Yearly,5) AS [Balance in 5 years]
+	FROM AccountHolders AS AH
+	JOIN Accounts AS A ON A.AccountHolderId=AH.Id
+	WHERE A.Id=@AccountId
+
+	GO
+
+	USE Diablo
+
+--13.	*Scalar Function: Cash in User Games Odd Rows
+
+
+	GO
+
+CREATE FUNCTION ufn_CashInUsersGames(@GameName NVARCHAR(50))
+RETURNS TABLE
+AS
+RETURN
+(select SUM(K.c) AS [SumCash]
+	from(
+		SELECT Cash AS c,
+			ROW_NUMBER() OVER (ORDER BY Cash desc) as RowNumb
+				FROM UsersGames AS UG
+					JOIN Games AS G ON G.Id = UG.GameId
+				WHERE G.Name = @GameName) as k	
+	WHERE K.RowNumb%2=1)
+			
+
+GO
+
+
+
+
+				 
+				
