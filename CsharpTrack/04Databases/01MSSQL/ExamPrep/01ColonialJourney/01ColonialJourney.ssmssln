@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "01ColonialJourney", "01ColonialJourney.ssmssqlproj", "{82530775-B4B2-4CFC-93B6-D6D7FD40F608}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "02Databases MSSQL Server Exam - 21 Jun 2020", "..\02Databases MSSQL Server Exam - 21 Jun 2020\02Databases MSSQL Server Exam - 21 Jun 2020.ssmssqlproj", "{871C2857-486E-4534-B8C6-DBC21D07F5D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82530775-B4B2-4CFC-93B6-D6D7FD40F608}.Default|Default.ActiveCfg = Default
+		{39E51EE2-3BCB-4F4B-ACC5-3B52BD19D82C}.Default|Default.ActiveCfg = Default
+		{871C2857-486E-4534-B8C6-DBC21D07F5D4}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D5CB56E7-AA62-474E-9E19-7C3EA37771C1}
+	EndGlobalSection
+EndGlobal
