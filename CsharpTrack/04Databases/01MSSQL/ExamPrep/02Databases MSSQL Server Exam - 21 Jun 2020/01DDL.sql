@@ -1,4 +1,4 @@
-CREATE DATABASE TripService
+use TripService
 
 CREATE TABLE [Cities]
 (
@@ -15,6 +15,7 @@ CityId INT FOREIGN KEY REFERENCES [Cities](Id) NOT NULL,
 EmployeeCount INT NOT NULL,
 BaseRate DECIMAL(16,2)
 )
+
 
 CREATE TABLE [Rooms]
 (
