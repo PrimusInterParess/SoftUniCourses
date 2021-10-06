@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsharpDBDemo", "CsharpDBDemo\CsharpDBDemo.csproj", "{8FAB2AB6-7DF8-40B3-A253-4B0BB9A1AF3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyClasses", "MyClasses\MyClasses.csproj", "{EFC307C6-4C72-4F47-8169-84854376F423}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FAB2AB6-7DF8-40B3-A253-4B0BB9A1AF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FAB2AB6-7DF8-40B3-A253-4B0BB9A1AF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FAB2AB6-7DF8-40B3-A253-4B0BB9A1AF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FAB2AB6-7DF8-40B3-A253-4B0BB9A1AF3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFC307C6-4C72-4F47-8169-84854376F423}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFC307C6-4C72-4F47-8169-84854376F423}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFC307C6-4C72-4F47-8169-84854376F423}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFC307C6-4C72-4F47-8169-84854376F423}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E96605BB-4801-465A-9452-0BC0249A70C6}
+	EndGlobalSection
+EndGlobal
