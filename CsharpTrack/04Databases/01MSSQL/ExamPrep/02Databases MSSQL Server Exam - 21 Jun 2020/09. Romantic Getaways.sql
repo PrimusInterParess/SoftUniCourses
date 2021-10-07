@@ -41,3 +41,6 @@ SELECT A.Id,A.Email,C.Name,COUNT(H.CityId)
 						GROUP BY A.Id,A.Email,C.Name
 
 
+
+
+
