@@ -1,0 +1,61 @@
+
+
+	CREATE TABLE Countries
+	(
+		Id INT PRIMARY KEY IDENTITY NOT NULL,
+		[Name] NVARCHAR(50) UNIQUE NOT NULL
+	)
+
+	CREATE TABLE Customers
+	(
+		Id INT PRIMARY KEY IDENTITY NOT NULL,
+		[FirstName] NVARCHAR(25),
+		[LastName] NVARCHAR(25),
+		Gender VARCHAR(1) CHECK(Gender IN('M','F')),
+		Age INT,
+		PhoneNumber VARCHAR(10),
+		CountryId INT FOREIGN KEY REFERENCES Countries(Id) NOT NULL
+	)
+
+	CREATE TABLE Products
+	(
+		Id INT PRIMARY KEY IDENTITY NOT NULL,
+		[Name] NVARCHAR(25) UNIQUE  NOT NULL,
+		[Description] NVARCHAR(250),
+		Recipe NVARCHAR(MAX),
+		Price DECIMAL(18,2) CHECK(Price >= 0)
+	)
+
+	CREATE TABLE Feedbacks
+	(
+		Id INT PRIMARY KEY IDENTITY NOT NULL,
+		[Description] NVARCHAR(255),
+		Rate DECIMAL(4,2) CHECK(Rate BETWEEN 0 AND 10)NOT NULL,
+		ProductId INT FOREIGN KEY REFERENCES Products(Id)  NOT NULL,
+		CustomerId INT FOREIGN KEY REFERENCES Customers(Id) NOT NULL
+	)
+
+	CREATE TABLE Distributors
+	(
+		Id INT PRIMARY KEY IDENTITY NOT NULL,
+		[Name] NVARCHAR(25) UNIQUE NOT NULL,
+		AddressText  NVARCHAR(30),
+		Summary  NVARCHAR(200),
+		CountryId INT FOREIGN KEY REFERENCES Countries(Id)
+	)
+
+	CREATE TABLE Ingredients
+	(
+		Id INT PRIMARY KEY IDENTITY NOT NULL,
+		[Name] NVARCHAR(30),
+		[Description] NVARCHAR(200),
+		OriginCountryId INT FOREIGN KEY REFERENCES Countries(Id)  NOT NULL, 
+		DistributorId INT FOREIGN KEY REFERENCES Distributors(Id)  NOT NULL
+	)
+
+	CREATE TABLE ProductsIngredients
+	(
+		ProductId INT FOREIGN KEY REFERENCES Products(Id)  NOT NULL,
+		IngredientId INT FOREIGN KEY REFERENCES Ingredients(Id)  NOT NULL
+	  PRIMARY KEY (ProductId,IngredientId)
+	)

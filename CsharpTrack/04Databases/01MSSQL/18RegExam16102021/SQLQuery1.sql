@@ -1,0 +1,1 @@
+CREATE PROC usp_SearchByTaste(@taste VARCHAR)

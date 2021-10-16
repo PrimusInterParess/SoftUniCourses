@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.Recursive Factorial", "0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05PathInLabyrinth", "05PathInLabyrinth\05PathInLabyrinth.csproj", "{A1290A14-0CD7-430C-BC8A-CD81B1D0A3E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.EightQ", "EightQ\06.EightQ.csproj", "{E4E13DBC-CDE4-44A9-8702-20A1233C26B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.EightQ", "EightQ\06.EightQ.csproj", "{E4E13DBC-CDE4-44A9-8702-20A1233C26B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07. Recursive Fibonacci", "07.07. Recursive Fibonacci\07. Recursive Fibonacci.csproj", "{34A8C03A-4D68-478A-9EDA-4B8FE46CC5B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07. Recursive Fibonacci", "07.07. Recursive Fibonacci\07. Recursive Fibonacci.csproj", "{34A8C03A-4D68-478A-9EDA-4B8FE46CC5B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1RecursiveSum", "1RecursiveSum\1RecursiveSum.csproj", "{BED7D544-E3F1-40CA-9E1F-4BFCA565290D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{34A8C03A-4D68-478A-9EDA-4B8FE46CC5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34A8C03A-4D68-478A-9EDA-4B8FE46CC5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34A8C03A-4D68-478A-9EDA-4B8FE46CC5B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BED7D544-E3F1-40CA-9E1F-4BFCA565290D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BED7D544-E3F1-40CA-9E1F-4BFCA565290D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BED7D544-E3F1-40CA-9E1F-4BFCA565290D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BED7D544-E3F1-40CA-9E1F-4BFCA565290D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

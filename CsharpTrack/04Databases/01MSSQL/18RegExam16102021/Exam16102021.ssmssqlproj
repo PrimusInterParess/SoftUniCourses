@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Exam16102021">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DESKTOP-FD7JQBV:DESKTOP-FD7JQBV\BatmanBegins">
+          <Created>2021-10-16T09:44:01.1141882+03:00</Created>
+          <Type>SQL</Type>
+          <Server>DESKTOP-FD7JQBV</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="01. DDL_01. DDL_Dataset(1).sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>01. DDL_01. DDL_Dataset(1).sql</FullPath>
+        </FileNode>
+        <FileNode Name="01DDL.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>01DDL.sql</FullPath>
+        </FileNode>
+        <FileNode Name="02Insert.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>02Insert.sql</FullPath>
+        </FileNode>
+        <FileNode Name="03Update.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>03Update.sql</FullPath>
+        </FileNode>
+        <FileNode Name="04Delete.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>04Delete.sql</FullPath>
+        </FileNode>
+        <FileNode Name="05.Cigars by Price.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>05.Cigars by Price.sql</FullPath>
+        </FileNode>
+        <FileNode Name="06. Cigars by Taste.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>06. Cigars by Taste.sql</FullPath>
+        </FileNode>
+        <FileNode Name="07Clients withoutCigarets.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>07Clients withoutCigarets.sql</FullPath>
+        </FileNode>
+        <FileNode Name="08First 5 Cigars.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>08First 5 Cigars.sql</FullPath>
+        </FileNode>
+        <FileNode Name="09Clients with ZIP Codes .sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>09Clients with ZIP Codes .sql</FullPath>
+        </FileNode>
+        <FileNode Name="10Cigars by Size .sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>10Cigars by Size .sql</FullPath>
+        </FileNode>
+        <FileNode Name="11Client with Cigars .sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>11Client with Cigars .sql</FullPath>
+        </FileNode>
+        <FileNode Name="12Search for Cigar with Specific Taste.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>12Search for Cigar with Specific Taste.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DESKTOP-FD7JQBV:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DESKTOP-FD7JQBV</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

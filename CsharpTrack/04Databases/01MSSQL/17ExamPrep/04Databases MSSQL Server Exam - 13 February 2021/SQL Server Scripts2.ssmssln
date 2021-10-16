@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 18.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SQL Server Scripts2", "SQL Server Scripts2.ssmssqlproj", "{CEDC57D6-1DF0-4E71-A495-4DFD13C26136}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Databases MSSQL Server Exam - 27 Jun 2020", "..\05Databases MSSQL Server Exam - 27 Jun 2020\Databases MSSQL Server Exam - 27 Jun 2020.ssmssqlproj", "{C5B745E4-EE09-4572-8B4E-42C5BE143468}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEDC57D6-1DF0-4E71-A495-4DFD13C26136}.Default|Default.ActiveCfg = Default
+		{8ED55A21-4A15-4955-84BA-22CA51F7EAD9}.Default|Default.ActiveCfg = Default
+		{C5B745E4-EE09-4572-8B4E-42C5BE143468}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6BD5BDB-DE5C-423A-B9FD-E9D2BC044DAB}
+	EndGlobalSection
+EndGlobal
