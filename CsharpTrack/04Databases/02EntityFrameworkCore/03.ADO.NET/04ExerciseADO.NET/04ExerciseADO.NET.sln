@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "1Insert", "1Insert\1Insert.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "2VillainNames", "2VillainNames\2VillainNames.csproj", "{D79FDED6-3AA8-4BC2-B2FE-1106F80DF769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3MinionNames", "3MinionNames\3MinionNames.csproj", "{832CF2FA-7E84-45B4-BAA0-F735EFBDDF8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3MinionNames", "3MinionNames\3MinionNames.csproj", "{832CF2FA-7E84-45B4-BAA0-F735EFBDDF8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4Add Minion", "04Add Minion\4Add Minion.csproj", "{7A6ED014-BF74-4543-86FD-EBC7EAC7F489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "5ChangeTownNamesCasing", "5. Change Town Names Casing\5ChangeTownNamesCasing.csproj", "{7B98025D-9AC9-46F5-91A1-CCBF23ABCC5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "6RemoveVillain", "6RemoveVillain\6RemoveVillain.csproj", "{E3051D6D-BAAD-487A-A279-3FF77DD18863}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{832CF2FA-7E84-45B4-BAA0-F735EFBDDF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{832CF2FA-7E84-45B4-BAA0-F735EFBDDF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{832CF2FA-7E84-45B4-BAA0-F735EFBDDF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A6ED014-BF74-4543-86FD-EBC7EAC7F489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A6ED014-BF74-4543-86FD-EBC7EAC7F489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A6ED014-BF74-4543-86FD-EBC7EAC7F489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A6ED014-BF74-4543-86FD-EBC7EAC7F489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B98025D-9AC9-46F5-91A1-CCBF23ABCC5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B98025D-9AC9-46F5-91A1-CCBF23ABCC5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B98025D-9AC9-46F5-91A1-CCBF23ABCC5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B98025D-9AC9-46F5-91A1-CCBF23ABCC5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3051D6D-BAAD-487A-A279-3FF77DD18863}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3051D6D-BAAD-487A-A279-3FF77DD18863}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3051D6D-BAAD-487A-A279-3FF77DD18863}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3051D6D-BAAD-487A-A279-3FF77DD18863}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

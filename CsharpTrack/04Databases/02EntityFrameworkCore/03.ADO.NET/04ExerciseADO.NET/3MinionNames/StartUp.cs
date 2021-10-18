@@ -21,7 +21,6 @@ namespace _3MinionNames
                 using (SqlCommand command = new SqlCommand(queryVillain, connection))
                 {
 
-
                     command.Parameters.AddWithValue("@InputID", villainId);
 
                     string villan = (string)command.ExecuteScalar();
