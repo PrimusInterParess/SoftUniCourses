@@ -1,0 +1,5 @@
+EntityFramework
+
+
+dotnet tool update --global dotnet-ef
+dotnet ef dbcontext scaffold "Server=.;Integrated Security=true;Database=?????" Microsoft.EntityFrameworkCore.SqlServer
