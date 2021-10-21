@@ -1,0 +1,32 @@
+EntityFramework
+
+---DatabaseFirst---
+
+dotnet tool update --global dotnet-ef
+dotnet ef dbcontext scaffold "Server=.;Integrated Security=true;Database=?????" Microsoft.EntityFrameworkCore.SqlServer
+-o  - to create folder
+
+
+
+*/
+
+<ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
+  </ItemGroup>
+
+*/
+
+
+---CodeFirst---
+
+db.Database.Ensurecreated();
+
+db.Database.Migrate();
+
+PowerShell  - shift + right click in containing folder
+
+dotnet ef migrations add {MigrationName} -- name InitialMigrations if initial,then after the changes
