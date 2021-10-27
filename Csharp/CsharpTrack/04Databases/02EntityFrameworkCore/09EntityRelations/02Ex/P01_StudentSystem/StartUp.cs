@@ -1,12 +1,17 @@
 ﻿using System;
+using P01_StudentSystem.Data.Models;
 
 namespace P01_StudentSystem
 {
    public class StartUp
     {
      public static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+     {
+         StudentSystemContext db = new StudentSystemContext();
+
+         db.Database.EnsureDeleted();
+
+         db.Database.EnsureCreated();
+     }
     }
 }
