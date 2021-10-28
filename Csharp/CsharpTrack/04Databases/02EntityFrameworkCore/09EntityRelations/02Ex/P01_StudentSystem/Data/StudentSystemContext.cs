@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using P01_StudentSystem.Data.Models;
 
-namespace P01_StudentSystem.Data.Models
+namespace P01_StudentSystem.Data
 {
     public class StudentSystemContext : DbContext
     {
@@ -44,7 +45,7 @@ namespace P01_StudentSystem.Data.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StudentCourse>().HasKey(k => new { k.StudentId, k.CourseId });
+            modelBuilder.Entity<StudentCourse>(k=> k.HasKey(k => new { k.CourseId, k.StudentId  }));
 
             base.OnModelCreating(modelBuilder);
 

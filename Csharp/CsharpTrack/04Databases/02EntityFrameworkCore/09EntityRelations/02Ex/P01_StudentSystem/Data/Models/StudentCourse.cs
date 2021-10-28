@@ -10,13 +10,13 @@ namespace P01_StudentSystem.Data.Models
 
         public int StudentId { get; set; }
 
-        [Required]
+     
         public Student Student { get; set; }
 
 
         public int CourseId { get; set; }
 
-        [Required]
+      
         public Course Course { get; set; }
 
        

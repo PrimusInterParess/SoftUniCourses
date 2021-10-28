@@ -18,7 +18,6 @@ namespace P01_StudentSystem.Data.Models
 
         public int StudentId { get; set; }
 
-        public DateTime? Birthday { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -27,13 +26,19 @@ namespace P01_StudentSystem.Data.Models
         [Column(TypeName = "CHAR(10)")]
         public string PhoneNumber { get; set; }
 
-        
+
+
         public DateTime RegisteredOn { get; set; }
 
-        public ICollection<StudentCourse> CourseEnrollments { get; set; }
+
+        public DateTime? Birthday { get; set; }
 
         public ICollection<Homework> HomeworkSubmissions { get; set; }
 
-      
+        public ICollection<StudentCourse> CourseEnrollments { get; set; }
+
+    
+
+
     }
 }

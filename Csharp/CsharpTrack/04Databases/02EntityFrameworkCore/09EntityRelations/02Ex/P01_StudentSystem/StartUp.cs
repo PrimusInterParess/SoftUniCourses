@@ -1,5 +1,6 @@
 ﻿using System;
-using P01_StudentSystem.Data.Models;
+using P01_StudentSystem.Data;
+
 
 namespace P01_StudentSystem
 {
