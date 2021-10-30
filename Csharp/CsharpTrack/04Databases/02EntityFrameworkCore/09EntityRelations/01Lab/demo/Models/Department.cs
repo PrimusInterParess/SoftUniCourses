@@ -9,13 +9,15 @@ namespace EfCoreDemo.Models
 
         public Department()
         {
-            Employees = new HashSet<Employee>();
+            this.EmployeesInDepartment = new HashSet<Employee>();
         }
 
         public int Id { get; set; }
 
         public string Name { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
+        //inversedProperty
+
+        public ICollection<Employee> EmployeesInDepartment { get; set; }
     }
 }

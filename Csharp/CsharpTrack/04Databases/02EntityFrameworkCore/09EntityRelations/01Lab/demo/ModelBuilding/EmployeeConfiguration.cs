@@ -10,35 +10,48 @@ namespace EfCoreDemo.ModelBuilding
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
-
-            builder.Ignore(i => i.FullName);
-
-
+            //changing name of table in database
             builder
-                .Property(p => p.FirstName)
+                .ToTable("People", "company");
+
+            //changing name of column in database and setting column data type
+            builder
+                .Property(x => x.StartWorkDate)
+                .HasColumnName("StartedOn")
+                .HasColumnType("DATE");
+
+
+            //setting primary key,when differs from EID
+            builder
+                .HasKey(c => c.EID);
+
+            //setting compose primary key
+            builder
+                .HasKey(c => new { Id = c.EID, c.EGN });
+
+
+            //setting property to be Required instead of nullable when nullable
+            builder
+                .Property(f => f.FirstName)
+                .IsRequired()
+                .HasMaxLength(25);
+
+            //setting property to be Required instead of nullable when nullable and setting length
+            builder
+                .Property(f => f.LastName)
                 .IsRequired()
                 .HasMaxLength(20);
 
+            //ignoring property not to be initialise in database
+            builder.Ignore(f => f.FullName);
+
+            //when you don't want default behaviour of navigation properties use fluent API
 
             builder
-                 .Property(p => p.LastName)
-                .IsRequired()
-                .HasMaxLength(30);
-
-            //builder
-            //     .HasKey(k => new { k.Id, k.Eng });
-
-            builder
-                 .Property(p => p.StartWorkDate)
-                .HasColumnName("StartedOn");
-
-           
-
-            //builder
-            //       .HasOne(e => e.Department)
-            //    .WithMany(d => d.Employees)
-            //    .HasForeignKey(d => d.DepartmentId)
-            //    .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(e => e.Department)
+                .WithMany(d => d.EmployeesInDepartment)
+                .HasForeignKey(d => d.DID)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

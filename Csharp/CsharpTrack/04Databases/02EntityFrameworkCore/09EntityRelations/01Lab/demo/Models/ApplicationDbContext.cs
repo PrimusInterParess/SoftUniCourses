@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using EfCoreDemo.ModelBuilding;
 using EfCoreDemo.Models;
@@ -24,12 +25,12 @@ namespace EfCoreDemo
         }
 
         public DbSet<Employee> Employees { get; set; }
-
         public DbSet<Department> Departments { get; set; }
-
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<Club> Clubs { get; set; }
+        public DbSet<EmployeeInClub> EmployeeInClubs { get; set; }
 
-        public DbSet<EmployeeInClub> EmployeesInClubs { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,33 +42,30 @@ namespace EfCoreDemo
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
 
-            modelBuilder.Entity<EmployeeInClub>().HasKey(k => new {k.EmployeeId, k.ClubId});
+            modelBuilder.Entity<Department>().Property(c => c.Name).IsRequired().HasMaxLength(50);
 
-            //modelBuilder.Entity<Address>()
+
+            modelBuilder.Entity<EmployeeInClub>().HasKey(k => new {k.Club, k.Employee});
+
+            //fluentAPI for describing relation between two columns => one-to-one relation
+            //modelBuilder
+            //    .Entity<Address>()
             //    .HasOne(a => a.Employee)
-            //    .WithOne(e => e.Address);
+            //    .WithOne(e => e.Address)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
-            //modelBuilder
-            //    .Entity<Employee>()
-            //    .HasOne(e => e.Department)
-            //    .WithMany(d => d.Employees)
-            //    .HasForeignKey(c => c.DepartmentId)
-            //    .OnDelete(DeleteBehavior.Restrict);
 
-            //modelBuilder
-            //    .Entity<Department>()
-            //    .HasMany(e => e.Employees)
+            //fluentAPI for describing relation between two columns ,you could go either ways from department or employee=> one-to-many relation
+            //modelBuilder.Entity<Department>()
+            //    .HasMany(d => d.EmployeesInDepartment)
             //    .WithOne(e => e.Department)
-            //    .HasForeignKey(d=>d.DepartmentId);
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    .HasForeignKey(d=>d.DID);
 
 
-            modelBuilder
-                .Entity<Employee>()
-                .HasOne(e => e.Manager)
-                .WithMany(e => e.Managees)
-                .OnDelete(DeleteBehavior.Restrict);
 
 
             base.OnModelCreating(modelBuilder);

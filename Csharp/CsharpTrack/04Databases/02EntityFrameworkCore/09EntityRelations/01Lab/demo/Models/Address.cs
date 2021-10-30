@@ -9,9 +9,9 @@ namespace EfCoreDemo.Models
     {
         public int Id { get; set; }
 
-        [ForeignKey("Employee")]
-        public int EmployeeId { get; set; }
+        [ForeignKey(nameof(Employee))]
+        public int  EmployeeId { get; set; }
 
-        public Employee Employee { get; set; }
+        public Employee  Employee { get; set; }
     }
 }

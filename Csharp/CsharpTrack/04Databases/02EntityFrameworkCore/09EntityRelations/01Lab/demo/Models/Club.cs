@@ -4,12 +4,18 @@ using System.Text;
 
 namespace EfCoreDemo.Models
 {
-  public  class Club
+    public class Club
     {
-
+        public Club(int id, string name, ICollection<EmployeeInClub> employeeInClub)
+        {
+            Id = id;
+            Name = name;
+            this.employeeInClub = employeeInClub;//????????????  
+        }
         public int Id { get; set; }
         public string Name { get; set; }
 
-        private ICollection<Employee> employeesInClub { get; set; } = new HashSet<Employee>();
+        private ICollection<EmployeeInClub> employeeInClub { get; set; }
+    }
     }
 }
