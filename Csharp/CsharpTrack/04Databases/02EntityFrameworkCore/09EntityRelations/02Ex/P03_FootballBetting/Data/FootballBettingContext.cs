@@ -21,25 +21,25 @@ namespace P03_FootballBetting.Data
         }
 
 
+
+
+        public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
+
         public DbSet<Country> Countries { get; set; }
-
-        public DbSet<Town> Towns { get; set; }
-
-        public DbSet<Color> Colors { get; set; }
-
-        public DbSet<Position> Positions { get; set; }
-
-        public DbSet<User> Users { get; set; }
-
         public DbSet<Bet> Bets { get; set; }
-
-        public DbSet<Player> Players { get; set; }
+        public DbSet<User> Users { get; set; }
 
         public DbSet<Team> Teams { get; set; }
 
         public DbSet<Game> Games { get; set; }
 
-        public DbSet<PlayerStatistic> PlayerStatistics { get; set; }
+        public DbSet<Position> Positions { get; set; }
+
+        public DbSet<Player> Players { get; set; }
+
+        public DbSet<Color> Colors { get; set; }
+
+        public DbSet<Town> Towns { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -57,22 +57,40 @@ namespace P03_FootballBetting.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.Entity<PlayerStatistic>().HasKey(ps => new { ps.PlayerId, ps.GameId });
+            //modelBuilder
+            //    .Entity<Team>().HasOne(t => t.PrimaryKitColor)
+            //    .WithMany(c => c.PrimaryKitTeams)
+            //    .HasForeignKey(t => t.TeamId)
+            //    .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Color>()
-             .HasMany(x => x.SecondaryKitTeams)
-             .WithOne(x => x.SecondaryKitColor)
-             .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<Team>()
-                .HasMany(x => x.AwayGames)
-                .WithOne(x => x.AwayTeam)
+            modelBuilder
+                .Entity<Color>()
+                .HasMany(c => c.SecondaryKitTeams)
+                .WithOne(t => t.SecondaryKitColor)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<Team>()
-                .HasMany(x => x.HomeGames)
-                .WithOne(x => x.HomeTeam)
+            modelBuilder
+                .Entity<Game>()
+                .HasOne(g => g.HomeTeam)
+                .WithMany(t => t.HomeGames)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder
+                .Entity<Game>()
+                .HasOne(g => g.AwayTeam)
+                .WithMany(t => t.AwayGames)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder
+                .Entity<PlayerStatistic>()
+                .HasKey(k => new { k.GameId, k.PlayerId });
+
+            //modelBuilder
+            //    .Entity<Color>().HasMany(c => c.SecondaryKitTeams)
+            //    .WithOne(t => t.SecondaryKitColor)
+            //    .OnDelete(DeleteBehavior.NoAction);
+
+
 
             base.OnModelCreating(modelBuilder);
         }

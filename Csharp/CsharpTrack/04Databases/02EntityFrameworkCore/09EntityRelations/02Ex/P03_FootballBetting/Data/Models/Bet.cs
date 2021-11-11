@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 using System.Text;
 
 namespace P03_FootballBetting.Data.Models
 {
-  public  class Bet
+   public class Bet
     {
-        // BetId, Amount, Prediction, DateTime, UserId, GameId
+        //•	Bet – BetId, Amount, Prediction, DateTime, UserId, GameId
 
         public int BetId { get; set; }
-
         public decimal Amount { get; set; }
 
-   
-        public double Prediction { get; set; }
+        [Required]
+        public string Prediction { get; set; }
 
         public DateTime DateTime { get; set; }
 
@@ -25,5 +25,7 @@ namespace P03_FootballBetting.Data.Models
         public int GameId { get; set; }
 
         public Game Game { get; set; }
+
+       
     }
 }

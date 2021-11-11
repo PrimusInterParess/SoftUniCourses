@@ -3,7 +3,7 @@ EntityFramework
 ---DatabaseFirst---
 
 dotnet tool update --global dotnet-ef
-dotnet ef dbcontext scaffold "Server=.;Integrated Security=true;Database=?????" Microsoft.EntityFrameworkCore.SqlServer
+dotnet ef dbcontext scaffold "Server=.;Integrated Security=true;Database=MusicX" Microsoft.EntityFrameworkCore.SqlServer
 -o  - to create folder
 
 
@@ -30,3 +30,5 @@ db.Database.Migrate();
 PowerShell  - shift + right click in containing folder
 
 dotnet ef migrations add {MigrationName} -- name InitialMigrations if initial,then after the changes
+
+dotnet ef migrations add InitialCreate

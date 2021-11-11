@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace P01_StudentSystem.Data.Models
 {
@@ -12,7 +11,7 @@ namespace P01_StudentSystem.Data.Models
         public int HomeworkId { get; set; }
 
         [Required]
-        [Column(TypeName = "VARCHAR(255)")]
+        [Column(TypeName = "varchar(255)")]
         public string Content { get; set; }
 
         public ContentType ContentType { get; set; }
@@ -21,13 +20,19 @@ namespace P01_StudentSystem.Data.Models
 
         public int StudentId { get; set; }
 
-        
         public Student Student { get; set; }
 
         public int CourseId { get; set; }
 
-       
         public Course Course { get; set; }
 
     }
+
+    //o HomeworkId
+    //o Content(string, linking to a file, not unicode)
+    //o ContentType(enum – can be Application, Pdf or Zip)
+    //o SubmissionTime
+    //o StudentId
+    //o CourseId
+
 }

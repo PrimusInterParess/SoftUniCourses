@@ -5,9 +5,12 @@ using System.Text;
 
 namespace P03_FootballBetting.Data.Models
 {
-   public class Country
+    public class Country
     {
-        //CountryId, Name
+        public Country()
+        {
+            this.Towns = new List<Town>();
+        }
 
         public int CountryId { get; set; }
 

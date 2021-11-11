@@ -9,46 +9,49 @@ namespace P01_StudentSystem.Data
     public class StudentSystemContext : DbContext
     {
 
-        public StudentSystemContext()
-        {
+        public StudentSystemContext(DbContextOptions<StudentSystemContext> options)
+        : base(options) { }
 
-        }
-
-        public StudentSystemContext(DbContextOptions options)
-        : base(options)
-        {
-
-        }
+        public StudentSystemContext() { }
 
         public DbSet<Student> Students { get; set; }
 
         public DbSet<Course> Courses { get; set; }
 
-        public DbSet<Resource> Resources { get; set; }
-
         public DbSet<Homework> HomeworkSubmissions { get; set; }
+
+        public DbSet<Resource> Resources { get; set; }
 
         public DbSet<StudentCourse> StudentCourses { get; set; }
 
+        public DbSet<Test> Tests { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=StudentSystem;Integrated Security=true;");
+                optionsBuilder
+                    .UseSqlServer("Server=.;Integrated Security=true;Database=StudentSystem");
             }
 
             base.OnConfiguring(optionsBuilder);
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<StudentCourse>(k=> k.HasKey(k => new { k.CourseId, k.StudentId  }));
+
+            modelBuilder
+                .Entity<StudentCourse>()
+                .HasKey(k => new {k.StudentId, k.CourseId});
+
+            //modelBuilder
+            //    .Entity<Student>()
+            //    .HasMany(s => s.HomeworkSubmissions)
+            //    .WithOne(sb => sb.Student)
+            //    .OnDelete(DeleteBehavior.NoAction);
+
 
             base.OnModelCreating(modelBuilder);
-
         }
     }
 }

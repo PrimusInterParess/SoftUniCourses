@@ -4,9 +4,10 @@ using System.Text;
 
 namespace P03_FootballBetting.Data.Models
 {
-  public  class PlayerStatistic
+    public class PlayerStatistic
     {
-        //GameId, PlayerId, ScoredGoals, Assists, MinutesPlayed
+
+        //  •	PlayerStatistic – GameId, PlayerId, ScoredGoals, Assists, MinutesPlayed
 
         public int GameId { get; set; }
 
@@ -21,8 +22,6 @@ namespace P03_FootballBetting.Data.Models
         public int Assists { get; set; }
 
         public int MinutesPlayed { get; set; }
-
-
 
     }
 }
