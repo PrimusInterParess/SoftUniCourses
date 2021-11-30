@@ -10,6 +10,10 @@ dotnet ef dbcontext scaffold "Server=.;Integrated Security=true;Database=MusicX"
 
 */
 
+ 	<PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.1" />
+
 <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
       <PrivateAssets>all</PrivateAssets>

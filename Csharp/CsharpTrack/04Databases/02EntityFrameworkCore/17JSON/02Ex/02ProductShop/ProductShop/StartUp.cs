@@ -19,15 +19,15 @@ namespace ProductShop
         {
             var db = new ProductShopContext();
 
-            //db.Database.EnsureDeleted();
-            //db.Database.EnsureCreated();
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
 
-            //string userJson = File.ReadAllText("../../../Datasets/users.json");
+            string userJson = File.ReadAllText("../../../Datasets/users.json");
             //string productJson = File.ReadAllText("../../../Datasets/products.json");
             //string categoriesJson = File.ReadAllText("../../../Datasets/categories.json");
             //string categoryProductsJson = File.ReadAllText("../../../Datasets/categories-products.json");
 
-            //string usersImported = ImportUsers(db, userJson);
+            string usersImported = ImportUsers(db, userJson);
 
             //string productImport = ImportProducts(db, productJson);
 
@@ -35,15 +35,17 @@ namespace ProductShop
 
             //string categoryProductsImport = ImportCategoryProducts(db, categoryProductsJson);
 
-         //   string productsInRange = GetProductsInRange(db);
+            //   string productsInRange = GetProductsInRange(db);
 
-          //  string soldProducts = GetSoldProducts(db);
+            //  string soldProducts = GetSoldProducts(db);
 
-            string categoriesByProductsCount = GetCategoriesByProductsCount(db);
+            //  string categoriesByProductsCount = GetCategoriesByProductsCount(db);
 
          //   string usersWithProducts = GetUsersWithProducts(db);
 
         }
+
+
 
 
         public static string GetUsersWithProducts(ProductShopContext context)
