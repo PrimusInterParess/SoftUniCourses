@@ -29,7 +29,7 @@ namespace VaporStore.Data.Models
         [MaxLength(103)]
         public int Age { get; set; }
 
-        public ICollection<Card> Cards { get; set; }
+        public virtual ICollection<Card> Cards { get; set; }
 
 
 

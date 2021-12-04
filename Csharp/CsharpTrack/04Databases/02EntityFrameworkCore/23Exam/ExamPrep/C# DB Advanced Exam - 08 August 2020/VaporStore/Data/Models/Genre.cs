@@ -17,6 +17,6 @@ namespace VaporStore.Data.Models
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Game> Games { get; set; }
+        public virtual ICollection<Game> Games { get; set; }
     }
 }

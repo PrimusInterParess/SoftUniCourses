@@ -22,14 +22,14 @@ namespace VaporStore.Data.Models
         public string Cvc { get; set; }
 
         [Required]
-        public CardType Type { get; set; }
+        public virtual CardType Type { get; set; }
 
         [Required]
         [ForeignKey(nameof(User))]
         public int UserId { get; set; }
 
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
-        public ICollection<Purchase>Purchases { get; set; }
+        public virtual ICollection<Purchase>Purchases { get; set; }
     }
 }
