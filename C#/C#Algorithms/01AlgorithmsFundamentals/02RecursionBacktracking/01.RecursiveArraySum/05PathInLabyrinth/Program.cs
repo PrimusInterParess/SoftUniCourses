@@ -9,9 +9,6 @@ namespace _05PathInLabyrinth
         static void Main(string[] args)
         {
 
-
-
-
             int row = int.Parse(Console.ReadLine());
             int col = int.Parse(Console.ReadLine());
 
@@ -21,7 +18,8 @@ namespace _05PathInLabyrinth
             FindingPaths(matrix, 0,0, directions, '\0');
         }
 
-        private static void FindingPaths(char[,] matrix, int row, int col, List<char> directions, char direction)
+        private static void FindingPaths(char[,] matrix,
+            int row, int col, List<char> directions, char direction)
         {
             if (IsOutside(matrix, row, col) ||
                 IsWall(matrix,row,col) ||
@@ -44,6 +42,9 @@ namespace _05PathInLabyrinth
                 return;
             }
             matrix[row, col] = 'v';
+            Console.WriteLine("stepforward");
+
+            voidPrintLabirint(matrix);
 
             FindingPaths(matrix, row, col + 1,directions, 'R');
             FindingPaths(matrix, row, col - 1, directions, 'L');
@@ -52,6 +53,8 @@ namespace _05PathInLabyrinth
 
             directions.RemoveAt(directions.Count - 1);
             matrix[row, col] = '-';
+            Console.WriteLine("stepback");
+            voidPrintLabirint(matrix);
         }
 
         private static bool IsPath(char[,] matrix, int row, int col)

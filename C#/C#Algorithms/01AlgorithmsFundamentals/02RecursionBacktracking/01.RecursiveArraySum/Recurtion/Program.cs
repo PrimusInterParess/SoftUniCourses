@@ -22,7 +22,11 @@ namespace Recurtion
                 return array[index]; 
             }
 
-            return array[index] + RecursiveSum(array, index + 1);
+           var currSum = array[index] + RecursiveSum(array, index + 1);
+
+            Console.WriteLine($"After Recursive: {currSum}");
+
+            return currSum;
         }
     }
 }
