@@ -19,7 +19,7 @@ namespace Recurtion
         {
             if (array.Length - 1 == index)
             {
-                return array[index];
+                return array[index]; 
             }
 
             return array[index] + RecursiveSum(array, index + 1);

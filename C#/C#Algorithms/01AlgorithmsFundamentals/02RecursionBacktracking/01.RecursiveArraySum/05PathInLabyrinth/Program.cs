@@ -8,6 +8,10 @@ namespace _05PathInLabyrinth
     {
         static void Main(string[] args)
         {
+
+
+
+
             int row = int.Parse(Console.ReadLine());
             int col = int.Parse(Console.ReadLine());
 

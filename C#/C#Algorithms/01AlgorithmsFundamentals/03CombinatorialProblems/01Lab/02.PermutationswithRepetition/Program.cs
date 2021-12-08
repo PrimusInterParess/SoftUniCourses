@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Linq;
 
 namespace _02.PermutationswithRepetition
 {
     class Program
     {
 
-        private static string[] elements;
+        private static int[] elements;
 
 
         static void Main(string[] args)
         {
-            elements = Console.ReadLine().Split(" ");
+            elements  = Console.ReadLine().Split(" ").Select(int.Parse).ToArray();
             Permute(0);
         }
 
