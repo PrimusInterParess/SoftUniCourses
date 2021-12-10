@@ -31,7 +31,6 @@ namespace _05PathInLabyrinth
 
             directions.Add(direction);
 
-
             if (IsPath(matrix,row,col))
             {
                // voidPrintLabirint(matrix);

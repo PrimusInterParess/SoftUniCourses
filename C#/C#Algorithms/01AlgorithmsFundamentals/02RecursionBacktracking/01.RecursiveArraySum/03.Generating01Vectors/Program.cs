@@ -25,7 +25,7 @@ namespace _03.Generating01Vectors
                 return;
             }
 
-            for (int i = 1; i <=n; i++)
+            for (int i = 0; i <=1; i++)
             {
                 array[index] = i;
 

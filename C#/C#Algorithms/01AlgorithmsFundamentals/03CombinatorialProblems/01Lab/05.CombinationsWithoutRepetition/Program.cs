@@ -14,7 +14,7 @@ namespace _05.CombinationsWithoutRepetition
         {
             elements = new[] { "a", "b", "c" };
             k = 2;
-            combinations = new string[k];
+            combinations = new string[k]; 
 
             Combinations(0, 0);
 

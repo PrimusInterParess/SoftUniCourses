@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using static System.Console;
+using static System.Text.Encoding;
 
 namespace _03PErmutationWithRepetition
 {
@@ -11,7 +12,9 @@ namespace _03PErmutationWithRepetition
 
         static void Main(string[] args)
         {
-            elements = Console.ReadLine().Split(" ");
+            OutputEncoding = UTF8;\
+
+            elements = ReadLine().Split(" ");
 
             Permute(0);
         }
@@ -20,7 +23,7 @@ namespace _03PErmutationWithRepetition
         {
             if (permitationIndex >= elements.Length)
             {
-                Console.WriteLine(string.Join(" ", elements));
+                WriteLine(string.Join(" ", elements));
                 return;
             }
 
