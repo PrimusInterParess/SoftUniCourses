@@ -8,7 +8,7 @@ namespace _07._N_Choose_K_Count
         {
             var n = 5;
 
-            var k = 2;
+            var k = 3;
 
             Console.WriteLine(GetBinom(n, k));
         }

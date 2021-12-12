@@ -5,15 +5,15 @@ namespace _1.PermutationswithoutRepetitions
 {
     class Program
     {
-        private static string[] elements;
-        private static string[] permutations;
+        private static int[] elements;
+        private static int[] permutations;
         private static bool[] used;
 
         static void Main(string[] args)
         {
-            elements = Console.ReadLine().Split(" ");
+            elements = Console.ReadLine().Split(" ").Select(int.Parse).ToArray();
 
-            permutations = new string[elements.Length];
+            permutations = new int[elements.Length];
 
             used = new bool[elements.Length];
 

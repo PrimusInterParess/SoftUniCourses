@@ -1,22 +1,29 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace _05.CombinationsWithoutRepetition
+namespace SuperSet
 {
     class Program
     {
-        private static string[] elements;
+        private static int[] elements;
         private static int k;
 
-        private static string[] combinations;
-
+        private static int[] combinations;
 
         static void Main(string[] args)
         {
-            elements = new[] { "4", "5", "6" };
-            k = 2;
-            combinations = new string[k]; 
+            elements = Console.ReadLine().Split(", ").Select(int.Parse).ToArray();
 
-            Combinations(0, 0);
+            k = 1;
+
+            combinations = new int[k];
+
+            while (k <= elements.Length)
+            {
+                Combinations(0, 0);
+                combinations = new int[k += 1];
+            }
 
         }
 

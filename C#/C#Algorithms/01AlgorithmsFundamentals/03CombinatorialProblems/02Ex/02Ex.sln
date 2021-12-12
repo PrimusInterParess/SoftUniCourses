@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04Cinema", "04Cinema\04Cine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05SchoolTeam", "05SchoolTeam\05SchoolTeam.csproj", "{76C3E9D8-2028-4317-AAF9-FBC9D9D2345C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06WordCruncher", "06WordCruncher\06WordCruncher.csproj", "{C4F7BAE2-519B-4E6D-803F-335AEA61E959}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06WordCruncher", "06WordCruncher\06WordCruncher.csproj", "{C4F7BAE2-519B-4E6D-803F-335AEA61E959}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperSet", "SuperSet\SuperSet.csproj", "{6F63F9CB-81DE-4C9D-9A59-CAC339537F69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C4F7BAE2-519B-4E6D-803F-335AEA61E959}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4F7BAE2-519B-4E6D-803F-335AEA61E959}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4F7BAE2-519B-4E6D-803F-335AEA61E959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F63F9CB-81DE-4C9D-9A59-CAC339537F69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F63F9CB-81DE-4C9D-9A59-CAC339537F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F63F9CB-81DE-4C9D-9A59-CAC339537F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F63F9CB-81DE-4C9D-9A59-CAC339537F69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
