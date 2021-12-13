@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01Graph", "01Graph\01Graph.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02Co", "02Co\02Co.csproj", "{62E34214-279C-46A2-9473-A2A19148EA59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03TopologicalSorting", "03TopologicalSorting\03TopologicalSorting.csproj", "{89ACC1DE-F1B9-40D1-9A2E-DB029B48976A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03TopologicalSorting", "03TopologicalSorting\03TopologicalSorting.csproj", "{89ACC1DE-F1B9-40D1-9A2E-DB029B48976A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04AllPaths", "04AllPaths\04AllPaths.csproj", "{D295A241-4F84-46EB-9179-6DF729FC641E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05ShortestPath", "05ShortestPath\05ShortestPath.csproj", "{03350B6C-1B9B-481F-8636-75AC2378BDF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{89ACC1DE-F1B9-40D1-9A2E-DB029B48976A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89ACC1DE-F1B9-40D1-9A2E-DB029B48976A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{89ACC1DE-F1B9-40D1-9A2E-DB029B48976A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D295A241-4F84-46EB-9179-6DF729FC641E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D295A241-4F84-46EB-9179-6DF729FC641E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D295A241-4F84-46EB-9179-6DF729FC641E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D295A241-4F84-46EB-9179-6DF729FC641E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03350B6C-1B9B-481F-8636-75AC2378BDF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03350B6C-1B9B-481F-8636-75AC2378BDF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03350B6C-1B9B-481F-8636-75AC2378BDF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03350B6C-1B9B-481F-8636-75AC2378BDF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

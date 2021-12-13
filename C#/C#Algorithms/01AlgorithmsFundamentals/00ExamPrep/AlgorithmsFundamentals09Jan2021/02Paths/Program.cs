@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace _01Graph
+namespace _02Paths
 {
     class Program
     {
@@ -10,92 +10,24 @@ namespace _01Graph
 
         private static HashSet<int> visited;
 
+
+
         static void Main(string[] args)
         {
 
+            int n = int.Parse(Console.ReadLine()) - 1;
+
             visited = new HashSet<int>();
 
-            //graphDic = new Dictionary<int, List<int>>()
-            //{
-            //    {1,new List<int>(){19,21,14}},
-            //    {19,new List<int>(){7,12,31}},
-            //    {7,new List<int>(){1}},
-            //    {12,new List<int>()},
-            //    {31,new List<int>(){21}},
-            //    {21,new List<int>(){14}},
-            //    {14,new List<int>(){23,6}},
-            //    {23,new List<int>(){21}},
-            //    {6,new List<int>()},
-            //};
-
-
-            //graphDic = new Dictionary<int, List<int>>()
-            //{
-            //    {0,new List<int>(){1}},
-            //    {1,new List<int>(){2,3}},
-            //    {2,new List<int>(){3}},
-            //    {3,new List<int>(){4}},
-            //    {4,new List<int>()}
-
-            //};
-
-            List<int> path = new List<int>();
-
-
-            int n = int.Parse(Console.ReadLine()) - 1;
 
             graphDic = ReadGraph(n);
 
-
+            List<int> path = new List<int>();
 
             foreach (var node in graphDic.Keys)
             {
+                DFS(node, path);
 
-                var result = new List<int>();
-                BFS(node, result);
-
-            }
-
-        }
-
-        private static void BFS(int node, List<int> result)
-        {
-            if (visited.Contains(node))
-            {
-                
-                return;
-            }
-
-            if (isPath(node))
-            {
-                Console.WriteLine(string.Join(" ", result));
-                return;
-            }
-
-            Queue<int> q = new Queue<int>();
-
-            q.Enqueue(node);
-
-            visited.Add(node);
-
-            while (q.Count > 0)
-            {
-                var current = q.Dequeue();
-
-                result.Add(current);
-
-                foreach (var child in graphDic[node])
-                {
-
-                    if (visited.Contains(child))
-                    {
-                        continue;
-                    }
-
-                    q.Enqueue(child);
-
-                    visited.Add(child);
-                }
             }
 
         }
@@ -142,6 +74,7 @@ namespace _01Graph
         }
 
 
+
         private static Dictionary<int, List<int>> ReadGraph(int n)
         {
             Dictionary<int, List<int>> toReturn = new Dictionary<int, List<int>>();
@@ -170,6 +103,11 @@ namespace _01Graph
                     toReturn[i] = new List<int>();
 
                 }
+
+
+
+
+
             }
 
 

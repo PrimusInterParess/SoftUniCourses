@@ -26,7 +26,6 @@ namespace _07.SumofCoins
                     
                 }
 
-
                 sortedCoints.Remove(maxCoin);
 
                 var counter = targetAmount / maxCoin;
