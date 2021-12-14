@@ -26,13 +26,13 @@ namespace _02Paths
 
             foreach (var node in graphDic.Keys)
             {
-                DFS(node, path);
+                FindingPaths(node, path);
 
             }
 
         }
 
-        private static void DFS(int node, List<int> path)
+        private static void FindingPaths(int node, List<int> path)
         {
 
 
@@ -54,12 +54,13 @@ namespace _02Paths
             visited.Add(node);
 
 
-            foreach (var child in graphDic[node])
+            for (int i = 0; i < graphDic[node].Count; i++)
             {
+                var current = graphDic[node][i];
 
-                DFS(child, path);
+                FindingPaths(current, path);
 
-                visited.Remove(child);
+                visited.Remove(current);
             }
 
             path.RemoveAt(path.Count - 1);
@@ -83,13 +84,13 @@ namespace _02Paths
             {
                 if (i != n)
                 {
-                    string[] inputData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                    List<int> inputData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
 
-                    if (inputData.Length > 0)
+                    if (inputData.Count > 0)
                     {
-                        var children = inputData[0].Split(", ").Select(int.Parse).ToList();
+                       
 
-                        toReturn[i] = children;
+                        toReturn[i] = inputData;
                     }
                     else
                     {

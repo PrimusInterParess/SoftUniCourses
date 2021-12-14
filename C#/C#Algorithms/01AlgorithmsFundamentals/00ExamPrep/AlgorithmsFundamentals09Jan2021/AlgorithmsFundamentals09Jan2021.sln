@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01SuperSet", "01SuperSet\01SuperSet.csproj", "{B4A37C37-1A0F-4FD2-8623-B55122D298A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01SuperSet", "01SuperSet\01SuperSet.csproj", "{B4A37C37-1A0F-4FD2-8623-B55122D298A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02Paths", "02Paths\02Paths.csproj", "{D0A0656D-508D-41B3-9E84-4751FEB8878C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02Paths", "02Paths\02Paths.csproj", "{D0A0656D-508D-41B3-9E84-4751FEB8878C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03Climbing", "03Climbing\03Climbing.csproj", "{BDD70AAE-A847-4272-8089-E2C805AC3E3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D0A0656D-508D-41B3-9E84-4751FEB8878C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0A0656D-508D-41B3-9E84-4751FEB8878C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0A0656D-508D-41B3-9E84-4751FEB8878C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDD70AAE-A847-4272-8089-E2C805AC3E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDD70AAE-A847-4272-8089-E2C805AC3E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDD70AAE-A847-4272-8089-E2C805AC3E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDD70AAE-A847-4272-8089-E2C805AC3E3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
