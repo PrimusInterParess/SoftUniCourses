@@ -10,8 +10,18 @@ namespace _03Climbing
 
         private static List<List<int>> paths;
 
+        private static long topSum;
+
+        private static List<int> topList;
+
         static void Main(string[] args)
         {
+
+
+            topSum = 0;
+
+            topList = new List<int>();
+
             int row = int.Parse(Console.ReadLine());
 
             int col = int.Parse(Console.ReadLine());
@@ -26,10 +36,10 @@ namespace _03Climbing
 
             FindingPaths(matrix, matrix.GetLength(0) - 1, matrix.GetLength(1) - 1, path);
 
-            var topPath = paths.OrderByDescending(p => p.Sum()).First();
+           
 
-            Console.WriteLine(topPath.Sum());
-            Console.WriteLine(string.Join(" ",topPath));
+            Console.WriteLine(topSum);
+            Console.WriteLine(string.Join(" ", topList));
             ;
         }
 
@@ -76,7 +86,14 @@ namespace _03Climbing
 
             if (IsPath( row, col))
             {
-                paths.Add(new List<int>(path));
+                long currSum = path.Sum();
+
+                if (topSum<currSum)
+                {
+                    topList = new List<int>(path);
+                    topSum = currSum;
+
+                }
                 path.RemoveAt(path.Count - 1);
 
                 return;

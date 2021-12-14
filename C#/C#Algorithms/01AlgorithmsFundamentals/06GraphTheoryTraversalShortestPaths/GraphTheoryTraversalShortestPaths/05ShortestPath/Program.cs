@@ -25,23 +25,27 @@ namespace _05ShortestPath
 
             var destination = int.Parse(Console.ReadLine());
 
-            BFS(sourse, destination);
+           
+            
+                BFS(sourse, destination);
+
+            
 
         }
 
-        private static void BFS(int sourse, int destination)
+        private static void BFS(int source, int destination)
         {
-            if (visited[sourse])
+            if (visited[source])
             {
                 return;
             }
 
             var q = new Queue<int>();
 
-            q.Enqueue(sourse);
+            q.Enqueue(source);
 
 
-            visited[sourse] = true;
+            visited[source] = true;
 
             while (q.Count > 0)
             {
@@ -51,14 +55,14 @@ namespace _05ShortestPath
                 {
                     var path = ReconstructPath(destination);
 
-                    Console.WriteLine($"Shortest path length is:{path.Count-1}");
-                    Console.WriteLine(string.Join(" ",path));
+                    Console.WriteLine($"Shortest path length is: {path.Count - 1}");
+                    Console.WriteLine(string.Join(" ", path));
                     return;
                 }
 
                 foreach (var child in graph[node])
                 {
-                    if (!visited[child])    
+                    if (!visited[child])
                     {
                         parrents[child] = node;
                         q.Enqueue(child);
@@ -108,7 +112,6 @@ namespace _05ShortestPath
 
                 result[from].Add(to);
             }
-
 
             return result;
         }

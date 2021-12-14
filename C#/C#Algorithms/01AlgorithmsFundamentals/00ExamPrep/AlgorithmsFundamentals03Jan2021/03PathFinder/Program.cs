@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace _02Paths
+namespace _03PathFinder
 {
     class Program
     {
@@ -10,7 +10,7 @@ namespace _02Paths
 
         private static HashSet<int> visited;
 
-      
+        private static List<List<int>> paths;
 
         static void Main(string[] args)
         {
@@ -20,15 +20,36 @@ namespace _02Paths
 
             visited = new HashSet<int>();
 
-            
+            paths = new List<List<int>>();
+
 
             graphDic = ReadGraph(n);
 
             List<int> path = new List<int>();
 
-            foreach (var node in graphDic.Keys)
+           
+            
+                FindingPaths(0, path);
+
+            
+
+            int p = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < p; i++)
             {
-                FindingPaths(node, path);
+
+                List<int> inputData = Console.ReadLine().Split(" ").Select(int.Parse).ToList();
+
+                bool hasEquality = paths.Any(l => l.SequenceEqual(inputData));
+
+                if (hasEquality)
+                {
+                    Console.WriteLine("yes");
+                }
+                else
+                {
+                    Console.WriteLine("no");
+                }
 
             }
 
@@ -46,9 +67,9 @@ namespace _02Paths
             path.Add(node);
 
 
-            if (isPath(node) && path.Count > 1)
+            if (isPath(node))
             {
-                Console.WriteLine(string.Join(" ", path));
+                paths.Add(new List<int>(path));
                 path.RemoveAt(path.Count - 1);
                 return;
             }
@@ -71,9 +92,7 @@ namespace _02Paths
 
         private static bool isPath(int node)
         {
-            var last = graphDic.LastOrDefault(n => n.Value.Count == 0);
-
-            return node == last.Key;
+            return graphDic[node].Count == 0;
         }
 
 
@@ -84,32 +103,18 @@ namespace _02Paths
 
             for (int i = 0; i <= n; i++)
             {
-                if (i != n)
+
+                List<int> inputData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+
+                if (inputData.Count > 0)
                 {
-                    List<int> inputData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
-
-                    if (inputData.Count > 0)
-                    {
-                       
-
-                        toReturn[i] = inputData;
-                    }
-                    else
-                    {
-                        toReturn[i] = new List<int>();
-
-                    }
-
+                    toReturn[i] = inputData;
                 }
                 else
                 {
                     toReturn[i] = new List<int>();
 
                 }
-
-
-
-
 
             }
 

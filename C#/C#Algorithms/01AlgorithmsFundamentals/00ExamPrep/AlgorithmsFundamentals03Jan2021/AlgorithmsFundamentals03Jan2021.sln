@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01TBC", "01TBC\01TBC.csproj", "{BFD7F2E6-7A2C-4C2E-8138-187B592B1F5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01TBC", "01TBC\01TBC.csproj", "{BFD7F2E6-7A2C-4C2E-8138-187B592B1F5D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03PathFinder", "03PathFinder\03PathFinder.csproj", "{78E88D0A-35F1-441D-B1DD-47B244978529}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BFD7F2E6-7A2C-4C2E-8138-187B592B1F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFD7F2E6-7A2C-4C2E-8138-187B592B1F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFD7F2E6-7A2C-4C2E-8138-187B592B1F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78E88D0A-35F1-441D-B1DD-47B244978529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78E88D0A-35F1-441D-B1DD-47B244978529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78E88D0A-35F1-441D-B1DD-47B244978529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78E88D0A-35F1-441D-B1DD-47B244978529}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
