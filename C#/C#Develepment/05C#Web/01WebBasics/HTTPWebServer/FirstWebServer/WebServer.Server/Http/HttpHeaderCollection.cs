@@ -14,5 +14,13 @@ namespace WebServer.Server.Http
             {
                 headers = new Dictionary<string, HttpHeader>();
             }
-    }
+
+            public void Add(HttpHeader header)
+            {
+                this.headers.Add(header.Name,header);
+            }
+
+            public int Count()
+                => this.headers.Count;
+  }
 }

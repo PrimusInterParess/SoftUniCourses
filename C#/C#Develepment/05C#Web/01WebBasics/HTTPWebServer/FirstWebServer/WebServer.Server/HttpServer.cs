@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using WebServer.Server.Http;
 
 namespace WebServer.Server
 {
@@ -34,11 +35,13 @@ namespace WebServer.Server
                 var connectionAcceptTcpClient = await this.listener.AcceptTcpClientAsync();
                 var networkStream = connectionAcceptTcpClient.GetStream();
 
-                var request = await this.ReadRequest(networkStream);
+                var requestText = await this.ReadRequest(networkStream);
 
-                Console.WriteLine(request);
+                Console.WriteLine(requestText);
 
-                await WriteRespoinse(networkStream);
+                var request = HttpRequest.Parse(requestText);
+
+                await WriteResponse(networkStream);
                 
 
 
@@ -66,7 +69,7 @@ namespace WebServer.Server
             return requestBuilder.ToString();
         }
 
-        private async Task WriteRespoinse(NetworkStream networkStream)
+        private async Task WriteResponse(NetworkStream networkStream)
         {
             var contentBody = "Пацо е голем!";
 
