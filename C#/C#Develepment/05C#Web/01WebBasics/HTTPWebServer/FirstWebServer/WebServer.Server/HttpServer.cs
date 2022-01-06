@@ -14,12 +14,17 @@ namespace WebServer.Server
         private readonly int port;
         private readonly TcpListener listener;
 
-        public HttpServer(string ipAdress, int port, Action<IRoutingTable> routingTable)
+        private readonly RoutingTable routingTable;
+
+        public HttpServer(string ipAdress, int port, Action<IRoutingTable> routingTableConfiguration)
         {
             this.ipAddress = IPAddress.Parse(ipAdress);
             this.port = port;
 
             listener = new TcpListener(this.ipAddress, this.port);
+
+            this.routingTable = new RoutingTable();
+            routingTableConfiguration(this.routingTable);
         }
 
         public HttpServer(int port, Action<IRoutingTable> routingTable) : this("127.0.0.1", port,routingTable){}
@@ -45,13 +50,11 @@ namespace WebServer.Server
 
                 var requestText = await this.ReadRequest(networkStream);
 
-                Console.WriteLine(requestText);
-
                 var request = HttpRequest.Parse(requestText);
 
-                await WriteResponse(networkStream);
+                var response = this.routingTable.MatchRequest(request);
 
-
+                await WriteResponse(networkStream,response);
 
                 connectionAcceptTcpClient.Close();
             }
@@ -85,21 +88,11 @@ namespace WebServer.Server
             return requestBuilder.ToString();
         }
 
-        private async Task WriteResponse(NetworkStream networkStream)
+        private async Task WriteResponse(NetworkStream networkStream,HttpResponse response)
         {
-            var contentBody = "Пацо е голем!";
+   
 
-            int contentLength = Encoding.UTF8.GetByteCount(contentBody);
-
-            var response = @$"HTTP/1.1 200 OK
-Server: Begins Server
-Date: {DateTime.UtcNow:R}
-Content-Length: {contentLength}
-Content-Type: text/plain; charset=UTF-8
-
-{contentBody}";
-
-            var responseBites = Encoding.UTF8.GetBytes(response);
+            var responseBites = Encoding.UTF8.GetBytes(response.ToString());
 
             await networkStream.WriteAsync(responseBites);
 
