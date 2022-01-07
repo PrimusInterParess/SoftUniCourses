@@ -9,50 +9,79 @@ namespace WebServer.Server.Routing
     public class RoutingTable : IRoutingTable
     {
 
-        private readonly Dictionary<HttpMethod, Dictionary<string, HttpResponse>> routes;
+        private readonly Dictionary<HttpMethod, Dictionary<string, Func<HttpRequest,HttpResponse>>> routes;
 
         public RoutingTable()
         {
-            this.routes = new Dictionary<HttpMethod, Dictionary<string, HttpResponse>>()
+            this.routes = new Dictionary<HttpMethod, Dictionary<string, Func<HttpRequest, HttpResponse>>>()
             {
-                [HttpMethod.Get] = new Dictionary<string, HttpResponse>(),
-                [HttpMethod.Put] = new Dictionary<string, HttpResponse>(),
-                [HttpMethod.Post] = new Dictionary<string, HttpResponse>(),
-                [HttpMethod.Delete] = new Dictionary<string, HttpResponse>(),
+                [HttpMethod.Get] = new (),
+                [HttpMethod.Put] = new (),
+                [HttpMethod.Post] = new (),
+                [HttpMethod.Delete] = new(),
             };
         }
 
-        public IRoutingTable Map(string url, HttpMethod method, HttpResponse response)
+        public IRoutingTable Map(HttpMethod method, string path, HttpResponse response)
         {
-            return method switch
-            {
-                HttpMethod.Get => this.MapGet(url, response),
-                _ => throw new InvalidOperationException($"Method '{method}' is not supported.")
-            };
-        }
 
-        public IRoutingTable MapGet(string url, HttpResponse response)
-        {
-            Guard.AgainstNull(url, nameof(url));
+
+            Guard.AgainstNull(path, nameof(path));
             Guard.AgainstNull(response, nameof(response));
 
-            this.routes[HttpMethod.Get][url] = response;
+            this.routes[method][path] = response;
 
             return this;
+
+
         }
+
+       
+
+        public IRoutingTable Map(string path, Func<HttpRequest, HttpResponse> responseFunc)
+        {
+            throw new NotImplementedException();
+        }
+
+      
+
+        public IRoutingTable MapGet(string path, Func<HttpRequest, HttpResponse> responseFunc)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public IRoutingTable MapGet(string path, HttpResponse response)
+            => Map(HttpMethod.Get, path, response);
+
+        public IRoutingTable MapPost(string path, HttpResponse response)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IRoutingTable MapPost(string path, Func<HttpRequest, HttpResponse> responseFunc)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public IRoutingTable MapPost(HttpResponse response, string path)
+            => Map(HttpMethod.Post, path, response);
+
 
         public HttpResponse MatchRequest(HttpRequest request)
         {
             var requestMethod = request.Method;
-            var requestUrl = request.Url;
+            var requestPath = request.Path;
 
-            if (!this.routes.ContainsKey(requestMethod) || !this.routes[requestMethod].ContainsKey(requestUrl))
+            if (!this.routes.ContainsKey(requestMethod) ||
+                !this.routes[requestMethod].ContainsKey(requestPath))
             {
-                return new BadRequestResponse();
+                return new NotFoundResponse();
 
             }
 
-            return this.routes[requestMethod][requestUrl];
+            return this.routes[requestMethod][requestPath];
         }
     }
 }

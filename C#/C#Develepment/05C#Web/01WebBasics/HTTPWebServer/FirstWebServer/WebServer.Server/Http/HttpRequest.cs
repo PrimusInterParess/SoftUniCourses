@@ -13,11 +13,13 @@ namespace WebServer.Server.Http
 
         public HttpMethod Method { get; private set; }
 
-        public string Url { get; private set; }
+        public string Path { get; private set; }
 
         public HttpHeaderCollection Headers { get; private set; }
 
         public string Body { get; set; }
+
+        public Dictionary<string, string> Query;
 
 
         public static HttpRequest Parse(string request)
@@ -28,6 +30,9 @@ namespace WebServer.Server.Http
 
             var method = ParseHttpMethod(startLine[0]);
             var url = startLine[1];
+
+            var (path, query) = ParseUrl(url);
+
             var headerLines = lines.Skip(1);
 
             var headerCollection = ParseHeaderCollection(headerLines);
@@ -39,11 +44,13 @@ namespace WebServer.Server.Http
             return new HttpRequest()
             {
                 Method = method,
-                Url = url,
+                Path = path,
                 Headers = headerCollection,
+                Query = query,
                 Body = body
             };
         }
+
 
         private static HttpMethod ParseHttpMethod(string method)
         {
@@ -55,6 +62,37 @@ namespace WebServer.Server.Http
                 "PUT" => HttpMethod.Put,
                 _ => throw new InvalidOperationException($"Method {method} is not supported.")
             };
+        }
+
+        private static (string, Dictionary<string, string>) ParseUrl(string url)
+        {
+            var urlParts = url.Split("?");
+
+            var path = urlParts[0];
+            var query = ParseQuery(urlParts);
+
+            return (path, query);
+        }
+
+        private static Dictionary<string, string> ParseQuery(string[] urlParts)
+        {
+            var query = new Dictionary<string, string>();
+
+            if (urlParts.Length > 1)
+            {
+                query = urlParts[1]
+                    .Split('&')
+                    .Select(part => part.Split('='))
+                    .Where(part => part.Length == 2)
+                    .ToDictionary(p => p[0], p => p[1]);
+
+
+            }
+
+
+
+
+            return query;
         }
 
         private static HttpHeaderCollection ParseHeaderCollection(IEnumerable<string> headerLines)
@@ -79,9 +117,9 @@ namespace WebServer.Server.Http
                 var headerName = headerLine.Substring(0, indexOfcolon);
                 var headerValue = headerLine.Substring(indexOfcolon + 1).Trim();
 
-                
 
-                    headerCollection.Add(headerName, headerValue);
+
+                headerCollection.Add(headerName, headerValue);
 
             }
 
