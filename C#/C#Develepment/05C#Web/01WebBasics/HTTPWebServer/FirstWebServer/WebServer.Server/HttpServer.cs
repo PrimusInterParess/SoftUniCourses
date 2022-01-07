@@ -4,6 +4,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using WebServer.Server.Http;
+using WebServer.Server.Routing;
 
 namespace WebServer.Server
 {
@@ -13,13 +14,20 @@ namespace WebServer.Server
         private readonly int port;
         private readonly TcpListener listener;
 
-        public HttpServer(string ipAdress, int port)
+        public HttpServer(string ipAdress, int port, Action<IRoutingTable> routingTable)
         {
             this.ipAddress = IPAddress.Parse(ipAdress);
             this.port = port;
 
             listener = new TcpListener(this.ipAddress, this.port);
         }
+
+        public HttpServer(int port, Action<IRoutingTable> routingTable) : this("127.0.0.1", port,routingTable){}
+
+        public HttpServer(Action<IRoutingTable> routingTable) : this( 5000,routingTable){}
+        
+            
+        
 
         public async Task Start()
         {
@@ -58,6 +66,8 @@ namespace WebServer.Server
             int totalBytes = 0;
             var buffer = new byte[bufferLength];
 
+            int total = 0;
+
             var requestBuilder = new StringBuilder();
 
             do
@@ -71,11 +81,21 @@ namespace WebServer.Server
                     throw new InvalidOperationException("Request is too large");
                 }
 
+                total += bytesRead;
+                if (total > 10 * 1024)
+                {
+                    throw new InvalidOperationException("Request is too big");
+                }
                 requestBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
+<<<<<<< HEAD
 
 
             } while (networkStream.DataAvailable);
 
+=======
+            }
+            while (networkStream.DataAvailable);
+>>>>>>> 8968228426709d2273f6f7b554728106b5d5134c
 
             return requestBuilder.ToString();
         }
