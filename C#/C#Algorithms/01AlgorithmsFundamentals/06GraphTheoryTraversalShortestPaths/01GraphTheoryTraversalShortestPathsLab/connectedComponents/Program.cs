@@ -38,7 +38,6 @@ namespace connectedComponents
         private static void DFS(int i, List<int> connects)
         {
 
-
             if (visitedNodes.Contains(i))
             {
                 return;
