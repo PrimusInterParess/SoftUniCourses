@@ -41,7 +41,7 @@ namespace _02Co
             for (int node = 0; node < graph.Length; node++)
             {
 
-                if (visited[node])
+                if (visited[node])  
                 {
                     continue;
                 }
