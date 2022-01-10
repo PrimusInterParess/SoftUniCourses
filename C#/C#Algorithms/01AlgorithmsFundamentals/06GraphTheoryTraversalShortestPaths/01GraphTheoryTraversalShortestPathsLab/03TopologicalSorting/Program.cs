@@ -109,9 +109,11 @@ namespace _03TopologicalSorting
 
                 if (inputData.Length > 1)
                 {
-                    var children = inputData[1].Trim().Split(", ").ToList();
+                    var children = inputData[1].Trim();
 
-                    toReturn[key] = children;
+                    toReturn.Add(key,new List<string>());
+
+                    toReturn[key].Add(children);
                 }
                 else
                 {
