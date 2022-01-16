@@ -27,19 +27,21 @@ namespace WebServer.Server.Controllers
             return Html(result);
         }
 
-        public HttpResponse Dogs()
-        {
-            const string nameKey = "Name";
+        //public HttpResponse Dogs()
+        //{
+        //    const string nameKey = "Name";
 
-            var query = this.Request.Query;
-            var dogN = query.ContainsKey(nameKey)
-                ? query[nameKey] :
-                "the dogs";
+        //    var query = this.Request.Query;
+        //    var dogN = query.ContainsKey(nameKey)
+        //        ? query[nameKey] :
+        //        "the dogs";
 
-            var result = $"<h1>Hello from {dogN}!</h1>";
+        //    var result = $"<h1>Hello from {dogN}!</h1>";
 
 
-            return Html(result);
-        }
+        //    return Html(result);
+        //}
+
+        public HttpResponse Dogs() => View("/Views/Animals.Dogs.cshtml");
     }
 }

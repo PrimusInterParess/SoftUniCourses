@@ -25,7 +25,9 @@ namespace WebServer
         public static async Task Main()
             =>await new HttpServer(routes=>routes
                     .MapGet<HomeController>("/",c=>c.Index())
-                    .MapGet<AnimalsController>("/Cats", c=>c.Cats()))
+                    .MapGet<HomeController>("/ToCats",c=>c.LocalRedirect())
+                    .MapGet<HomeController>("/Softuni", c => c.ToSoftUni())
+                     .MapGet<AnimalsController>("/Cats", c=>c.Cats()))
                 .Start();
 
 

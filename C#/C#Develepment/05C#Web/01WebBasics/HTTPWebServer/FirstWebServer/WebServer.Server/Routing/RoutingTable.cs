@@ -43,7 +43,7 @@ namespace WebServer.Server.Routing
             Guard.AgainstNull(path, nameof(path));
             Guard.AgainstNull(responseFunc, nameof(responseFunc));
 
-            this.routes[method][path] = responseFunc;
+            this.routes[method][path.ToLower()] = responseFunc;
 
             return this;
         }
@@ -71,7 +71,7 @@ namespace WebServer.Server.Routing
         public HttpResponse ExecureRequest(HttpRequest request)
         {
             var requestMethod = request.Method;
-            var requestPath = request.Path;
+            var requestPath = request.Path.ToLower();
 
             if (!this.routes.ContainsKey(requestMethod) ||
                 !this.routes[requestMethod].ContainsKey(requestPath))

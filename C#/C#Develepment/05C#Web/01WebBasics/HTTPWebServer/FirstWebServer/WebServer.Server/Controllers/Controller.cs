@@ -24,7 +24,22 @@ namespace WebServer.Server.Controllers
 
         protected HttpResponse Html(string html)
         {
-            return Html(html);
+            return  new HtmlResponse(html);
+        }
+
+        protected HttpResponse Redirect(string location)
+        {
+            return new RedirectResponse(location);
+        }
+
+        protected HttpResponse View()
+        {
+            return null;
+        }
+
+        protected HttpResponse View(string view)
+        {
+            return null;
         }
     }
 }
