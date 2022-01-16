@@ -11,17 +11,17 @@ namespace WebServer.Server.Responses
    public class ContentResponse:HttpResponse
     {
        
-        public ContentResponse(string text, string contentType)
+        public ContentResponse(string html, string contentType)
             :base(HttpStatusCode.OK)
         {
-            Guard.AgainstNull(text);
+            Guard.AgainstNull(html);
 
-            var contentLenght = Encoding.UTF8.GetByteCount(text).ToString();
+            var contentLenght = Encoding.UTF8.GetByteCount(html).ToString();
 
             this.Headers.Add("Content-Type", contentType);
             this.Headers.Add("Content-Length", contentLenght);
 
-            this.Content = text;
+            this.Content = html;
         }
         
     }

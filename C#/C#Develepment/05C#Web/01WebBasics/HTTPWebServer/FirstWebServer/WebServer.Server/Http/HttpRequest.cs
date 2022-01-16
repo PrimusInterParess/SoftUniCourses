@@ -19,7 +19,7 @@ namespace WebServer.Server.Http
 
         public string Body { get; set; }
 
-        public Dictionary<string, string> Query;
+        public Dictionary<string, string> Query { get; private set; }
 
 
         public static HttpRequest Parse(string request)
@@ -66,7 +66,7 @@ namespace WebServer.Server.Http
 
         private static (string, Dictionary<string, string>) ParseUrl(string url)
         {
-            var urlParts = url.Split("?");
+            var urlParts = url.Split("?",2);
 
             var path = urlParts[0];
             var query = ParseQuery(urlParts);
@@ -74,23 +74,18 @@ namespace WebServer.Server.Http
             return (path, query);
         }
 
-        private static Dictionary<string, string> ParseQuery(string[] urlParts)
+        private static Dictionary<string, string> ParseQuery(string[] queryString)
         {
             var query = new Dictionary<string, string>();
 
-            if (urlParts.Length > 1)
+            if (queryString.Length > 1)
             {
-                query = urlParts[1]
+                query = queryString[1]
                     .Split('&')
                     .Select(part => part.Split('='))
                     .Where(part => part.Length == 2)
                     .ToDictionary(p => p[0], p => p[1]);
-
-
             }
-
-
-
 
             return query;
         }
@@ -108,7 +103,6 @@ namespace WebServer.Server.Http
 
                 var indexOfcolon = headerLine.IndexOf(":");
 
-
                 if (indexOfcolon < 0)
                 {
                     throw new InvalidOperationException("Request is not valid");
@@ -117,10 +111,7 @@ namespace WebServer.Server.Http
                 var headerName = headerLine.Substring(0, indexOfcolon);
                 var headerValue = headerLine.Substring(indexOfcolon + 1).Trim();
 
-
-
                 headerCollection.Add(headerName, headerValue);
-
             }
 
             return headerCollection;

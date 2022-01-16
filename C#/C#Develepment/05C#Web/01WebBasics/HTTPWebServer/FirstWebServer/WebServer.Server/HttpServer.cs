@@ -50,15 +50,15 @@ namespace WebServer.Server
 
                 var requestText = await this.ReadRequest(networkStream);
 
-<<<<<<< HEAD
+
                 Console.WriteLine(requestText);
 
                 // var request = HttpRequest.Parse(requestText);
-=======
-                var request = HttpRequest.Parse(requestText);
->>>>>>> 7bef16a1170058a9cd26d42208df3367692d8fd8
 
-                var response = this.routingTable.MatchRequest(request);
+                var request = HttpRequest.Parse(requestText);
+
+
+                var response = this.routingTable.ExecureRequest(request);
 
                 await WriteResponse(networkStream,response);
 
@@ -96,15 +96,14 @@ namespace WebServer.Server
                     throw new InvalidOperationException("Request is too big");
                 }
                 requestBuilder.Append(Encoding.UTF8.GetString(buffer, 0, bytesRead));
-<<<<<<< HEAD
+
 
 
             } while (networkStream.DataAvailable);
 
-=======
-            }
-            while (networkStream.DataAvailable);
->>>>>>> 8968228426709d2273f6f7b554728106b5d5134c
+
+   
+
 
             return requestBuilder.ToString();
         }
