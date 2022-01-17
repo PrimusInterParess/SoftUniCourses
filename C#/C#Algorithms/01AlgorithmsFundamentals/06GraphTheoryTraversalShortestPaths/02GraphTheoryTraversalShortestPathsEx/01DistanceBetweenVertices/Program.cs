@@ -28,13 +28,10 @@ namespace _01DistanceBetweenVertices
 
                 int to = fromToLocations[1];
 
-
                 int pathDistance = GetPathDistance(from, to);
 
                 Console.WriteLine($"{{{from}, {to}}} -> {pathDistance}");
             }
-
-
 
         }
 
