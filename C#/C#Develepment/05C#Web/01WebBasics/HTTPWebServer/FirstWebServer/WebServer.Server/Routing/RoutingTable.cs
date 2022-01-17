@@ -9,70 +9,69 @@ namespace WebServer.Server.Routing
     public class RoutingTable : IRoutingTable
     {
 
-        private readonly Dictionary<HttpMethod, Dictionary<string, Func<HttpRequest,HttpResponse>>> routes;
+        private readonly Dictionary<HttpMethod, Dictionary<string, Func<HttpRequest, HttpResponse>>> routes;
 
         public RoutingTable()
         {
             this.routes = new Dictionary<HttpMethod, Dictionary<string, Func<HttpRequest, HttpResponse>>>()
             {
-                [HttpMethod.Get] = new (),
-                [HttpMethod.Put] = new (),
-                [HttpMethod.Post] = new (),
+                [HttpMethod.Get] = new(),
+                [HttpMethod.Put] = new(),
+                [HttpMethod.Post] = new(),
                 [HttpMethod.Delete] = new(),
             };
         }
 
-        public IRoutingTable Map(HttpMethod method, string path, HttpResponse response)
+        public IRoutingTable Map(
+            HttpMethod method,
+            string path,
+            HttpResponse response)
         {
-
-
-            Guard.AgainstNull(path, nameof(path));
             Guard.AgainstNull(response, nameof(response));
 
-            this.routes[method][path] = response;
+            return this.Map(method,path,request=>response);
+
+
+        }
+
+        public IRoutingTable Map(
+            HttpMethod method,
+            string path,
+            Func<HttpRequest, HttpResponse> responseFunc)
+        {
+
+            Guard.AgainstNull(path, nameof(path));
+            Guard.AgainstNull(responseFunc, nameof(responseFunc));
+
+            this.routes[method][path.ToLower()] = responseFunc;
 
             return this;
-
-
         }
 
-       
 
-        public IRoutingTable Map(string path, Func<HttpRequest, HttpResponse> responseFunc)
-        {
-            throw new NotImplementedException();
-        }
-
-      
-
-        public IRoutingTable MapGet(string path, Func<HttpRequest, HttpResponse> responseFunc)
-        {
-            throw new NotImplementedException();
-        }
+        public IRoutingTable MapGet(
+            string path,
+            Func<HttpRequest, HttpResponse> responseFunc)
+            => Map(HttpMethod.Get, path, responseFunc);
 
 
         public IRoutingTable MapGet(string path, HttpResponse response)
-            => Map(HttpMethod.Get, path, response);
+            => MapGet( path,request=> response);
 
-        public IRoutingTable MapPost(string path, HttpResponse response)
-        {
-            throw new NotImplementedException();
-        }
+
 
         public IRoutingTable MapPost(string path, Func<HttpRequest, HttpResponse> responseFunc)
-        {
-            throw new NotImplementedException();
-        }
+            => MapPost(path, responseFunc);
 
 
-        public IRoutingTable MapPost(HttpResponse response, string path)
-            => Map(HttpMethod.Post, path, response);
+        public IRoutingTable MapPost(string path, HttpResponse response)
+            => MapPost( path, request=> response);
 
 
-        public HttpResponse MatchRequest(HttpRequest request)
+        public HttpResponse ExecureRequest(HttpRequest request)
         {
             var requestMethod = request.Method;
-            var requestPath = request.Path;
+            var requestPath = request.Path.ToLower();
 
             if (!this.routes.ContainsKey(requestMethod) ||
                 !this.routes[requestMethod].ContainsKey(requestPath))
@@ -81,7 +80,9 @@ namespace WebServer.Server.Routing
 
             }
 
-            return this.routes[requestMethod][requestPath];
+            var responceFunction = this.routes[requestMethod][requestPath];
+
+            return responceFunction(request);
         }
     }
 }

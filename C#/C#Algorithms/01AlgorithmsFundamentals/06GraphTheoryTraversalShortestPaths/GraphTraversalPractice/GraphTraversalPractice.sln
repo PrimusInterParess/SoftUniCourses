@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01DIstanceBetweenVertices", "01DIstanceBetweenVertices\01DIstanceBetweenVertices.csproj", "{1F5CA765-D0D2-41AA-97B6-897074FC474E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01DIstanceBetweenVertices", "01DIstanceBetweenVertices\01DIstanceBetweenVertices.csproj", "{1F5CA765-D0D2-41AA-97B6-897074FC474E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02ArraysInMatrixakaGraph", "02ArraysInMatrixakaGraph\02ArraysInMatrixakaGraph.csproj", "{AC3FA327-259B-4090-B01F-6497E4A5CBE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02ArraysInMatrixakaGraph", "02ArraysInMatrixakaGraph\02ArraysInMatrixakaGraph.csproj", "{AC3FA327-259B-4090-B01F-6497E4A5CBE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03CyclesInGraph", "03CyclesInGraph\03CyclesInGraph.csproj", "{8856022E-4F47-419A-98AA-DF3B6DCDAE7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03CyclesInGraph", "03CyclesInGraph\03CyclesInGraph.csproj", "{8856022E-4F47-419A-98AA-DF3B6DCDAE7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04Salaries", "04Salaries\04Salaries.csproj", "{35EE172C-44F4-4880-B38E-8317D7A1C24A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04Salaries", "04Salaries\04Salaries.csproj", "{35EE172C-44F4-4880-B38E-8317D7A1C24A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05BreackCycles", "05BreackCycles\05BreackCycles.csproj", "{C4CDE21A-7847-4DF5-B906-FD17B713F2B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05BreackCycles", "05BreackCycles\05BreackCycles.csproj", "{C4CDE21A-7847-4DF5-B906-FD17B713F2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05ReconstructPath", "05ReconstructPath\05ReconstructPath.csproj", "{411BCC83-C319-475F-99FD-3A297F19887A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01", "01\01.csproj", "{35D4CDF4-7B23-4CFE-89E4-600785145066}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{C4CDE21A-7847-4DF5-B906-FD17B713F2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4CDE21A-7847-4DF5-B906-FD17B713F2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4CDE21A-7847-4DF5-B906-FD17B713F2B6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{411BCC83-C319-475F-99FD-3A297F19887A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{411BCC83-C319-475F-99FD-3A297F19887A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{411BCC83-C319-475F-99FD-3A297F19887A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{411BCC83-C319-475F-99FD-3A297F19887A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35D4CDF4-7B23-4CFE-89E4-600785145066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35D4CDF4-7B23-4CFE-89E4-600785145066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35D4CDF4-7B23-4CFE-89E4-600785145066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35D4CDF4-7B23-4CFE-89E4-600785145066}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
