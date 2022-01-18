@@ -13,22 +13,16 @@ namespace _03TopologicalSorting
 
         static void Main(string[] args)
         {
-            int n = int.Parse(Console.ReadLine());
+           // int n = int.Parse(Console.ReadLine());
 
-            graph = ReadGraph(n);
+            graph = ReadGraph();
 
             dependencies = ExtractDepencancies();
 
             var sorted = TopologicalSorting();
-
-            if (sorted == null)
-            {
-                Console.WriteLine("Invalid topological sorting");
-            }
-            else
-            {
-                Console.WriteLine($"Topological sorting: {string.Join(", ", sorted)}");
-            }
+            
+                Console.WriteLine(string.Join(" ", sorted));
+            
 
 
         }
@@ -39,7 +33,7 @@ namespace _03TopologicalSorting
 
             while (dependencies.Count > 0)
             {
-                var nodeToRemove = dependencies.FirstOrDefault(n => n.Value == 0);
+                var nodeToRemove = dependencies.LastOrDefault(n => n.Value == 0);
 
                 if (string.IsNullOrWhiteSpace(nodeToRemove.Key))
                 {
@@ -97,34 +91,41 @@ namespace _03TopologicalSorting
             return toReturn;
         }
 
-        private static Dictionary<string, List<string>> ReadGraph(int n)
+        private static Dictionary<string, List<string>> ReadGraph()
         {
             Dictionary<string, List<string>> toReturn = new Dictionary<string, List<string>>();
 
-            for (int i = 0; i < n; i++)
-            {
-                string[] inputData = Console.ReadLine().Split("->", StringSplitOptions.RemoveEmptyEntries).ToArray();
+          //  for (int i = 0; i < n; i++)
+           // {
 
-                var key = inputData[0].Trim();
+           string input = Console.ReadLine();
 
-                if (inputData.Length > 1)
-                {
-                    var children = inputData[1].Trim();
+           while (input!="End")
+           {
+               string[] inputData = input.Split("->").ToArray();
 
-                    toReturn.Add(key,new List<string>());
+               var key = inputData[0].Trim();
 
-                    toReturn[key].Add(children);
-                }
-                else
-                {
-                    toReturn[key] = new List<string>();
+               if (inputData.Length > 1)
+               {
+                   var children = inputData[1].Split(" ",StringSplitOptions.RemoveEmptyEntries).ToArray();
 
-                }
+                   toReturn.Add(key, new List<string>());
 
+                   toReturn[key].AddRange(children);
+               }
+               else
+               {
+                   toReturn[key] = new List<string>();
+
+               }
+
+               input = Console.ReadLine();
             }
-
+           // }
 
             return toReturn;
         }
     }
 }
+ 

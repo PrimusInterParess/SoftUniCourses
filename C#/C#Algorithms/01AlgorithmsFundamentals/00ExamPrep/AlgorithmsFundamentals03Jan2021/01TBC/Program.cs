@@ -40,6 +40,7 @@ namespace _01TBC
 
                     int size = GettingAreaSize(matrix, visited, r, c);
 
+
                     Area area = new Area()
                     {
                         Row = r,
