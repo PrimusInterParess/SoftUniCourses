@@ -15,57 +15,51 @@ namespace _03PathFinder
         static void Main(string[] args)
         {
 
-
             int n = int.Parse(Console.ReadLine()) - 1;
-
-            visited = new HashSet<int>();
-
             paths = new List<List<int>>();
-
-
             graphDic = ReadGraph(n);
+            GeneratingPaths(n);
+            ChecksForPathsEquality();
 
-            List<int> path = new List<int>();
+        }
 
-           
-            
-                FindingPaths(0, path);
-
-            
+        private static void ChecksForPathsEquality()
+        {
 
             int p = int.Parse(Console.ReadLine());
 
             for (int i = 0; i < p; i++)
             {
-
                 List<int> inputData = Console.ReadLine().Split(" ").Select(int.Parse).ToList();
 
                 bool hasEquality = paths.Any(l => l.SequenceEqual(inputData));
 
-                if (hasEquality)
-                {
-                    Console.WriteLine("yes");
-                }
-                else
-                {
-                    Console.WriteLine("no");
-                }
-
+                Console.WriteLine(hasEquality ? "yes" : "no");
             }
+        }
 
+        private static void GeneratingPaths(int n)
+        {
+            List<int> path = new List<int>();
+
+            var currentNode = 0;
+
+            while (currentNode <= n)
+            {
+                visited = new HashSet<int>();
+                FindingPaths(currentNode, path = new List<int>());
+                currentNode += 1;
+            }
         }
 
         private static void FindingPaths(int node, List<int> path)
         {
-
-
             if (visited.Contains(node))
             {
                 return;
             }
 
             path.Add(node);
-
 
             if (isPath(node))
             {
@@ -75,7 +69,6 @@ namespace _03PathFinder
             }
 
             visited.Add(node);
-
 
             for (int i = 0; i < graphDic[node].Count; i++)
             {
@@ -95,8 +88,6 @@ namespace _03PathFinder
             return graphDic[node].Count == 0;
         }
 
-
-
         private static Dictionary<int, List<int>> ReadGraph(int n)
         {
             Dictionary<int, List<int>> toReturn = new Dictionary<int, List<int>>();
@@ -104,7 +95,10 @@ namespace _03PathFinder
             for (int i = 0; i <= n; i++)
             {
 
-                List<int> inputData = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+                List<int> inputData = Console.ReadLine()
+                    .Split(" ", StringSplitOptions.RemoveEmptyEntries)
+                    .Select(int.Parse)
+                    .ToList();
 
                 if (inputData.Count > 0)
                 {
@@ -113,12 +107,8 @@ namespace _03PathFinder
                 else
                 {
                     toReturn[i] = new List<int>();
-
                 }
-
             }
-
-
             return toReturn;
         }
     }
