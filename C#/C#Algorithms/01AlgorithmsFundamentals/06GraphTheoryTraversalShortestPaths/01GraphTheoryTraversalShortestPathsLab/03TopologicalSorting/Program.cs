@@ -11,19 +11,20 @@ namespace _03TopologicalSorting
 
         private static Dictionary<string, int> dependencies;
 
+        private static HashSet<string> visited;
+        private static Stack<string> stack;
+
         static void Main(string[] args)
         {
-           // int n = int.Parse(Console.ReadLine());
+            // int n = int.Parse(Console.ReadLine());
 
             graph = ReadGraph();
 
             dependencies = ExtractDepencancies();
 
             var sorted = TopologicalSorting();
-            
-                Console.WriteLine(string.Join(" ", sorted));
-            
 
+            Console.WriteLine(string.Join(" ", sorted));
 
         }
 
@@ -95,37 +96,53 @@ namespace _03TopologicalSorting
         {
             Dictionary<string, List<string>> toReturn = new Dictionary<string, List<string>>();
 
-          //  for (int i = 0; i < n; i++)
-           // {
+            //  for (int i = 0; i < n; i++)
+            // {
 
-           string input = Console.ReadLine();
+            string input = Console.ReadLine();
 
-           while (input!="End")
-           {
-               string[] inputData = input.Split("->").ToArray();
+            while (input != "End")
+            {
+                string[] inputData = input.Split("->").ToArray();
 
-               var key = inputData[0].Trim();
+                var key = inputData[0].Trim();
 
-               if (inputData.Length > 1)
-               {
-                   var children = inputData[1].Split(" ",StringSplitOptions.RemoveEmptyEntries).ToArray();
+                if (inputData.Length > 1)
+                {
+                    var children = inputData[1].Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
 
-                   toReturn.Add(key, new List<string>());
+                    toReturn.Add(key, new List<string>());
 
-                   toReturn[key].AddRange(children);
-               }
-               else
-               {
-                   toReturn[key] = new List<string>();
+                    toReturn[key].AddRange(children);
+                }
+                else
+                {
+                    toReturn[key] = new List<string>();
 
-               }
+                }
 
-               input = Console.ReadLine();
+                input = Console.ReadLine();
             }
-           // }
+            // }
 
             return toReturn;
         }
+
+        private static void DFS(string node)
+        {
+            if (visited.Contains(node))
+            {
+                return;
+            }
+
+            visited.Add(node);
+
+            foreach (var child in graph[node])
+            {
+                DFS(child);
+            }
+
+            stack.Push(node);
+        }
     }
 }
- 
