@@ -9,15 +9,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.PermutationswithoutRepet
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02PErmutationWithRepetition", "03PErmutationWithRepetition\02PErmutationWithRepetition.csproj", "{3E11CD8D-0E0B-4092-9F19-95FB3A71B951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.VariationsWithoutRepetitions", "03.VariationsWithoutRepetitions\03.VariationsWithoutRepetitions.csproj", "{0D1A1A4B-41E5-442E-851A-535F99DCDF77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.VariationsWithoutRepetitions", "03.VariationsWithoutRepetitions\03.VariationsWithoutRepetitions.csproj", "{0D1A1A4B-41E5-442E-851A-535F99DCDF77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.Variations with Repetition", "04.Variations with Repetition\04.Variations with Repetition.csproj", "{80E55414-FA73-478D-B59F-BEC5907787DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.Variations with Repetition", "04.Variations with Repetition\04.Variations with Repetition.csproj", "{80E55414-FA73-478D-B59F-BEC5907787DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.CombinationsWithoutRepetition", "05.CombinationsWithoutRepetition\05.CombinationsWithoutRepetition.csproj", "{E7428F0D-13BE-45CF-9FDD-20539ECD5D65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.CombinationsWithoutRepetition", "05.CombinationsWithoutRepetition\05.CombinationsWithoutRepetition.csproj", "{E7428F0D-13BE-45CF-9FDD-20539ECD5D65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.CombinationsWithRepetiotion", "06.CombinationsWithRepetiotion\06.CombinationsWithRepetiotion.csproj", "{7DCC0B10-8A5F-47B8-B4AC-DC08289884C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.CombinationsWithRepetiotion", "06.CombinationsWithRepetiotion\06.CombinationsWithRepetiotion.csproj", "{7DCC0B10-8A5F-47B8-B4AC-DC08289884C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07. N Choose K Count", "07. N Choose K Count\07. N Choose K Count.csproj", "{153F958F-7CF7-4375-A708-2268BD76D6DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07. N Choose K Count", "07. N Choose K Count\07. N Choose K Count.csproj", "{153F958F-7CF7-4375-A708-2268BD76D6DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermutationWithoutRepetition", "PermutationWithoutRepetition\PermutationWithoutRepetition.csproj", "{4390409B-D939-4431-87B2-D8CAE6288033}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{153F958F-7CF7-4375-A708-2268BD76D6DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{153F958F-7CF7-4375-A708-2268BD76D6DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{153F958F-7CF7-4375-A708-2268BD76D6DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4390409B-D939-4431-87B2-D8CAE6288033}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4390409B-D939-4431-87B2-D8CAE6288033}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4390409B-D939-4431-87B2-D8CAE6288033}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4390409B-D939-4431-87B2-D8CAE6288033}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

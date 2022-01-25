@@ -12,7 +12,7 @@ namespace _03.VariationsWithoutRepetitions
 
         static void Main(string[] args)
         {
-            elements = new[] { "a,", "b", "c" };
+            elements = new[] { "a", "b", "c" };
             k = 2;
             variations = new string[k];
             used = new bool[elements.Length];

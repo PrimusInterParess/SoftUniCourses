@@ -73,6 +73,7 @@ namespace _02
                     graph[input[1]] = new List<string>();
                 }
 
+                graph[input[1]].Add(input[0]);
             }
 
             return graph;

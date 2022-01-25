@@ -6,39 +6,41 @@ namespace _03.VariationsWithoutRepetition
     {
         private static Char[] arr;
         private static Char[] variations;
-        private static bool[] used;
-        private static int k;
 
         static void Main(string[] args)
         {
             var elements = Console.ReadLine();
             arr = elements.ToCharArray();
-            k = elements.Length;
 
-            variations = new Char[k];
-            used = new bool[elements.Length];
-
-            Variations();
+            Permute(0);
         }
 
-        private static void Variations(int index = 0)
+        private static void Permute(int index)
         {
-            if (index >= variations.Length)
+            if (index >= arr.Length)
             {
-                Console.WriteLine(String.Join("", variations));
+                Console.WriteLine(String.Join("", arr));
                 return;
             }
 
-            for (int i = 0; i < arr.Length; i++)
+            Permute(index + 1);
+
+            if (char.IsLetter(arr[index]))
             {
-                if (used[i] == false)
+                for (int i = 0; i < 1; i++)
                 {
-                    used[i] = true;
-                    variations[index] = char.ToUpper(arr[i]);
-                    Variations(index + 1);
-                    used[i] = false;
+                    arr[index] = Swap(index);
+                    Permute(index + 1);
+                    arr[index] = Swap(index);
                 }
             }
+
+          
+        }
+
+        private static char Swap(int index)
+        {
+            return char.IsLower(arr[index]) ? char.ToUpper(arr[index]) : char.ToLower(arr[index]);
         }
     }
 }

@@ -20,22 +20,22 @@ namespace _1.PermutationswithoutRepetitions
             Permute(0);
         }
 
-        private static void Permute(int permitationIndex)
+        private static void Permute(int index)
         {
-            if (permitationIndex >= elements.Length)
+            if (index >= elements.Length)
             {
                 Console.WriteLine(string.Join(" ", permutations));
                 return;
             }
 
-            for (int elementsIndex = 0; elementsIndex < elements.Length; elementsIndex++)
+            for (int i = 0; i < elements.Length; i++)
             {
-                if (!used[elementsIndex])
+                if (!used[i])
                 {
-                    used[elementsIndex] = true;
-                    permutations[permitationIndex] = elements[elementsIndex];
-                    Permute(permitationIndex + 1);
-                    used[elementsIndex] = false;
+                    used[i] = true;
+                    permutations[index] = elements[i];
+                    Permute(index + 1);
+                    used[i] = false;
                 }
             }
 

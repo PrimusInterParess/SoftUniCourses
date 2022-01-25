@@ -8,17 +8,15 @@ namespace _04.Variations_with_Repetition
         private static int k;
 
         private static string[] variations;
-      
+
 
         static void Main(string[] args)
         {
-            elements = new[] {"a,", "b", "c"};
+            elements = new[] { "a,", "b", "c" };
             k = 2;
             variations = new string[k];
-           
 
             Variations(0);
-
 
         }
 
@@ -32,13 +30,8 @@ namespace _04.Variations_with_Repetition
 
             for (int i = 0; i < elements.Length; i++)
             {
-               
-                
-                  
-                    variations[index] = elements[i];
-                    Variations(index + 1);
-                    
-                
+                variations[index] = elements[i];
+                Variations(index + 1);
             }
         }
     }
