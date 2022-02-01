@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using SUHttpServer.HTTP;
+using SUHttpServer.Routing;
 
 namespace SUHttpServer
 {
@@ -13,16 +15,35 @@ namespace SUHttpServer
         private readonly IPAddress ipAddress;
         private readonly int port;
         private readonly TcpListener serverListener;
+        private readonly RoutingTable routingTable;
 
-        public HttpServer(string _ipAddress, int _port = 8080)
+        public HttpServer(
+            Action<IRoutingTable> routingTable)
+            : this(8080, routingTable)
+        {
+        }
+
+        public HttpServer(
+            int port,
+            Action<IRoutingTable> routingTable)
+            : this("127.0.0.1", port, routingTable)
+        {
+        }
+
+        public HttpServer(
+            string _ipAddress,
+            int _port,
+            Action<IRoutingTable> routingTableConfiguration)
         {
             this.ipAddress = IPAddress.Parse(_ipAddress);
             this.port = _port;
 
             serverListener = new TcpListener(ipAddress, port);
+
+            routingTableConfiguration(this.routingTable = new RoutingTable());
         }
 
-        public void Start()
+        public async Task Start()
         {
             serverListener.Start();
 
@@ -31,18 +52,30 @@ namespace SUHttpServer
 
             while (true)
             {
-                var connection = serverListener.AcceptTcpClient();
-                var networkStream = connection.GetStream();
-                WriteResponce(networkStream, "Hello World!");
+                var connection = await serverListener.AcceptTcpClientAsync();
 
-                var requestText = this.ReadRequest(networkStream);
-                Console.WriteLine(requestText);
-                connection.Close();
+                _ = Task.Run(async () =>
+                {
+                    var networkStream = connection.GetStream();
+                    var requestText = await this.ReadRequest(networkStream);
+
+                    Console.WriteLine(requestText);
+
+                    var request = Request.Parse(requestText);
+                    var response = this.routingTable.MatchRequest(request);
+
+                    if (response.PreRenderAction != null)
+                    {
+                        response.PreRenderAction(request, response);
+                    }
+
+                    await WriteResponse(networkStream, response);
+                    connection.Close();
+                });
             }
-
         }
 
-        private string ReadRequest(NetworkStream networkStream)
+        private async Task<string> ReadRequest(NetworkStream networkStream)
         {
             var bufferLength = 1024;
             var buffer = new byte[bufferLength];
@@ -51,7 +84,7 @@ namespace SUHttpServer
 
             do
             {
-                var bytesRead = networkStream.Read(buffer, 0, bufferLength);
+                var bytesRead = await networkStream.ReadAsync(buffer, 0, bufferLength);
 
                 totalBytes += bytesRead;
 
@@ -67,20 +100,23 @@ namespace SUHttpServer
             return requestBuilder.ToString();
         }
 
-        private static void WriteResponce(NetworkStream networkStream, string content)
+        private static async Task WriteResponse(NetworkStream networkStream, Response response)
         {
+            var responseBytes = Encoding.UTF8.GetBytes(response.ToString());
 
-            int contentLengt = Encoding.UTF8.GetByteCount(content);
+            await networkStream.WriteAsync(responseBytes);
 
-            string responce = $@"HTTP/1.1 200 OK
-Content-type: text/plain; charset=UTF-8
-Content-Length: {contentLengt}
+            //            int contentLengt = Encoding.UTF8.GetByteCount(content);
 
-{content}";
+            //            string responce = $@"HTTP/1.1 200 OK
+            //Content-type: text/plain; charset=UTF-8
+            //Content-Length: {contentLengt}
 
-            var responceBytes = Encoding.UTF8.GetBytes(responce);
+            //{content}";
 
-            networkStream.Write(responceBytes, 0, responceBytes.Length);
+            //            var responseBytes = Encoding.UTF8.GetBytes(responce);
+
+            //            networkStream.Write(responseBytes, 0, responseBytes.Length);
         }
     }
 }

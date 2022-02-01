@@ -19,16 +19,18 @@ namespace SUHttpServer.HTTP
 
         public int Count => this.headers.Count;
 
-        public void Add(string name, string value)
-        {
-            var header = new Header(name, value);
+        public string this[string name]
+            => this.headers[name].Value;
 
-            headers.Add(name, header);
-        }
+        public bool Contains(string name)
+            => this.headers.ContainsKey(name);
+
+        public void Add(string name, string value)
+            => this.headers[name] = new Header(name, value);
 
         public IEnumerator<Header> GetEnumerator()
         {
-           return this.headers.Values.GetEnumerator();
+            return this.headers.Values.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
