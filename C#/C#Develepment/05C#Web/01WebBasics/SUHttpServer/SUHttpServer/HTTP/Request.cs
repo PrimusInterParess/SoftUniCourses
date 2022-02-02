@@ -9,15 +9,17 @@ namespace SUHttpServer.HTTP
 {
     public class Request
     {
-        public Method Method { get; set; }
+        public Method Method { get; private set; }
 
-        public string Url { get; set; }
+        public string Url { get; private set; }
 
-        public HeaderCollection Headers { get; set; }
+        public HeaderCollection Headers { get; private set; }
 
         public string Body { get; set; }
 
-        public IReadOnlyDictionary<string, string> Form { get; set; }
+        public IReadOnlyDictionary<string, string> Form { get; private set; }
+
+        public CookieCollection Cookies { get; private set; }
 
         public static Request Parse(string request)
         {
@@ -31,6 +33,7 @@ namespace SUHttpServer.HTTP
             var url = startLine[1];
             var method = ParseMethod(startLine[0]);
             var headers = ParseHeaders(lines.Skip(1));
+            var cookies = ParseCookies(headers);
 
             var bodyLines = lines
                 .Skip(headers.Count + 2)
@@ -45,9 +48,34 @@ namespace SUHttpServer.HTTP
                 Method = method,
                 Url = url,
                 Headers = headers,
+                Cookies = cookies,
                 Body = body,
                 Form = form
             };
+        }
+
+        private static CookieCollection ParseCookies(HeaderCollection headers)
+        {
+            var coockieCollection = new CookieCollection();
+
+            if (headers.Contains(Header.Cookie))
+            {
+                var coockieHeader = headers[Header.Cookie];
+
+                var allCookies = coockieHeader.Split(";"); //:TODO 
+
+                foreach (var cookieText in allCookies)
+                {
+                    var cookieParts = cookieText.Split('=');
+
+                    var cookieName = cookieParts[0].Trim();
+                    var cookieValue = cookieParts[1].Trim();
+
+                    coockieCollection.Add(cookieName, cookieValue);
+                }
+            }
+
+            return coockieCollection;
         }
 
         private static Dictionary<string, string> ParseForm(HeaderCollection headers, string body)
