@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SUHttpServer", "SUHttpServer\SUHttpServer.csproj", "{F8D3EB50-5432-434F-BA10-4DBA7BC73A47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SUHttpServer.Demo", "SUHttpServer\SUHttpServer.Demo.csproj", "{F8D3EB50-5432-434F-BA10-4DBA7BC73A47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SUHttpServer.Server", "SUHttpServer.Server\SUHttpServer.Server.csproj", "{44BA3D6B-7F1E-4E3A-B1D4-6DB8AC2CBEC8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F8D3EB50-5432-434F-BA10-4DBA7BC73A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8D3EB50-5432-434F-BA10-4DBA7BC73A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8D3EB50-5432-434F-BA10-4DBA7BC73A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44BA3D6B-7F1E-4E3A-B1D4-6DB8AC2CBEC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44BA3D6B-7F1E-4E3A-B1D4-6DB8AC2CBEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44BA3D6B-7F1E-4E3A-B1D4-6DB8AC2CBEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44BA3D6B-7F1E-4E3A-B1D4-6DB8AC2CBEC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

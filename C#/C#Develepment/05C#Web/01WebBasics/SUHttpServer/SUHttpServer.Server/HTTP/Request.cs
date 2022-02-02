@@ -15,11 +15,12 @@ namespace SUHttpServer.HTTP
 
         public HeaderCollection Headers { get; private set; }
 
+        public CookieCollection Cookies { get; private set; }
+
         public string Body { get; set; }
 
         public IReadOnlyDictionary<string, string> Form { get; private set; }
 
-        public CookieCollection Cookies { get; private set; }
 
         public static Request Parse(string request)
         {
@@ -33,6 +34,7 @@ namespace SUHttpServer.HTTP
             var url = startLine[1];
             var method = ParseMethod(startLine[0]);
             var headers = ParseHeaders(lines.Skip(1));
+
             var cookies = ParseCookies(headers);
 
             var bodyLines = lines
@@ -60,9 +62,9 @@ namespace SUHttpServer.HTTP
 
             if (headers.Contains(Header.Cookie))
             {
-                var coockieHeader = headers[Header.Cookie];
+                var cookieHeader = headers[Header.Cookie];
 
-                var allCookies = coockieHeader.Split(";"); //:TODO 
+                var allCookies = cookieHeader.Split(";");  
 
                 foreach (var cookieText in allCookies)
                 {

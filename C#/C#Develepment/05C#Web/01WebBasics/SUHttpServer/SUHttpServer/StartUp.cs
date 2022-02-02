@@ -11,6 +11,7 @@ using System.Web;
 using SUHttpServer.HTTP;
 using SUHttpServer.Responses;
 
+
 namespace SUHttpServer
 {
     public class StartUp
@@ -43,7 +44,7 @@ namespace SUHttpServer
                     .MapPost("/HTML", new TextResponse("", StartUp.AddFormDataAction))
                     .MapGet("/Content", new HtmlResponse(StartUp.DownloadForm))
                     .MapPost("/Content", new TextFileResponse(StartUp.FileName))
-                    .MapGet("/Cookies",new HtmlResponse("",StartUp.AddCookieAction)));
+                    .MapGet("/Cookies", new HtmlResponse("", StartUp.AddCookiesAction)));
 
             await server.Start();
         }
@@ -91,7 +92,7 @@ namespace SUHttpServer
             await File.WriteAllTextAsync(fileName, responsesString);
         }
 
-        private static void AddCookieAction(Request request, Response response)
+        private static void AddCookiesAction(Request request, Response response)
         {
             var requestHasCookies = request.Cookies.Any();
 
@@ -100,32 +101,38 @@ namespace SUHttpServer
             if (requestHasCookies)
             {
                 var cookieText = new StringBuilder();
-                cookieText.AppendLine("<h1>Cookies</h1>");
+                cookieText
+                    .AppendLine("<h1>Cookies</h1>");
 
-                cookieText.Append("<table border='1'><tr><th>Name</th><th>Value</th></tr>");
+                cookieText
+                    .Append("<table border='1'><tr><th>Name</th><th>Value</th></tr>");
 
                 foreach (var cookie in request.Cookies)
                 {
-                    cookieText.Append("<tr>");
-                    cookieText.Append($"<td>{HttpUtility.HtmlEncode(cookie.Name)}</td>");
-                    cookieText.Append($"<td>{HttpUtility.HtmlEncode(cookie.Value)}</td>");
-                    cookieText.Append("</tr>");
+                    cookieText
+                        .Append("<tr>");
+                    cookieText
+                        .Append($"<td>{HttpUtility.HtmlEncode(cookie.Name)}</td>");
+                    cookieText
+                        .Append($"<td>{HttpUtility.HtmlEncode(cookie.Value)}</td>");
+                    cookieText
+                        .Append("</tr>");
                 }
 
-                cookieText.Append("</table>");
+                cookieText
+                    .Append("</table>");
 
                 bodyText = cookieText.ToString();
             }
             else
             {
-                bodyText = "<h1>Cookies set!</h1>";
+                 bodyText = "<h1>Cookies set!</h1>";
+
+                 response.Cookies.Add("My-Cookie", "My-Value");
+                 response.Cookies.Add("My-Second-Cookie", "My-Second-Value");
             }
 
-            if (!requestHasCookies)
-            {
-                response.Cookies.Add("My-Cookie", "My-Value");
-                response.Cookies.Add("My-Second-Cookie", "My-Second-Value");
-            }
+            response.Body = bodyText;
         }
     }
 }

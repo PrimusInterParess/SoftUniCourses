@@ -62,7 +62,7 @@ namespace SUHttpServer
                     Console.WriteLine(requestText);
 
                     var request = Request.Parse(requestText);
-                    var response = this.routingTable.MatchRequest(request);
+                    var response = this.routingTable.MatchRequest(request); 
 
                     if (response.PreRenderAction != null)
                     {
@@ -106,17 +106,6 @@ namespace SUHttpServer
 
             await networkStream.WriteAsync(responseBytes);
 
-            //            int contentLengt = Encoding.UTF8.GetByteCount(content);
-
-            //            string responce = $@"HTTP/1.1 200 OK
-            //Content-type: text/plain; charset=UTF-8
-            //Content-Length: {contentLengt}
-
-            //{content}";
-
-            //            var responseBytes = Encoding.UTF8.GetBytes(responce);
-
-            //            networkStream.Write(responseBytes, 0, responseBytes.Length);
         }
     }
 }

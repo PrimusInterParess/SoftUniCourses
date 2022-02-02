@@ -13,7 +13,7 @@ namespace SUHttpServer.Responses
     {
         public HtmlResponse(
             string text,
-            Action<Request,Response>preRenderAction =null)
+            Action<Request,Response>preRenderAction = null)
             : base(
                 text, 
                 ContentType.Html,
