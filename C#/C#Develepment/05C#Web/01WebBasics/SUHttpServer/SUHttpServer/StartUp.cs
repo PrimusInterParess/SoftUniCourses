@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using SUHttpServer.HTTP;
 using SUHttpServer.Responses;
+using SUHttpServer.Server.HTTP;
 
 
 namespace SUHttpServer
@@ -44,9 +45,30 @@ namespace SUHttpServer
                     .MapPost("/HTML", new TextResponse("", StartUp.AddFormDataAction))
                     .MapGet("/Content", new HtmlResponse(StartUp.DownloadForm))
                     .MapPost("/Content", new TextFileResponse(StartUp.FileName))
-                    .MapGet("/Cookies", new HtmlResponse("", StartUp.AddCookiesAction)));
-
+                    .MapGet("/Cookies", new HtmlResponse("", StartUp.AddCookiesAction))
+                    .MapGet("/Session",new TextResponse("",StartUp.DisplaySessionInfoAction)));
             await server.Start();
+        }
+
+
+        private static  void DisplaySessionInfoAction(Request request, Response response)
+        {
+            var sessionExists = request.Session.ContainsKey(Session.SessionCurrentDateKey);
+
+            var bodyText = string.Empty;
+
+            if (sessionExists)
+            {
+                var currentDate = request.Session[Session.SessionCurrentDateKey];
+                bodyText = $"Stored date:{currentDate}!";
+            }
+            else
+            {
+                bodyText = "Current date stored!";
+            }
+
+            response.Body = string.Empty;
+            response.Body += bodyText;
         }
 
         private static void AddFormDataAction(Request request, Response response)
@@ -94,7 +116,7 @@ namespace SUHttpServer
 
         private static void AddCookiesAction(Request request, Response response)
         {
-            var requestHasCookies = request.Cookies.Any();
+            var requestHasCookies = request.Cookies.Any(c => c.Name != Session.SessionCookieName);
 
             var bodyText = "";
 
@@ -126,10 +148,10 @@ namespace SUHttpServer
             }
             else
             {
-                 bodyText = "<h1>Cookies set!</h1>";
+                bodyText = "<h1>Cookies set!</h1>";
 
-                 response.Cookies.Add("My-Cookie", "My-Value");
-                 response.Cookies.Add("My-Second-Cookie", "My-Second-Value");
+                response.Cookies.Add("My-Cookie", "My-Value");
+                response.Cookies.Add("My-Second-Cookie", "My-Second-Value");
             }
 
             response.Body = bodyText;

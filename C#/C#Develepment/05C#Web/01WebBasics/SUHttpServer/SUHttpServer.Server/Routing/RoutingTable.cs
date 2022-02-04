@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,10 +17,10 @@ namespace SUHttpServer.Routing
         public RoutingTable() => 
             this.routes = new Dictionary<Method, Dictionary<string, Response>>()
             {
-                [Method.Get] = new(),
-                [Method.Post] = new(),
-                [Method.Put] = new(),
-                [Method.Delete] = new(),
+                [Method.Get] = new(StringComparer.InvariantCultureIgnoreCase),
+                [Method.Post] = new(StringComparer.InvariantCultureIgnoreCase),
+                [Method.Put] = new(StringComparer.InvariantCultureIgnoreCase),
+                [Method.Delete] = new(StringComparer.InvariantCultureIgnoreCase),
             };
         
 
