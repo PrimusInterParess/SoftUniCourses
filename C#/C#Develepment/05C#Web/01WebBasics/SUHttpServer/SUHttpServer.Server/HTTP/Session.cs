@@ -11,12 +11,13 @@ namespace SUHttpServer.Server.HTTP
     {
         public const string SessionCookieName = "MyWebServerSID";
         public const string SessionCurrentDateKey = "CurrentDate";
+        public const string SessionUserKey = "AuthenticatedUserId";
 
         private Dictionary<string, string> data;
 
         public Session(string id)
         {
-            Guard.AgainstNull(id,nameof(id));
+            Guard.AgainstNull(id, nameof(id));
 
             this.Id = id;
             this.data = new Dictionary<string, string>();
@@ -30,7 +31,10 @@ namespace SUHttpServer.Server.HTTP
             set => this.data[key] = value;
         }
 
-        public bool ContainsKey(string key) 
+        public bool ContainsKey(string key)
             => this.data.ContainsKey(key);
+
+        public void Clear()
+            => this.data.Clear();
     }
 }

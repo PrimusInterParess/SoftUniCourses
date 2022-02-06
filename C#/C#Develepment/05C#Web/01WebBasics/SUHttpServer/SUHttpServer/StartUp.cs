@@ -22,14 +22,24 @@ namespace SUHttpServer
         private const int port = 8080;
 
         private const string HtmlForm = @"<form action='HTML' method='POST'>
-                                           Name: <input type='text' name='Name/'>
-                                           Age: <input type='number' name='Age/'>
+                                           Name: <input type='text' name='Name'>
+                                           Age: <input type='number' name='Age'>
                                            <input type='submit' value ='Save'/>
                                          </form>";
 
         private const string DownloadForm = @"<form action='/Content' method='POST'>
-   <input type='submit' value ='Download Sites Content' /> 
-</form>";
+                                            <input type='submit' value ='Download Sites Content' /> 
+                                            </form>";
+
+        private const string LogInForm = @"<form action ='/Login' method='POST'>
+                                           Username: <input type='text' name='Username'/>
+                                           Password:<input type='text' name='Password'/>
+                                           <input type='submit' value='Log In' />
+                                           </form>";
+
+        private const string Username = "user";
+
+        private const string Password = "user123";
 
         private const string FileName = "content.txt";
 
@@ -46,12 +56,29 @@ namespace SUHttpServer
                     .MapGet("/Content", new HtmlResponse(StartUp.DownloadForm))
                     .MapPost("/Content", new TextFileResponse(StartUp.FileName))
                     .MapGet("/Cookies", new HtmlResponse("", StartUp.AddCookiesAction))
-                    .MapGet("/Session",new TextResponse("",StartUp.DisplaySessionInfoAction)));
+                    .MapGet("/Session", new TextResponse("", StartUp.DisplaySessionInfoAction))
+                    .MapGet("/Login", new HtmlResponse(StartUp.LogInForm))
+                    .MapPost("/Login", new HtmlResponse("", StartUp.LoginAction))
+                    .MapGet("/UserProfile", new HtmlResponse("", StartUp.GetUserDataAction)));
             await server.Start();
         }
 
+        private static void GetUserDataAction(Request request, Response response)
+        {
 
-        private static  void DisplaySessionInfoAction(Request request, Response response)
+            if (request.Session.ContainsKey(Session.SessionUserKey))
+            {
+                response.Body = string.Empty;
+                response.Body += $"<h3>Currently logged-in user" + $"is with username'{Username}'</h3>";
+            }
+            else
+            {
+                response.Body = string.Empty;
+                response.Body += "<h3>You should first log in " + "- <a href='/Login'>Login</a></h3>";
+            }
+        }
+
+        private static void DisplaySessionInfoAction(Request request, Response response)
         {
             var sessionExists = request.Session.ContainsKey(Session.SessionCurrentDateKey);
 
@@ -69,6 +96,31 @@ namespace SUHttpServer
 
             response.Body = string.Empty;
             response.Body += bodyText;
+        }
+
+
+        private static void LoginAction(Request request, Response response)
+        {
+            request.Session.Clear();
+            var bodyText = string.Empty;
+            var usernameMatches = request.Form["Username"] == StartUp.Username;
+            var passwordMatches = request.Form["Password"] == StartUp.Password;
+
+            if (usernameMatches && passwordMatches)
+            {
+                request.Session[Session.SessionUserKey] = "MyUserId";
+                response.Cookies.Add(Session.SessionCookieName, request.Session.Id);
+
+                bodyText = "<h3>Logged successfully!</h3>";
+            }
+            else
+            {
+                bodyText = StartUp.LogInForm;
+            }
+
+            response.Body = string.Empty;
+            response.Body += bodyText;
+
         }
 
         private static void AddFormDataAction(Request request, Response response)
