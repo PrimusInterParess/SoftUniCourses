@@ -27,7 +27,7 @@ namespace Theatre.Data.Models
         public TimeSpan Duration { get; set; }
 
         [MaxLength(10)]
-        public double Rating { get; set; }
+        public float Rating { get; set; }
 
         [Required]
         [MaxLength(4)]
