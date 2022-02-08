@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SUHttpServer.Common;
-
-namespace SUHttpServer.HTTP
+﻿namespace SUHttpServer.HTTP
 {
+    using Common;
+
     public class Header
     {
         public const string ContentType = "Content-Type";
@@ -18,7 +13,6 @@ namespace SUHttpServer.HTTP
         public const string Server = "Server";
         public const string SetCookie = "Set-Cookie";
 
-
         public Header(string name, string value)
         {
             Guard.AgainstNull(name, nameof(name));
@@ -28,6 +22,7 @@ namespace SUHttpServer.HTTP
         }
 
         public string Name { get; set; }
+
         public string Value { get; set; }
 
         public override string ToString()

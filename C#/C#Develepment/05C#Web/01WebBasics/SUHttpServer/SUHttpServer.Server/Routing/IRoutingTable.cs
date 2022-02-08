@@ -1,8 +1,10 @@
-﻿using System;
-using SUHttpServer.HTTP;
+﻿
 
 namespace SUHttpServer.Routing
 {
+    using System;
+    using HTTP;
+
     public interface IRoutingTable
     {
         IRoutingTable Map(Method method, string path, Func<Request, Response> responseFunction);

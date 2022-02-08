@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using SUHttpServer.Server.HTTP;
-
-namespace SUHttpServer.HTTP
+﻿namespace SUHttpServer.HTTP
 {
+    using System.Collections.Generic;
+    using SUHttpServer.Server.HTTP;
+    using System.Linq;
+    using System.Web;
+    using System;
+
     public class Request
     {
         private static Dictionary<string, Session> Sessions = new();
@@ -36,7 +34,9 @@ namespace SUHttpServer.HTTP
                 .Split(" ");
 
             var url = startLine[1];
+
             var method = ParseMethod(startLine[0]);
+
             var headers = ParseHeaders(lines.Skip(1));
 
             var cookies = ParseCookies(headers);

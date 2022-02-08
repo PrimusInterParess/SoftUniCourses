@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SUHttpServer.Controllers;
-using SUHttpServer.HTTP;
-using SUHttpServer.Routing;
-
-namespace SUHttpServer.Demo.Controllers
+﻿namespace SUHttpServer.Demo.Controllers
 {
+    using SUHttpServer.Controllers;
+    using Routing;
+    using System;
+    using HTTP;
+
     public static class RoutingTableExtensions
     {
         public static IRoutingTable MapGet<TController>(

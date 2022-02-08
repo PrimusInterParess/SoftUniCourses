@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SUHttpServer.Common;
-using SUHttpServer.HTTP;
-using SUHttpServer.Responses;
-
-namespace SUHttpServer.Routing
+﻿namespace SUHttpServer.Routing
 {
+    using System.Collections.Generic;
+    using Responses;
+    using System;
+    using Common;
+    using HTTP;
+
     public class RoutingTable : IRoutingTable
     {
         private readonly Dictionary<Method, Dictionary<string, Func<Request, Response>>> routes;
@@ -23,7 +18,6 @@ namespace SUHttpServer.Routing
                 [Method.Put] = new(StringComparer.InvariantCultureIgnoreCase),
                 [Method.Delete] = new(StringComparer.InvariantCultureIgnoreCase),
             };
-
 
         public IRoutingTable Map(
             Method method,

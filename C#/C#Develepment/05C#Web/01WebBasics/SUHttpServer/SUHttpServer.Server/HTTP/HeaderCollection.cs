@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SUHttpServer.HTTP
+﻿namespace SUHttpServer.HTTP
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     public class HeaderCollection : IEnumerable<Header>
     {
         private readonly Dictionary<string, Header> headers;

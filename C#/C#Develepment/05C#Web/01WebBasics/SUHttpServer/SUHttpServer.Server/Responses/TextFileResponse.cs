@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SUHttpServer.HTTP;
-
-namespace SUHttpServer.Responses
+﻿namespace SUHttpServer.Responses
 {
+    using System.IO;
+    using HTTP;
+
     public class TextFileResponse : Response
     {
-
         public string FileName { get; init; }
 
         public TextFileResponse(string fileName)
@@ -23,7 +17,6 @@ namespace SUHttpServer.Responses
 
         public override string ToString()
         {
-
             if (File.Exists(this.FileName))
             {
                 this.Body = File.ReadAllTextAsync(this.FileName).Result;
@@ -36,7 +29,6 @@ namespace SUHttpServer.Responses
             }
 
             return base.ToString();
-
         }
     }
 }

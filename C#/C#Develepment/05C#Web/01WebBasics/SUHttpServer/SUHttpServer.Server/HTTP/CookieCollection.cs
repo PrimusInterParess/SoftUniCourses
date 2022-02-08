@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SUHttpServer.HTTP
+﻿namespace SUHttpServer.HTTP
 {
+    using System.Collections;
+    using System.Collections.Generic;
+
     public class CookieCollection : IEnumerable<Cookie>
     {
         private readonly Dictionary<string, Cookie> cookies;

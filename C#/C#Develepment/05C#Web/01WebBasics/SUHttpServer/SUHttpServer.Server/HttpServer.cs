@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using SUHttpServer.HTTP;
-using SUHttpServer.Routing;
-using SUHttpServer.Server.HTTP;
-
-namespace SUHttpServer
+﻿namespace SUHttpServer
 {
+    using SUHttpServer.Server.HTTP;
+    using System.Threading.Tasks;
+    using System.Net.Sockets;
+    using System.Text;
+    using System.Net;
+    using Routing;
+    using System;
+    using HTTP;
+
     public class HttpServer
     {
         private readonly IPAddress ipAddress;
@@ -64,11 +62,6 @@ namespace SUHttpServer
 
                     var request = Request.Parse(requestText);
                     var response = this.routingTable.MatchRequest(request);
-
-                    if (response.PreRenderAction != null)
-                    {
-                        response.PreRenderAction(request, response);
-                    }
 
                     AddSession(request, response);
 

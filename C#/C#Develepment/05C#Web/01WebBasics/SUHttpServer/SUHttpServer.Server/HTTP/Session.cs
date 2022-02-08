@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SUHttpServer.Common;
-
-namespace SUHttpServer.Server.HTTP
+﻿namespace SUHttpServer.Server.HTTP
 {
+    using System.Collections.Generic;
+    using Common;
+
     public class Session
     {
         public const string SessionCookieName = "MyWebServerSID";

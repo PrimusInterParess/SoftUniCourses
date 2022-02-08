@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SUHttpServer.HTTP
+﻿namespace SUHttpServer.HTTP
 {
+    using System.Text;
+    using System;
+
     public class Response
     {
         public Response(StatusCode statusCode)
@@ -23,9 +20,6 @@ namespace SUHttpServer.HTTP
         public CookieCollection Cookies { get; } = new CookieCollection();
 
         public string Body { get; set; }
-
-        public Action<Request, Response> PreRenderAction { get; protected set; }
-
 
         public override string ToString()
         {

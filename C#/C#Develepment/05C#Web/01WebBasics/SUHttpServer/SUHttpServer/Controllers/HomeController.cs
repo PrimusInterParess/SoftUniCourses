@@ -1,33 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Net.Http;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
-using SUHttpServer.Controllers;
-using SUHttpServer.HTTP;
-
-namespace SUHttpServer.Demo.Controllers
+﻿namespace SUHttpServer.Demo.Controllers
 {
+    using SUHttpServer.Controllers;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Net.Http;
+    using System.Linq;
+    using System.Text;
+    using System.Web;
+    using System;
+    using HTTP;
+
     public class HomeController : Controller
     {
-
         private const string location = "https://softuni.bg/";
 
-        private const string HtmlForm = @"<form action='HTML' method='POST'>
-                                           Name: <input type='text' name='Name'>
-                                           Age: <input type='number' name='Age'>
-                                           <input type='submit' value ='Save'/>
-                                         </form>";
-
-        private const string DownloadForm = @"<form action='/Content' method='POST'>
-                                            <input type='submit' value ='Download Sites Content' /> 
-                                            </form>";
-
         private const string FileName = "content.txt";
-
 
         public HomeController(Request request)
         : base(request)
@@ -38,7 +25,7 @@ namespace SUHttpServer.Demo.Controllers
 
         public Response Redirect() => Redirect(location);
 
-        public Response Html() => Html(HomeController.HtmlForm);
+        public Response Html() => View(); //=> Html(HomeController.HtmlForm);
 
         public Response HtmlFormPost()
         {
@@ -53,7 +40,7 @@ namespace SUHttpServer.Demo.Controllers
             return Text(formData);
         }
 
-        public Response Content() => Html(HomeController.DownloadForm);
+        public Response Content() => View();// Html(HomeController.DownloadForm);
 
         public Response DownloadContent()
         {
@@ -63,6 +50,58 @@ namespace SUHttpServer.Demo.Controllers
             return File(HomeController.FileName);
         }
 
+        public Response Cookies()
+        {
+            if (this.Request.Cookies.Any(c =>
+                    c.Name !=
+                    SUHttpServer.Server.HTTP.Session.SessionCookieName))
+            {
+                var cookieText = new StringBuilder();
+                cookieText
+                    .AppendLine("<h1>Cookies</h1>");
+
+                cookieText
+                    .Append("<table border='1'><tr><th>Name</th><th>Value</th></tr>");
+
+                foreach (var cookie in Request.Cookies)
+                {
+                    cookieText
+                        .Append("<tr>");
+                    cookieText
+                        .Append($"<td>{HttpUtility.HtmlEncode(cookie.Name)}</td>");
+                    cookieText
+                        .Append($"<td>{HttpUtility.HtmlEncode(cookie.Value)}</td>");
+                    cookieText
+                        .Append("</tr>");
+                }
+
+                cookieText
+                    .Append("</table>");
+
+                return Html(cookieText.ToString());
+            }
+
+            var cookies = new CookieCollection();
+
+            cookies.Add("My-Cookie", "My-Value");
+            cookies.Add("My-Second-Cookie", "My-Second-Value");
+
+            return Html("<h1>Cookies set!</h1>", cookies);
+        }
+
+        public Response Session()
+        {
+            string currentDateKey = "CurrentDate";
+            var sessionExists = this.Request.Session.ContainsKey(currentDateKey);
+
+            if (sessionExists)
+            {
+                var currentDate = Request.Session[currentDateKey];
+                return Text($"Stored date:{currentDate}!");
+            }
+
+            return Text("Current date stored!");
+        }
 
         private static async Task<string> DownloadWebSiteContent(string url)
         {
@@ -92,8 +131,6 @@ namespace SUHttpServer.Demo.Controllers
             var responsesString = string.Join(
                 Environment.NewLine + new string('-', 100),
                 responses);
-
-           // await File.WriteAllTextAsync(fileName, responsesString);
         }
     }
 }
