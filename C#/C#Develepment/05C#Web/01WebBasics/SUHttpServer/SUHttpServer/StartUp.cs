@@ -22,9 +22,6 @@ namespace SUHttpServer
 
         private const int port = 8080;
 
-
-
-
         public static async Task Main(string[] args)
             => await new HttpServer(routes => routes
                      .MapGet<HomeController>("/", c => c.Index())

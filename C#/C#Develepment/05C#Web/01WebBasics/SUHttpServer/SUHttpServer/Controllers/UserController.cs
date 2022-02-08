@@ -18,7 +18,7 @@
         }
 
         public Response Login()
-            => View();// Html(UserController.LogInForm);
+            => View();
 
         public Response LoginUser()
         {

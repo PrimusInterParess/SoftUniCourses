@@ -21,7 +21,7 @@ namespace SUHttpServer.Server.Responses
                 viewName = controllerName + PathSeparator + viewName;
             }
 
-            var viewPath = Path.GetFullPath("./Views/" + viewName.TrimStart(PathSeparator) + ".cshtml");
+            var viewPath = Path.GetFullPath($"./Views/{viewName.TrimStart(PathSeparator)}.cshtml");
 
             var viewContent = File.ReadAllText(viewPath);
 

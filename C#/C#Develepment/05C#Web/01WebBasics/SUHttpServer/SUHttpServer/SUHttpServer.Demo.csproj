@@ -7,12 +7,11 @@
 
 	<ItemGroup>
 		<None Remove="Views\Home\Html.cshtml" />
-		<None Remove="Views\Users\Login.cshtml" />
+		<None Remove="Views\User\Login.cshtml" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Content Include="Views\Home\Html.cshtml" />
-		<Content Include="Views\Users\Login.cshtml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -20,6 +19,18 @@
 		<Content Include="Views\**\*.*">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="Views\Home\Content.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Views\Home\Html.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Views\User\Login.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
 	</ItemGroup>
 
 </Project>
