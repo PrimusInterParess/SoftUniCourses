@@ -46,6 +46,9 @@ namespace SUHttpServer.Controllers
         protected Response View([CallerMemberName] string viewName = "")
             => new ViewResponse(viewName, this.GetControllerName());
 
+        protected Response View(object model, [CallerMemberName] string viewName = "")
+            => new ViewResponse(viewName, this.GetControllerName(), model);
+
         private string GetControllerName()
             => this.GetType().Name
                 .Replace(nameof(Controller), string.Empty);

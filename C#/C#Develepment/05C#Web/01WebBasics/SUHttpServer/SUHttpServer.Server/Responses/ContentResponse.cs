@@ -16,9 +16,7 @@
 
             this.Headers.Add(Header.ContentType, contentType);
 
-
             this.Body = content;
-
         }
 
         public override string ToString()
