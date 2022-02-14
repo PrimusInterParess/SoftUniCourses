@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using SharedTrip.Constants;
-
-namespace SharedTrip.Models
+﻿namespace SharedTrip.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.Collections.Generic;
+    using Constants;
+    using System;
+
+    using static Constants.GlobalConstants;
+
+
     public class Trip
     {
         [Key]
@@ -12,26 +15,27 @@ namespace SharedTrip.Models
         public string Id { get; private set; }
 
         [Required]
-        [MaxLength(GlobalConstants.MaxLengthDestination)]
+        [MaxLength(MaxLengthDestination)]
         public string StartPoint { get; private set; }
 
         [Required]
-        [MaxLength(GlobalConstants.MaxLengthDestination)]
+        [MaxLength(MaxLengthDestination)]
         public string EndPoint { get; private set; }
 
         [Required]
         public DateTime DepartureTime { get; set; }
 
         [Required]
-        [MaxLength(GlobalConstants.MaxLengthSeats)]
+        [MaxLength(MaxLengthSeats)]
+        [Range(2, 6)]
         public int Seats { get; set; }
 
         [Required]
-        [MaxLength(GlobalConstants.MaxLengthDescription)]
+        [MaxLength(MaxLengthDescription)]
         public string Description { get; set; }
 
         [Required]
-        [MaxLength(GlobalConstants.MaxLengthUrl)]
+        [MaxLength(MaxLengthUrl)]
         public string ImagePath { get; set; }
 
         public IEnumerable<UserTrip> UserTrips = new HashSet<UserTrip>();

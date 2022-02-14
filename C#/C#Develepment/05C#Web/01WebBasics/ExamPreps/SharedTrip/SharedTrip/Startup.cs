@@ -1,4 +1,6 @@
-﻿namespace SharedTrip
+﻿using SharedTrip.Services;
+
+namespace SharedTrip
 {
     using System.Threading.Tasks;
 
@@ -16,7 +18,8 @@
                     .MapStaticFiles()
                     .MapControllers())
                 .WithServices(services => services
-                    .Add<IViewEngine, CompilationViewEngine>())
+                    .Add<IViewEngine, CompilationViewEngine>()
+                    .Add<IValidator,Validator>())
                 .Start();
     }
 }
