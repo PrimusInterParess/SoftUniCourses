@@ -1,0 +1,20 @@
+﻿using System.Reflection.Metadata;
+
+namespace SharedTrip.Controllers
+{
+    using MyWebServer.Controllers;
+    using MyWebServer.Http;
+
+    public class HomeController : Controller
+    {
+        public HttpResponse Index()
+        {
+            if (this.User.IsAuthenticated)
+            {
+                return Redirect("/Trips/All");
+            }
+
+            return this.View();
+        }
+    }
+}
