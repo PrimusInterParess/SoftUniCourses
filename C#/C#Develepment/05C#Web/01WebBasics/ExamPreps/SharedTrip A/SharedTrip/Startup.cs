@@ -1,4 +1,6 @@
 ﻿using SharedTrip.Contracts;
+using SharedTrip.Data;
+using SharedTrip.Data.Common;
 using SharedTrip.Services;
 
 namespace SharedTrip
@@ -20,8 +22,10 @@ namespace SharedTrip
                     .MapControllers())
                 .WithServices(services => services
                     .Add<IViewEngine, CompilationViewEngine>()
-                    .Add<IValidator, Validator>()
-                    .Add<IPasswordHasher,PasswordHasher>())
+                    .Add<IUserService, UserService>()
+                    .Add<IRepository,Repository>()
+                    .Add<ApplicationDbContext>()
+                    .Add<ITripService,TripService>())
                 .Start();
     }
 }

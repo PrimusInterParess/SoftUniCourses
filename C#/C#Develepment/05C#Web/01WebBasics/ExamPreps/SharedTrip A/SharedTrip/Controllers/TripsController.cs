@@ -2,28 +2,37 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+
 using MyWebServer.Controllers;
 using MyWebServer.Http;
 using SharedTrip.Contracts;
 using SharedTrip.Data;
 using SharedTrip.Data.Models;
-using SharedTrip.Models.TripsFormModels;
+using SharedTrip.Models;
+using SharedTrip.Models.Trips;
+
 
 namespace SharedTrip.Controllers
 {
     public class TripsController : Controller
     {
-        private readonly IValidator validator;
-        private readonly ApplicationDbContext data;
+        private readonly ITripService tripService;
 
-        public TripsController(
-            IValidator validator, 
-            ApplicationDbContext data)
+        public TripsController(ITripService tripService)
         {
-            this.validator = validator;
-            this.data = data;
+            this.tripService = tripService;
+        }
+
+
+     //TODO fix visualization
+
+        [Authorize]
+        public HttpResponse All()
+        {
+            IEnumerable<TripListViewModel> trips = tripService.GetAllTrips();
+
+            return View(trips);
         }
 
         [Authorize]
@@ -32,87 +41,56 @@ namespace SharedTrip.Controllers
             return View();
         }
 
-        [Authorize]
         [HttpPost]
-        public HttpResponse Add(TripAddFormModel model)
+        [Authorize]
+        public HttpResponse Add(TripAddViewModel model)
         {
-            var result = validator.ValidateTripAddFormModel(model);
+            var (isValid, errors) = tripService.ValidateModel(model);
 
-            HttpResponse responseToReturn = null;
-
-
-            if (result.isValid == false)
+            if (!isValid)
             {
-                responseToReturn = Redirect("/Trips/Add");
-            }
-            else
-            {
-                Trip trip = CreateTrip(model);
-
-                AddUserToTrip(trip);
-                AddTripToDatabase(trip);
-
-                responseToReturn = Redirect("/Trips/All");
+                return View();
             }
 
-            return responseToReturn;
-        }
-
-        private void AddUserToTrip(Trip trip)
-        {
-            var userID = this.User.Id;
-
-            trip.UserTrips.Add(new UserTrip()
+            try
             {
-                UserId = userID,
-                TripId = trip.Id
-            });
-
-        }
-
-        private void AddTripToDatabase(Trip trip)
-        {
-            this.data.Trips.Add(trip);
-            this.data.SaveChanges();
-        }
-
-        private Trip CreateTrip(TripAddFormModel model)
-        {
-            return new Trip()
+                tripService.AddTrip(model);
+            }
+            catch (Exception ex)
             {
-                StartPoint = model.StartPoint,
-                EndPoint = model.EndPoint,
-                DepartureTime = ConvertDateTime(model.DepartureTime),
-                ImagePath = model.ImagePath,
-                Description = model.Description,
-                Seats = model.Seats
-            };
+                return View(
+                    new List<ErrorViewModel>() { new ErrorViewModel("Unexpected error when add trip") },
+                    "/Error");
+            }
+
+            return Redirect("Trips/All");
         }
 
-        private DateTime ConvertDateTime(string modelDepartureTime)
+        [Authorize]
+        public HttpResponse Details(string tripId)
         {
-            DateTime date;
+            TripDetailsViewModel tripDetailsViewModel = tripService.GetTripDetails(tripId);
 
-            DateTime.TryParseExact(modelDepartureTime, "dd.MM.yyyy HH:mm", CultureInfo.InvariantCulture,
-                DateTimeStyles.None, out date);
-
-            return date;
+            return View(tripDetailsViewModel);
         }
-
-        public HttpResponse All()
+        [Authorize]
+        public HttpResponse AddUserToTrip(string tripId)
         {
-            return View();
+            try
+            {
+                tripService.AddUserToTrip(tripId,this.User.Id);
+            }
+            catch (ArgumentException aex)
+            {
+                return View("/Trips/AddUserToTrip");
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return Redirect("/Trips/All");
         }
 
-        public HttpResponse Details()
-        {
-            return View();
-        }
-
-        public HttpResponse Logout()
-        {
-            return View();
-
-        }
     }
 }

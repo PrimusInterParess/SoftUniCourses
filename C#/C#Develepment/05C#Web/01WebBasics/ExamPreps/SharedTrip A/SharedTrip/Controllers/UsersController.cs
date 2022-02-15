@@ -1,124 +1,82 @@
 ﻿
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using MyWebServer.Controllers;
 using MyWebServer.Http;
+using MyWebServer.Http.Collections;
 using SharedTrip.Contracts;
-using SharedTrip.Data;
-using SharedTrip.Data.Models;
-using SharedTrip.Services;
-using SharedTrip.Models.UsersFormModels;
+using SharedTrip.Models;
+using SharedTrip.Models.Users;
+
 
 namespace SharedTrip.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly IValidator validator;
-        private readonly IPasswordHasher passwordHasher;
-        private readonly ApplicationDbContext data;
+        private readonly IUserService userService;
 
-        public UsersController(
-            IValidator validator,
-            IPasswordHasher passwordHasher,
-            ApplicationDbContext data)
+        public UsersController(IUserService userService)
         {
-            this.validator = validator;
-            this.passwordHasher = passwordHasher;
-            this.data = data;
+            this.userService = userService;
         }
 
         public HttpResponse Login()
+        => View();
+
+        [HttpPost]
+        public HttpResponse Login(LoginViewModel model)
         {
+
+            (string userId, bool isCorrect) = userService.IsLoginCorrect(model);
+
+            if (isCorrect)
+            {
+                SignIn(userId);
+
+                return Redirect("/Trips/All");
+            }
+
             return View();
         }
 
-        [HttpPost]
-        public HttpResponse Login(UserLoginFormModel model)
-        {
-            HttpResponse responseToReturn = null;
-
-            var hashedPassword = passwordHasher.HasPassword(model.Password);
-
-            var user = GetUserFromDatabase(model, hashedPassword);
-
-            if (user == null)
-            {
-                responseToReturn = View();
-            }
-            else
-            {
-                this.SignIn(user);
-
-                responseToReturn = Redirect("/Trips/All");
-            }
-
-            return responseToReturn;
-        }
-
-        private string? GetUserFromDatabase(UserLoginFormModel model, string hashedPassword)
-        {
-            var user =
-                data
-                    .Users
-                    .Where(u => u.Username == model.Username && u.Password == hashedPassword)
-                    .Select(u => u.Id)
-                    .FirstOrDefault();
-            return user;
-        }
 
         public HttpResponse Register()
-        {
-            return View();
-        }
+            => View();
 
         [HttpPost]
-        public HttpResponse Register(UserRegisterFormModel model)
+        public HttpResponse Register(RegisterViewModel model)
         {
-            var result
-                = validator.ValidateUserRegistrationFormModel(model);
+            var (isValid, errors) = userService.ValidateModel(model);
 
-            HttpResponse responseToReturn = null;
-
-            if (result.isValid == false)
+            if (!isValid)
             {
-                responseToReturn = View();
-            }
-            else
-            {
-                User user = CreateUser(model);
-
-                AddUserToDatabase(user);
-
-                responseToReturn = Redirect("/Users/Login");
+                return View();
             }
 
-            return responseToReturn;
+            try
+            {
+                userService.RegisterUser(model);
+            }
+            catch(ArgumentException aex)
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                return View(
+                    new List<ErrorViewModel>() { new ErrorViewModel("Unexpected register error") },
+                    "/Error");
+            }
+
+            return Redirect("/Users/Login");
         }
 
+        [Authorize]
         public HttpResponse Logout()
         {
             this.SignOut();
 
             return Redirect("/");
         }
-
-        private void AddUserToDatabase(User user)
-        {
-            this.data.Users.Add(user);
-
-           this.data.SaveChanges();
-        }
-
-        private User CreateUser(UserRegisterFormModel model)
-        {
-            return new User()
-            {
-                Username = model.Username,
-                Email = model.Email,
-                Password = this.passwordHasher.HasPassword(model.Password)
-            };
-        }
-
-       
     }
 }

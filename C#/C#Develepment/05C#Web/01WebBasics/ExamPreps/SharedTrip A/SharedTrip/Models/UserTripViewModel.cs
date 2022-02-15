@@ -1,7 +1,7 @@
 ﻿namespace SharedTrip.Models
 {
-    public class Trip
+    public class UserTripViewModel
     {
-
+        
     }
 }
