@@ -38,7 +38,6 @@ namespace SMS.Controllers
         public Response Login(UserLoginViewModel model)
         {
             Request.Session.Clear();
-
             string id = userService.Login(model);
 
             if (id == null)
@@ -48,7 +47,6 @@ namespace SMS.Controllers
 
             this.SignIn(id);
             CookieCollection cookies = new CookieCollection();
-
             cookies.Add(Session.SessionCookieName,Request.Session.Id);
 
             return this.Redirect("/");

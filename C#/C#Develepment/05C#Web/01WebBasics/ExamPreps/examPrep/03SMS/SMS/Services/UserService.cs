@@ -22,7 +22,7 @@ namespace SMS.Services
             this.repo = repo;
             this.validation = validation;
         }
-        
+
 
         public (bool isValid, string errors) Register(UserRegisterViewModel model)
         {
@@ -32,13 +32,13 @@ namespace SMS.Services
 
             var (isValid, errors) = this.validation.ValidateModel(model);
 
-            if (isValid==false)
+            if (isValid == false)
             {
                 return (isValid, errors);
             }
 
             Cart cart = new Cart();
-
+        
             User user = new User()
             {
                 Email = model.Email,
@@ -50,9 +50,8 @@ namespace SMS.Services
 
             try
             {
-                repo.Add(user);
+                repo.Add(user);           
                 repo.SaveChanges();
-
                 registered = true;
 
             }
@@ -65,14 +64,14 @@ namespace SMS.Services
         }
 
 
-     
+
 
         public string Login(UserLoginViewModel model)
         {
             var user = repo
                 .All<User>()
                 .Where(u => u.Username == model.Username)
-                .Where(u=>u.Password==HashingPassword(model.Password)).SingleOrDefault();
+                .Where(u => u.Password == HashingPassword(model.Password)).SingleOrDefault();
 
             return user?.Id;
         }
@@ -97,16 +96,16 @@ namespace SMS.Services
             return (isValid, errors.ToString());
         }
 
-   
+
 
 
 
         private string HashingPassword(string rawData)
         {
-            
+
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                
+
                 byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
 
                 StringBuilder builder = new StringBuilder();

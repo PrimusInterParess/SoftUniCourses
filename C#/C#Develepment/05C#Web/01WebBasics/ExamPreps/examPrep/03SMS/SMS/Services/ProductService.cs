@@ -33,7 +33,14 @@ namespace SMS.Services
 
             decimal price = 0;
 
-            if (!decimal.TryParse(model.Price,NumberStyles.AllowDecimalPoint,CultureInfo.InvariantCulture, out price)||price<0.05m ||price>1000m)
+            if (!decimal.TryParse(
+                model.Price,
+                NumberStyles
+                .AllowDecimalPoint,
+                CultureInfo.InvariantCulture,
+                out price)||
+                price<0.05m ||
+                price>1000m)
             {
                 return (false,"Invalid price.Price range 0.05,1000");
             }

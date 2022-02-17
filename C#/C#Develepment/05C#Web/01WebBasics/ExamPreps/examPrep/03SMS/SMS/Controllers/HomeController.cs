@@ -1,17 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BasicWebServer.Server.Controllers;
-using BasicWebServer.Server.HTTP;
-using SMS.Contracts;
-using SMS.Models.Products;
-using SMS.Services;
+﻿
 
 namespace SMS.Controllers
 {
+    using BasicWebServer.Server.Controllers;
+    using BasicWebServer.Server.HTTP;
+    using SMS.Contracts;
+
     public class HomeController : Controller
     {
         private readonly IUserService userService;
-
         private readonly IProductService productService;
 
         public HomeController(Request request,IUserService userService,IProductService productService)

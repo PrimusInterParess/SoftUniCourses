@@ -22,7 +22,8 @@ namespace SMS
                 .Add<SMSDbContext>()
                 .Add<IRepository, Repository>()
                 .Add<IValidationService,ValidationService>()
-                .Add<IProductService,ProductService>();
+                .Add<IProductService,ProductService>()
+                .Add<ICartService, CartService>();
 
             await server.Start();
         }
