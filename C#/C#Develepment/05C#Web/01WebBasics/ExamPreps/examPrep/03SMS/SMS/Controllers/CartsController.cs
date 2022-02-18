@@ -38,7 +38,31 @@ namespace SMS.Controllers
         {
             var products = cartService.GetProducts(this.User.Id);
 
-            return View(products, "/Cats/Details");
+             return View(new
+            {
+                row = products,
+                IsAuthenticated = true
+            }, "/Carts/Details");
+        }
+
+        //public Response MyCart()
+        //{
+        //    return Redirect("/Carts/Details");
+        //}
+
+        [Authorize]
+        public Response Buy()
+        {
+           var userId =  this.User.Id;
+
+          var result = this.cartService.ClearCard(userId);
+
+          if (result==true)
+          {
+              return Redirect("/");
+          }
+
+          return View(new { ErrorMessage = "Could not finish purchase!" },"/Error");
         }
     }
 }

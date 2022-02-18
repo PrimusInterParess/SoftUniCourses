@@ -6,39 +6,43 @@ using System.Threading.Tasks;
 using BasicWebServer.Server.Attributes;
 using BasicWebServer.Server.Controllers;
 using BasicWebServer.Server.HTTP;
-using SMS.Contracts;
-using SMS.Models;
-using SMS.Models.Users;
+using SharedTrip.Contracts;
+using SharedTrip.Models.Users;
 
-namespace SMS.Controllers
+namespace SharedTrip.Controllers
 {
     public class UsersController : Controller
     {
         private readonly IUserService userService;
 
         public UsersController(
-            Request request,
-            IUserService userService
-            ) : base(request)
+            Request request,IUserService _userService) : base(request)
         {
-            this.userService = userService;
+            this.userService = _userService;
         }
 
         public Response Login()
         {
             if (this.User.IsAuthenticated)
             {
-                return Redirect("/");
+                return Redirect("/Trips/All");
             }
 
             return this.View(new { IsAuthenticated = false });
         }
 
+
         [HttpPost]
         public Response Login(UserLoginViewModel model)
         {
+
+            if (this.User.IsAuthenticated)
+            {
+                return Redirect("/Trips/All");
+            }
+
             Request.Session.Clear();
-            string id = userService.Login(model);
+            string id = this.userService.LoginUser(model);
 
             if (id == null)
             {
@@ -47,43 +51,41 @@ namespace SMS.Controllers
 
             this.SignIn(id);
             CookieCollection cookies = new CookieCollection();
-            cookies.Add(Session.SessionCookieName,Request.Session.Id);
+            cookies.Add(Session.SessionCookieName, Request.Session.Id);
 
-            return this.Redirect("/");
+            return View(this.User, "/Trips/All");
 
         }
 
+
         public Response Register()
         {
-
             if (this.User.IsAuthenticated)
             {
-                return Redirect("/");
+                return Redirect("/Trips/All");
             }
 
+          
+          
             return this.View(new { IsAuthenticated = false });
         }
 
         [HttpPost]
         public Response Register(UserRegisterViewModel model)
         {
-            var (isRegistered, error) = userService.Register(model);
-
-            if (isRegistered)
+            if (this.User.IsAuthenticated)
             {
-                return Redirect("/Users/Login");
+                return Redirect("/Trips/All");
             }
 
-            return this.View(new { ErrorMessage = error }, "/Error");
+            var (isRegistered, errors) = this.userService.RegisterUser(model);
+
+            if (isRegistered==false)
+            {
+                return this.View(new { IsAuthenticated = false });
+            }
+
+            return this.View(new { IsAuthenticated = false },"/Users/Login");
         }
-
-        [Authorize]
-        public Response Logout()
-        {
-            this.SignOut();
-
-            return Redirect("/");
-        }
-
     }
 }

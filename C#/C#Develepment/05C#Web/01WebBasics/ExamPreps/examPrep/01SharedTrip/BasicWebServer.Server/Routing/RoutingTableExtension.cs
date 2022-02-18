@@ -1,7 +1,6 @@
 ﻿using BasicWebServer.Server.Attributes;
 using BasicWebServer.Server.Controllers;
 using BasicWebServer.Server.HTTP;
-using BasicWebServer.Server.Responses;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -93,7 +92,7 @@ namespace BasicWebServer.Server.Routing
                 {
                     var content = File.ReadAllBytes(file);
                     var fileExtension = Path.GetExtension(file).Trim('.');
-                    var fileName = Path.GetFileName(file); 
+                    var fileName = Path.GetFileName(file);
                     var contentType = ContentType.GetByFileExtension(fileExtension);
 
                     return new Response(StatusCode.OK)
@@ -142,8 +141,13 @@ namespace BasicWebServer.Server.Routing
                 if (parameter.ParameterType.IsPrimitive || 
                     parameter.ParameterType == typeof(string))
                 {
-                    string parameterValue = request.GetValue(parameter.Name);
-                    parameterValues[i] = Convert.ChangeType(parameterValue, parameter.ParameterType);
+                    try
+                    {
+                        string parameterValue = request.GetValue(parameter.Name);
+                        parameterValues[i] = Convert.ChangeType(parameterValue, parameter.ParameterType);
+                    }
+                    catch (Exception)
+                    {}
                 }
                 else
                 {
@@ -152,10 +156,15 @@ namespace BasicWebServer.Server.Routing
 
                     foreach (var property in parameterProperties)
                     {
-                        var propertyValue = request.GetValue(property.Name);
-                        property.SetValue(
-                            parameterValue,
-                            Convert.ChangeType(propertyValue, property.PropertyType));
+                        try
+                        {
+                            var propertyValue = request.GetValue(property.Name);
+                            property.SetValue(
+                                parameterValue,
+                                Convert.ChangeType(propertyValue, property.PropertyType));
+                        }
+                        catch (Exception)
+                        {}
                     }
 
                     parameterValues[i] = parameterValue;

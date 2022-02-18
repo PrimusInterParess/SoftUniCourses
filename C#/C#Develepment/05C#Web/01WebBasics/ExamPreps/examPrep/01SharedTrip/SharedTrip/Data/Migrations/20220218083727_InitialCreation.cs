@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SharedTrip.Data.Migrations
 {
-    public partial class IntialCreation : Migration
+    public partial class InitialCreation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,8 +14,8 @@ namespace SharedTrip.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    StartPoint = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EndPoint = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StartPoint = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    EndPoint = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Seats = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
@@ -32,8 +32,8 @@ namespace SharedTrip.Data.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false)
                 },
                 constraints: table =>
                 {

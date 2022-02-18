@@ -9,11 +9,23 @@ namespace SharedTrip.Controllers
         public HomeController(Request request)
             : base(request)
         {
+
         }
 
         public Response Index()
         {
-            return this.View();
+            if (User.IsAuthenticated)
+            {
+                return View(this.User,"/Trips/All");
+            }
+
+            return this.View(
+                new
+                {
+                    IsAuthenticated = false
+                });
         }
+
+     
     }
 }

@@ -11,5 +11,7 @@ namespace SMS.Contracts
     {
         IEnumerable<CartViewModel> AddProduct(string productId,string userId);
         IEnumerable<CartViewModel> GetProducts(string id);
+
+        bool ClearCard(string userId);
     }
 }

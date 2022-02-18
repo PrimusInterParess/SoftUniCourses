@@ -1,4 +1,9 @@
-﻿namespace SharedTrip
+﻿using SharedTrip.Contracts;
+using SharedTrip.Data;
+using SharedTrip.Data.Common;
+using SharedTrip.Services;
+
+namespace SharedTrip
 {
     using BasicWebServer.Server;
     using BasicWebServer.Server.Routing;
@@ -12,8 +17,13 @@
                .MapControllers()
                .MapStaticFiles());
 
-            //server.ServiceCollection
-            //    .Add<UserService>();
+            server.ServiceCollection
+                .Add<IUserService, UserService>()
+                .Add<IRepository, Repository>()
+                .Add<IValidationService, ValidationService>()
+                .Add<ApplicationDbContext>()
+                .Add<ITripService,TripService>();
+              
 
             await server.Start();
         }

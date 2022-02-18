@@ -97,4 +97,8 @@
     <ProjectReference Include="..\BasicWebServer.Server\BasicWebServer.Server.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Constants\" />
+  </ItemGroup>
+
 </Project>

@@ -8,11 +8,12 @@ namespace SharedTrip.Data
     {
         public ApplicationDbContext()
         {
+
         }
 
-        DbSet<User> Users { get; set; }
-        DbSet<Trip> Trips { get; set; }
-        DbSet<UserTrip> UserTrips { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+        public DbSet<UserTrip> UserTrips { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -24,8 +25,10 @@ namespace SharedTrip.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<UserTrip>().HasKey(k => new { k.UserId, k.TripId });
+            modelBuilder.Entity<UserTrip>().HasKey(k => new
+            {
+                k.UserId, k.TripId
+            });
         }
     }
 }

@@ -70,5 +70,35 @@ namespace SMS.Services
                 ProductPrice = p.Price.ToString("f2")
             });
         }
+
+        public bool ClearCard(string userId)
+        {
+
+            var cartCleared = true;
+
+            var user = this
+                .repo.All<User>()
+                .Where(u => u.Id == userId)
+                .Include(u => u.Cart)
+                .ThenInclude(c => c.Products)
+                .FirstOrDefault();
+
+            user.Cart.Products.Clear();
+
+
+            try
+            {
+                repo.SaveChanges();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                cartCleared = false;
+            }
+
+            return cartCleared;
+
+        }
     }
 }
