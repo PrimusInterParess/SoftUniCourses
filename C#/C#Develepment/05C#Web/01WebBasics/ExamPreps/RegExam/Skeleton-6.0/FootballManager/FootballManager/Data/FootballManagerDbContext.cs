@@ -22,8 +22,6 @@ namespace FootballManager.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<UserPlayer>().HasKey(up => new { up.PlayerId, up.UserId });
-
-
         }
     }
 }
