@@ -84,13 +84,13 @@ namespace FootballManager.Data.Migrations
 
             modelBuilder.Entity("FootballManager.Data.Models.UserPlayer", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("PlayerId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id", "UserId");
+                    b.HasKey("PlayerId", "UserId");
 
                     b.HasIndex("UserId");
 
@@ -101,7 +101,7 @@ namespace FootballManager.Data.Migrations
                 {
                     b.HasOne("FootballManager.Data.Models.Player", "Player")
                         .WithMany("UserPlayers")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("PlayerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
