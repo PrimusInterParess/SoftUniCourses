@@ -1,8 +1,8 @@
 ﻿<h1 class="text-center mt-2">All Players</h1>
 <div class="row mt-2 mb-4">
+    {{foreach}}
+    {
     <div class="player col-6 col-lg-3 game-player">
-        {{foreach}}
-        {
         <img src="{{ImageUrl}}"
              class="player-img-top img-fluid player-image">
         <div class="player-body">
@@ -18,6 +18,6 @@
             </ul>
             <a href="/Players/AddToCollection?playerId={{Id}}" class="btn btn-block btn-primary">Add to Collection</a>
         </div>
-        }
     </div>
+    }
 </div>
