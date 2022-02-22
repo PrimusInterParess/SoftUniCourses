@@ -14,6 +14,5 @@
         public byte Speed { get; set; }
         public byte Endurance { get; set; }
 
-
     }
 }
