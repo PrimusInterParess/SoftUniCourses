@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["name"] = "Karolina";
+
+}
+@model List<Views.Models.Cats.CatViewModel>
+<h1>
+    Cats :
+</h1>
+<ul>
+    @foreach (var cat in Model)
+    {
+        <li>@cat.Name -> @cat.Age</li>
+    }
+</ul>
+
