@@ -1,0 +1,21 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+}
+
+nav{
+    background: #234465;
+    padding: 15px;
+  
+    
+}
+
+nav li{
+    display: inline-block;
+}
+
+nav li a{
+    color: white;
+    text-decoration:none ;
+    padding:  20px;
+}
