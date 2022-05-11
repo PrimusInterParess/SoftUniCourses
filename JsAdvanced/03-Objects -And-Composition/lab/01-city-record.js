@@ -1,6 +1,6 @@
 function cityRecord(city,population,treasury){
     let record = {
-        city:city,
+        name:city,
         population:population,
         treasury:treasury
     };
