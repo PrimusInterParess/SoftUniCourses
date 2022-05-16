@@ -5,7 +5,10 @@ function split(array) {
     for (const element of array) {
         let [name, population] = element.split(' <-> ');
         population = Number(population);
-        if (towns[name] != undefined) { population += towns[name] }
+        if (towns[name] != undefined)
+         {
+              population += towns[name] 
+            }
         towns[name] = population;
     }
 }
