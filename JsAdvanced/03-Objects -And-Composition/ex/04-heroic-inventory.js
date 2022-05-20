@@ -3,19 +3,19 @@ function getHeroesAsJson(array) {
     let heroesEntities = [];
 
     for (const entry of array) {
-        let parts = entry.split('/');
+        let parts = entry.split(' / ');
        
         let hero = {
             name: parts[0],
-            level: parts[1],
+            level: Number(parts[1]),
             items: parts[2].split(', ')
         };
 
-        heroesEntities.push(JSON.stringify(hero));
+        heroesEntities.push(hero);
 
     }
 
-    return heroesEntities
+    return JSON.stringify(heroesEntities)
 }
 
 console.log( getHeroesAsJson(['Isacc / 25 / Apple, GravityGun',
