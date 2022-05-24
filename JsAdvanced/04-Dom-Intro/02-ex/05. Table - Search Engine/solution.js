@@ -24,7 +24,6 @@
                               currentEl.includes(criteria))) {
                           child.classList.add('select')
                       }
-
                   }
               }
           }
