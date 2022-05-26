@@ -1,3 +1,20 @@
 function validate() {
-    console.log('TODO:...');
+    document.getElementById('email').addEventListener('keypress',function(e){
+
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        let email = e.currentTarget.value;
+
+     if(!email.match(validRegex)){
+
+        e.currentTarget.className= 'error';
+     }
+     else{
+        e.currentTarget.className= '';
+     }
+
+        // if(){
+        //    
+        // }
+    
+    })
 }
