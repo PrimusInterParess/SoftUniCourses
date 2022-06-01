@@ -6,7 +6,7 @@ function solution() {
             carbohydrate: 1,
             flavour: 2,
         },
-        lemande: {
+        lemonade: {
             carbohydrate: 10,
             flavour: 20
         },
@@ -36,17 +36,19 @@ function solution() {
         fat: 0,
     }
 
-    return function (args) {
+    return function(args) {
         let [operation, type, amount] = args.split(' ');
 
         switch (operation) {
-            case 'restock': return restock(type, Number(amount));
-            case 'prepare': return prepare(type, Number(amount));
-            case 'report': return report();
+            case 'restock':
+                return restock(type, Number(amount));
+            case 'prepare':
+                return prepare(type, Number(amount));
+            case 'report':
+                return report();
         }
 
     }
-
 
     function restock(type, amount) {
 
@@ -56,13 +58,43 @@ function solution() {
     }
 
     function prepare(type, amount) {
-        let ingredientsNeeded = Object.keys(recipes[type]).map(function (e) { return { e: recipes[e] * Number(amount) } });
 
-        console.log(ingredientsNeeded);
+        let order = {};
+        Object.keys(recipes[type])
+            .forEach(e =>
+                order[e] = recipes[type][e] * amount
+            );
+
+        let [isEnough, resultMessage] = isSufficientAmount(order, storage)
+
+        if (!isEnough) {
+            return resultMessage;
+        }
+
+        reduceAmounts(order, storage);
+
+        return 'Succsess';
+
     }
 
     function report() {
-        return 'hello from report'
+        return Object.keys(storage).map(k => `${k}=${storage[k]}`).join(' ');
+    }
+
+    function isSufficientAmount(order, storage) {
+        for (const key in order) {
+            if (storage[key] <= order[key]) {
+                return [false, `Error: not enough ${key} in stock`]
+            }
+        }
+
+        return [true, ''];
+    }
+
+    function reduceAmounts(order, storage) {
+        for (const key in order) {
+            storage[key] -= order[key];
+        }
     }
 
 }
@@ -70,8 +102,11 @@ function solution() {
 
 let manager = solution();
 
-console.log(manager('restock flavour 50'));
-
-console.log(manager('prepare lemande 40'));
-
+console.log(manager('restock flavour 50 '));
+console.log(manager('prepare lemonade 4 '));
+console.log(manager('restock carbohydrate 10'));
+console.log(manager('restock flavour 10'));
+console.log(manager('prepare apple 1'));
+console.log(manager('restock fat 10'));
+console.log(manager('prepare burger 1'));
 console.log(manager('report'));
