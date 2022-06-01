@@ -1,8 +1,17 @@
 
 let commands = ['create pesho', 'create gosho inherit pesho', 'create stamat inherit gosho', 'set pesho rank number1', 'set gosho nick goshko', 'print stamat'];
+let command1 = ['create c1',
+    'create c2 inherit c1',
+    'set c1 color red',
+    'set c2 model new',
+    'print c1',
+    'print c2']
+    ;
+
 
 
 result(commands)
+result(command1)
 
 function result(data) {
 
@@ -50,28 +59,32 @@ function result(data) {
         }
 
         function print(name) {
-            let currentObj = storage[name];
-            let result;
-            let isTrue = true;
 
-            while (Object.keys(currentObj).length != 0) {
-                if (Object.keys(currentObj.properties).length != 0) {
-                    result.push(currentObj.properties)
+            let result = [];
+            let currentName = name;
 
+            let loopBreaker = true;
+
+            while (loopBreaker) {
+                loopBreaker = storage[currentName].parent != '';
+                let props = storage[currentName].properties;
+
+                if (Object.keys(props).length != 0) {
+
+                    result = result.concat(Object.keys(props).map(k => `${k}:${props[k]}`));
                 }
-
-                currentObj = storage[currentObj.parent];
-
+                currentName = storage[currentName].parent;
             }
+            console.log(result.join(','));
 
-            console.log(result);
         }
-
-
     }
 
 
 }
+
+
+
 
 
 
