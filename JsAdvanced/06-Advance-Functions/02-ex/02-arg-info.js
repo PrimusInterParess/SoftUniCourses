@@ -1,19 +1,29 @@
 function argInfo(...arguments) {
 
     let counter = {};
-    let result = [];
 
-    arguments.forEach(arg => {
+    const args = Array.from(arguments);
 
-        if (!counter.hasOwnProperty(arg)) {
-            counter[typeof arg] = 0;
+
+
+    for (const arg of args) {
+
+        let type = typeof arg;
+        if (counter[type] == undefined) {
+            counter[type] = 0;
         }
-        counter[typeof arg] += 1;
-        result.push(`${typeof arg}: ${arg}`)
-    })
+        counter[type] += 1;
+        console.log(`${type}: ${arg}`)
+    }
 
-    console.log(result.sort((a, b) => b - a).join('\n'));
-    console.log(Object.keys(counter).map(k => `${k} = ${counter[k]}`).sort((a, b) => b - a).join('\n'))
+    let result = Object.entries(counter).sort((a, b) => {
+        return b[1] - a[1]
+    });
+
+    for (const [type, count] of result) {
+        console.log(`${type} = ${count}`);
+    }
+
 }
 
 let args = argInfo('cat', 42, function () { console.log('Hello world!'); });
