@@ -1,6 +1,5 @@
 function solution() {
 
-
     const recipes = {
         apple: {
             carbohydrate: 1,
@@ -32,8 +31,9 @@ function solution() {
     let storage = {
         protein: 0,
         carbohydrate: 0,
-        flavour: 0,
         fat: 0,
+        flavour: 0,
+
     }
 
     return function(args) {
@@ -54,7 +54,7 @@ function solution() {
 
         storage[type] += amount;
 
-        return 'Succsess';
+        return 'Success';
     }
 
     function prepare(type, amount) {
@@ -73,7 +73,7 @@ function solution() {
 
         reduceAmounts(order, storage);
 
-        return 'Succsess';
+        return 'Success';
 
     }
 
@@ -96,7 +96,6 @@ function solution() {
             storage[key] -= order[key];
         }
     }
-
 }
 
 

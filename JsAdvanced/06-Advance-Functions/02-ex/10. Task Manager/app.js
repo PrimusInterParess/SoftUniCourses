@@ -1,8 +1,13 @@
 function solve() {
 
-    let taskInputField = document.getElementById('task').value;
-    let descriptionInputField = document.getElementById('description').value;
-    let dueDateInputField = document.getElementById('date').value;
+    let taskInputField = document.getElementById('task');
+    let descriptionInputField = document.getElementById('description');
+    let dueDateInputField = document.getElementById('date');
+
+    let [_, openSection, inProgressSection, completeSection] =
+    Array
+        .from(document.querySelectorAll('section'))
+        .map(e => e.children[1]);
 
 
     const input = {
@@ -16,17 +21,56 @@ function solve() {
     function addTask(event) {
         event.preventDefault();
         const article = document.createElement('article');
-        const h3 = document.createElement('h3');
-        h3.textContent = input.name.value;
+        const h3 = createElement('h3', input.name.value);
+        const pDescription = createElement('p', `Description: ${input.description.value}`);
+        const pDate = createElement('p', `Due Date: ${input.date.value}`);
+        const div = createElement('div', '', 'flex');
+        const startButton = createElement('button', 'Start', 'green');
+        const deleteButton = createElement('button', 'Delete', 'red');
+        const finishButton = createElement('button', 'Finish', 'orange');
+
+
+        startButton.addEventListener('click', onStart);
+        deleteButton.addEventListener('click', onDelete);
+        finishButton.addEventListener('click', onFinish);
+
+        div.appendChild(startButton);
+        div.appendChild(deleteButton);
         article.appendChild(h3);
+        article.appendChild(pDescription);
+        article.appendChild(pDate);
+        article.appendChild(div);
+
+        openSection.appendChild(article);
+
+        function onFinish() {
+            deleteButton.remove();
+            finishButton.remove();
+            completeSection.appendChild(article);
+        }
+
+        function onStart(event) {
+            startButton.remove();
+            div.appendChild(finishButton);
+            inProgressSection.appendChild(article);
+        }
+
+        function onDelete(event) {
+            article.remove();
+        }
     }
 
-    function createElement(type,content,className){
-     
+
+
+    function createElement(type, content, className) {
+
         const element = document.createElement(type);
-        h3.textContent = input.name.value;
-        article.appendChild(h3);
+        element.textContent = content;
+
+        if (className) {
+            element.className = className;
+        }
+
+        return element;
     }
-
-
 }
