@@ -17,7 +17,4 @@ function add(first) {
 }
 
 
-add(1)(2)(3)(4);
-let res = add(2).toString();
-
-console.log(result);
+let result = add(1)(2)(3)(4).toString();
