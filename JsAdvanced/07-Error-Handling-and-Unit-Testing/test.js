@@ -1,5 +1,8 @@
+console.log('fuck');
+
 describe('Test Suite', () => {
-    it('test 1', () => {
-        console.log('first test ?!?@?!@?@!? fuc u');
-    });
+
+    it('Test 1', () => {
+        console.log('in Test 1');
+    })
 });

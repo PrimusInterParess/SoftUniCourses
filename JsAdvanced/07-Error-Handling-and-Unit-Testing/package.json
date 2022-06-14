@@ -1,18 +1,14 @@
 {
-  "name": "testing-demo",
+  "name": "07-error-handling-and-unit-testing",
   "version": "1.0.0",
-  "description": "short demo unit testing frameworks",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test.js"
   },
-  "keywords": [
-    "chai",
-    "mocha",
-    "testing"
-  ],
-  "author": "Dani Borisov",
-  "license": "MIT",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "chai": "^4.3.6"
   }

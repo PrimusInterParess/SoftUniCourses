@@ -49,13 +49,13 @@ function solve() {
             completeSection.appendChild(article);
         }
 
-        function onStart(event) {
+        function onStart() {
             startButton.remove();
             div.appendChild(finishButton);
             inProgressSection.appendChild(article);
         }
 
-        function onDelete(event) {
+        function onDelete() {
             article.remove();
         }
     }
