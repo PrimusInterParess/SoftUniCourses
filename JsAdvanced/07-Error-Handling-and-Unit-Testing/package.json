@@ -1,15 +1,16 @@
 {
   "name": "07-error-handling-and-unit-testing",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "mocha ./01-lab/05-check-for-symemtry/symmetry.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "chai": "^4.3.6"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
