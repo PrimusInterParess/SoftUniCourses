@@ -1,5 +1,5 @@
 {
-  "name": "07-error-handling-and-unit-testing",
+  "name": "mocha",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

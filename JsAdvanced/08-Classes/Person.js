@@ -1,20 +1,14 @@
 class Person {
-    constructor(firstName, lastName, age, email, secret) {
+    constructor(firstName, lastName, age, email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
 
-        this.secretField = () => secret;
     }
-
-    ctrMethod = function () {
-        console.log('Creeateing method through constructor');
-    }
-
 
     toString() {
-        return `${this.firstName} ${this.lastName} ${this.age} ${this.email}`;
+        return `${this.firstName} ${this.lastName} (age: ${this.age} email: ${this.email})`;
     }
 }
 
@@ -46,14 +40,12 @@ class Person {
 
 // }
 
-const perso1 = new Person('dani', 23, 'secret message');
-const perso2 = new Person('mani', 22)
-const perso3 = new Person('tani', 24)
-const perso4 = new Person('kani', 26)
+let person = new Person('Anna', 'Simpson', 22, 'anna@yahoo.com');
+console.log(person.toString());
+
 
 // const arrayOfPeople = [perso1, perso2, perso3, perso4];
 
 // arrayOfPeople.sort(Person.CompareTo);
 
 
-Person.cheer();
