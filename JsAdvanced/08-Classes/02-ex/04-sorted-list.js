@@ -1,34 +1,38 @@
 class List {
-    list;
 
     constructor() {
         this.list = [];
+        this.size = 0;
     }
-
     add(el) {
+
         this.list.push(el);
+        this.list.sort((a, b) => {
+            return a - b;
+        })
+        this.size = this.list.length
     }
-    5
-    remove(index) {
-        if (index < 0 && index > this.list.length - 1) {
-            throw new TypeError();
+
+    remove(indx) {
+        if (indx => 0 && indx < this.list.length) {
+            this.list.splice(indx, 1);
+            this.size = this.list.length
         }
-        this.list = this.list.slice(index, 1, 1);
     }
 
-    get(index) {
-        return this.list[index];
-    }
-
-    get size() {
-        return this.list.length;
+    get(indx) {
+        if (indx => 0 && indx < this.list.length) {
+            return this.list[indx];
+        }
     }
 }
-
 let list = new List();
 list.add(5);
 list.add(6);
 list.add(7);
 console.log(list.get(1));
+console.log(list.size);
+
 list.remove(1);
 console.log(list.get(1));
+console.log(list.size);
