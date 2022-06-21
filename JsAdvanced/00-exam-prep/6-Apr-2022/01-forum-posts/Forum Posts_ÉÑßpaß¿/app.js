@@ -4,56 +4,93 @@ function solve() {
   let titleInputField = document.getElementById('post-title');
   let categoryInputField = document.getElementById('post-category');
   let contentInputField = document.getElementById('post-content');
-  let publishButton = document.getElementById('publish-btn');
   let ulReviewListElement = document.getElementById('review-list');
+  let ulUploadedPostsElement = document.getElementById('published-list');
 
-  publishButton.addEventListener('click', onClick)
+  let publishButton = document.getElementById('publish-btn').addEventListener('click', onClick);
+  let clearButton = document.getElementById('clear-btn').addEventListener('click', onClear);
 
+  function onClick(event) {
+    event.preventDefault();
 
-  function onClick({ target }) {
+    let title = titleInputField.value;
+    let category = categoryInputField.value;
+    let content = contentInputField.value;
 
+    if (isEmptySpace(title) ||
+      isEmptySpace(category) ||
+      isEmptySpace(content)) {
+      return;
+    }
 
-    if (isEmptySpace(titleInputField.value) == false ||
-      isEmptySpace(categoryInputField.value) == false ||
-      isEmptySpace(contentInputField.value) == false) {
+    let liElement = createElement('li', 'rpost');
 
-      liElement = createElement('li', 'rpost');
+    let articleElement = createElement('article');
 
-      articleElement = createElement('article');
+    let h4Element = createElement('h4', '', title);
 
-      h4Element = createElement('h4', '', titleInputField.value);
+    // let stringPEl = `Category:${category}`;
+    // let stringpEl2 = `Content: ${content}`;
 
+    let pElementCategory = createElement('p', '', 'Category: ' + category);
+    let pElementContent = createElement('p', '', 'Content: ' + content);
 
-      pElementCategory = createElement('p', '', categoryInputField.value);
-      pElementContent = createElement('p', '', contentInputField.value);
+    let buttonEdit = createElement('button', 'action-btn edit', 'Edit');
+    let buttonApprove = createElement('button', 'action-btn approve', 'Approve');
 
-      buttonEdit = createElement('button', 'action-btn edit', 'Edit');
-      buttonApprove = createElement('button', 'action-btn approve', 'Approve');
+    buttonEdit.addEventListener('click', onEdit);
+    buttonApprove.addEventListener('click', onApprove);
 
-      //TODO add event listeners to buttons you IDIOT!
+    articleElement.appendChild(h4Element);
+    articleElement.appendChild(pElementCategory);
+    articleElement.appendChild(pElementContent);
 
-      articleElement.appendChild(h4Element);
-      articleElement.appendChild(pElementCategory);
-      articleElement.appendChild(pElementContent);
+    liElement.appendChild(articleElement);
+    liElement.appendChild(buttonEdit);
+    liElement.appendChild(buttonApprove);
 
-      liElement.appendChild(articleElement);
-      liElement.appendChild(buttonEdit);
-      liElement.appendChild(buttonApprove);
+    ulReviewListElement.appendChild(liElement);
 
-      ulReviewListElement.appendChild(liElement);
+    console.log('БРАВО БЕ ТЪПАК!');
 
-      console.log('БРАВО БЕ ТЪПАК!');
+    blankField(titleInputField);
+    blankField(categoryInputField);
+    blankField(contentInputField);
+
+    function onEdit(event) {
+
+      event.preventDefault();
+      liElement.remove();
+
+      titleInputField.value = h4Element.textContent;
+      categoryInputField.value = pElementCategory.textContent;
+      contentInputField.value = pElementContent.textContent;
+
+    }
+    function onApprove(event) {
+      event.preventDefault();
+      ulUploadedPostsElement.appendChild(liElement);
+      buttonApprove.remove();
+      buttonEdit.remove();
     }
 
 
+  }
 
+  function blankField(inputField) {
+    inputField.value = '';
+  }
+
+  function onClear(event) {
+    event.preventDefault();
+    let listOfChildren = Array.from(ulUploadedPostsElement.children).forEach(c => c.remove());
   }
 
   function createElement(tagName, className, textContent) {
 
     let elementToReturn = document.createElement(tagName);
 
-    if (className != '' && className != undefined) {
+    if (className != '') {
       elementToReturn.className = className;
     }
 
@@ -61,10 +98,6 @@ function solve() {
 
     return elementToReturn;
   }
-
-
-
-
 
   function isEmptySpace(string) {
     return string == '' || string == null || string == undefined
