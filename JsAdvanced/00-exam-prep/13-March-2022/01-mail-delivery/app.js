@@ -19,7 +19,7 @@ function solve() {
     }
 
     buttons.addToList.addEventListener('click', onAdd);
-
+    buttons.reset.addEventListener('click', onReset);
 
     function onAdd(e) {
         e.preventDefault();
@@ -28,35 +28,92 @@ function solve() {
             return;
         }
 
-        console.log(ulElements.listOfMail);
-        console.log(ulElements.sentMails);
-        console.log(ulElements.deletedMails);
+      
 
-        let liElement = document.createElement('li');
-        let h4ElementTitle = createElement('h4', '', '', inputFields.title.value);
-        let h4ElementRecepient = createElement('h4', '', '', inputFields.recepient.value);
+        let titleText = inputFields.title.value;
+        let recepientText = inputFields.recepient.value;
+
+
+        let liElementListOfMail = document.createElement('li');
+        let h4ElementTitle = createElement('h4', '', '', 'Title: ' + titleText);
+        let h4ElementRecepient = createElement('h4', '', '', 'Recipient Name: ' + recepientText);
         let spanElementMessage = createElement('span', '', '', inputFields.message.value);
         let divElement = createElement('div', '', 'list-action', '');
 
         let sendButton = createButton('subbmit', 'send', 'Send');
         let deleteButton = createButton('subbmit', 'delete', 'Delete');
 
+        sendButton.addEventListener('click', onSend);
+        deleteButton.addEventListener('click', onDelete);
+
         divElement.appendChild(sendButton);
         divElement.appendChild(deleteButton);
 
-        liElement.appendChild(h4ElementTitle);
-        liElement.appendChild(h4ElementRecepient);
-        liElement.appendChild(spanElementMessage);
-        liElement.appendChild(divElement);
+        liElementListOfMail.appendChild(h4ElementTitle);
 
-        ulElements.listOfMail.appendChild(liElement);
+        liElementListOfMail.appendChild(h4ElementRecepient);
+
+        liElementListOfMail.appendChild(spanElementMessage);
+        liElementListOfMail.appendChild(divElement);
+
+        ulElements.listOfMail.appendChild(liElementListOfMail);
+
+
+        function onSend(e) {
+            e.preventDefault();
+
+            h4ElementRecepient.remove();
+            h4ElementTitle.remove();
+            spanElementMessage.remove();
+            divElement.remove();
+            sendButton.remove();
+
+            let spanElementRecepient = createElement('span', '', '', `To: ${recepientText}`);
+            let spanElementTitle = createElement('span', '', '', `Title: ${titleText}`);
+            liElementListOfMail.appendChild(spanElementRecepient);
+            liElementListOfMail.appendChild(spanElementTitle);
+            
+            let divElementSendMails = createElement('div','btn');
+            divElement.appendChild(deleteButton);
+            liElementListOfMail.appendChild(divElementSendMails);
+
+
+            ulElements.sentMails.appendChild(liElementListOfMail);
+
+        }
+
+        function onDelete(e) {
+            e.preventDefault();
+
+            if (e.target.parentNode.parentNode.parentNode.id == 'list') {
+                onSend(e);
+            }
+
+            deleteButton.remove();
+            sendButton.remove();
+
+            ulElements.deletedMails.appendChild(liElementListOfMail);
+
+
+
+
+        }
+
 
         blankField(inputFields.title);
         blankField(inputFields.recepient);
         blankField(inputFields.message);
-
-
     }
+
+    function onReset(e) {
+        e.preventDefault();
+
+        blankField(inputFields.title);
+        blankField(inputFields.recepient);
+        blankField(inputFields.message);
+    }
+
+
 
     function createButton(type, id, textContent) {
         let elementToReturn = document.createElement('button');
@@ -81,14 +138,14 @@ function solve() {
 
         let elementToReturn = document.createElement(tagName);
 
-        if (id != '') {
+        if (id != '' && id != undefined) {
             elementToReturn.setAttribute('id', id);
         }
-        if (className != '') {
+        if (className != '' && id != undefined) {
             elementToReturn.classList.add(className);
         }
 
-        if (textContent != '') {
+        if (textContent != '' && id != undefined) {
             elementToReturn.textContent = textContent;
         }
 
@@ -99,6 +156,8 @@ function solve() {
     function isEmptySpace(string) {
         return string == '' || string == null || string == undefined
     }
+
+
 
     function blankField(inputField) {
         inputField.value = '';
