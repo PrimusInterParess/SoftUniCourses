@@ -18,7 +18,7 @@ function solve() {
         deletedMails: document.querySelector('div.trash ul.delete-list'),
     }
 
-    buttons.addToList.addEventListener('click', onAdd);
+    buttons.addToList.addEventListener('click', onAdd); 
     buttons.reset.addEventListener('click', onReset);
 
     function onAdd(e) {
@@ -74,7 +74,7 @@ function solve() {
             liElementListOfMail.appendChild(spanElementTitle);
             
             let divElementSendMails = createElement('div','btn');
-            divElement.appendChild(deleteButton);
+            divElementSendMails.appendChild(deleteButton);
             liElementListOfMail.appendChild(divElementSendMails);
 
 
@@ -141,11 +141,11 @@ function solve() {
         if (id != '' && id != undefined) {
             elementToReturn.setAttribute('id', id);
         }
-        if (className != '' && id != undefined) {
+        if (className != '' && className != undefined) {
             elementToReturn.classList.add(className);
         }
 
-        if (textContent != '' && id != undefined) {
+        if (textContent != '' && textContent != undefined) {
             elementToReturn.textContent = textContent;
         }
 
