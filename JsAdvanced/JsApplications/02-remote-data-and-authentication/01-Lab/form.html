@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <form id="form">
+        <input type="text" name="title">
+        <div>
+            <textarea name="content" id="" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="submit" value="Create Article">
+        </div>
+    </form>
+    <script>
+        document.getElementById('form').addEventListener('submit',onSubmit);
+
+       async function onSubmit(e){
+            e.preventDefault();
+         
+            const data = new FormData(e.target);
+
+            data.get
+
+            const article = {
+                title:data.get('title'),
+                content:data.get('content'),
+            }
+
+          const res =  await fetch('http://localhost:3030/jsonstore/demo',{
+                method:'post',
+                body:JSON.stringify(article)
+            });
+
+           console.log(await res.json());
+        }
+    </script>
+</body>
+
+</html>
