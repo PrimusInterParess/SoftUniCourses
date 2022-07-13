@@ -11,6 +11,10 @@
         #views {
             display: none;
         }
+        
+        label {
+            display: block
+        }
     </style>
 </head>
 
@@ -19,6 +23,10 @@
         <a href="/" id="homeBtn">Home</a>
         <a href="/abaut" id="aboutBtn">About</a>
         <a href="/catalog" id="catalogBtn">Catalog</a>
+        <a href="/login" id="loginBtn">Log In</a>
+        <a href="/register" id="registerBtn">Register</a>
+
+
     </nav>
     <h1>SPA Demo</h1>
     <main>
@@ -27,19 +35,35 @@
 
     <div id="views">
         <section id="homeView">
-            <h2>Home<h2>
-                    <p>Welcome to our site</p>
+            <h2>Home</h2>
+            <p>Welcome to our site</p>
         </section>
-
         <section id="catalogView">
-            <h2>Catalog<h2>
+            <h2>Catalog
+                <h2>
                     <ul>
                     </ul>
         </section>
-
         <section id="aboutView">
-            <h2>About<h2>
-                    <p>We are super cool and awesome!</p>
+            <h2>About</h2>
+            <p>We are super cool and awesome!</p>
+        </section>
+        <section id="loginView">
+            <h2>Log In</h2>
+            <form>
+                <label>Email <input type="text" name="email"></label>
+                <label>Password <input type="text" name="password"></label>
+                <input type="submit" value="Sign In"></label>
+            </form>
+        </section>
+        <section id="registerView">
+            <h2>Register</h2>
+            <form>
+                <label>Email <input type="text" name="email"></label>
+                <label>Password <input type="text" name="password"></label>
+                <label>Repeat Password <input type="text" name="rePassword"></label>
+                <input type="submit" value="Sign Up"></label>
+            </form>
         </section>
     </div>
 </body>

@@ -13,9 +13,12 @@ export async function showCatalog() {
 
     const movies = await res.json();
 
-    movies.map(createMovieItem);
+    const fragment = document.createDocumentFragment();
 
-    list.replaceChildren(...movies.map(createMovieItem));
+    movies.map(createMovieItem).forEach(el => fragment.appendChild(el));
+
+    list.replaceChildren(fragment);
+
 
 }
 
