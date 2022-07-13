@@ -11,7 +11,7 @@
         #views {
             display: none;
         }
-        
+
         label {
             display: block
         }
@@ -23,8 +23,16 @@
         <a href="/" id="homeBtn">Home</a>
         <a href="/abaut" id="aboutBtn">About</a>
         <a href="/catalog" id="catalogBtn">Catalog</a>
-        <a href="/login" id="loginBtn">Log In</a>
-        <a href="/register" id="registerBtn">Register</a>
+        <div id="guestNav">
+            <a href="/login" id="loginBtn">Log In</a>
+            <a href="/register" id="registerBtn">Register</a>
+        </div>
+        <div id="userNav">
+            <a href="javascript:void(0)" id="logoutBtn">Log out</a>
+            <a href="/create" id="createBtn">Create Movie</a>
+
+            <span id="greeting"></span>
+        </div>
 
 
     </nav>
@@ -63,6 +71,15 @@
                 <label>Password <input type="text" name="password"></label>
                 <label>Repeat Password <input type="text" name="rePassword"></label>
                 <input type="submit" value="Sign Up"></label>
+            </form>
+        </section>
+
+        <section id="createView">
+            <h2>Create movie</h2>
+            <form>
+                <label>Title<input type="text" name="title"></label>
+
+                <input type="submit" value="Create"></label>
             </form>
         </section>
     </div>

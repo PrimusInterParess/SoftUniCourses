@@ -1,13 +1,13 @@
-import { showHome } from "./home.js";
+import { showCatalog } from "./catalog.js";
 import { checkUserNav } from "./util.js";
 
-const section = document.getElementById('loginView');
+const section = document.getElementById('createView');
 const form = section.querySelector('form');
 form.addEventListener('submit', onSubmit);
 
 section.remove();
 
-export async function showLogin() {
+export async function showCreate() {
     document.querySelector('main').replaceChildren(section);
 }
 
@@ -16,16 +16,18 @@ async function onSubmit(evnt) {
 
     const formData = new FormData(form);
 
-    const email = formData.get('email');
-    const password = formData.get('password');
+    const title = formData.get('title');
+
 
     try {
-        const res = await fetch('http://localhost:3030/users/login', {
+        const res = await fetch('http://localhost:3030/data/movies', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
+                'X-Authorization': JSON.parse(sessionStorage.getItem('userData')).accessToken
+              
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ title }),
         });
 
         if (res.ok == false) {
@@ -33,17 +35,9 @@ async function onSubmit(evnt) {
             throw Error(err.message)
         }
 
-        const data = await res.json();
 
-        const userData = {
-            email: data.email,
-            accessToken: data.accessToken,
-            id: data._id,
-        }
-
-        sessionStorage.setItem('userData', JSON.stringify(userData));
-        checkUserNav();
-        showHome();
+      
+        showCatalog();
 
     } catch (err) {
         alert(err.message)
