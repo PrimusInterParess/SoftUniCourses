@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA Demo</title>
+    <script src="./src/app.js" type="module"></script>
+    <style>
+        #views {
+            display: none;
+        }
+
+        label {
+            display: block
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="/" id="homeBtn">Home</a>
+        <a href="/abaut" id="aboutBtn">About</a>
+        <a href="/catalog" id="catalogBtn">Catalog</a>
+        <div id="guestNav">
+            <a href="/login" id="loginBtn">Log In</a>
+            <a href="/register" id="registerBtn">Register</a>
+        </div>
+        <div id="userNav">
+            <a href="javascript:void(0)" id="logoutBtn">Log out</a>
+            <a href="/create" id="createBtn">Create Movie</a>
+
+            <span id="greeting"></span>
+        </div>
+
+
+    </nav>
+    <h1>SPA Demo</h1>
+    <main>
+
+    </main>
+
+    <div id="views">
+        <section id="homeView">
+            <h2>Home</h2>
+            <p>Welcome to our site</p>
+        </section>
+        <section id="catalogView">
+            <h2>Catalog
+                <h2>
+                    <ul>
+                    </ul>
+        </section>
+        <section id="aboutView">
+            <h2>About</h2>
+            <p>We are super cool and awesome!</p>
+        </section>
+        <section id="loginView">
+            <h2>Log In</h2>
+            <form>
+                <label>Email <input type="text" name="email"></label>
+                <label>Password <input type="text" name="password"></label>
+                <input type="submit" value="Sign In"></label>
+            </form>
+        </section>
+        <section id="registerView">
+            <h2>Register</h2>
+            <form>
+                <label>Email <input type="text" name="email"></label>
+                <label>Password <input type="text" name="password"></label>
+                <label>Repeat Password <input type="text" name="rePassword"></label>
+                <input type="submit" value="Sign Up"></label>
+            </form>
+        </section>
+
+        <section id="createView">
+            <h2>Create movie</h2>
+            <form>
+                <label>Title<input type="text" name="title"></label>
+
+                <input type="submit" value="Create"></label>
+            </form>
+        </section>
+    </div>
+</body>
+
+</html>
