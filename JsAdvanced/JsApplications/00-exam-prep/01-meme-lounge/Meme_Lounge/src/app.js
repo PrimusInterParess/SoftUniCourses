@@ -1,25 +1,31 @@
+import { logout } from './api/users.js';
 import { page, render } from './lib.js';
+import { getUserData } from './util.js';
 import { catalogView } from './views/catalog.js';
+import { createView } from './views/create.js';
+import { detailsView } from './views/details.js';
 import { homeView } from './views/home.js';
+import { loginView } from './views/login.js';
+import { registgerView } from './views/register.js';
 
 const main = document.querySelector('main');
-
+document.getElementById('logoutBtn').addEventListener('click',onLogout);
 page(decorateContext);
 page('/', homeView);
 page('/memes', catalogView);
-page('/memes/:id', () => console.log('details'));
+page('/memes/:id', detailsView);
 page('/edit/:id', () => console.log('edit'));
-page('/login', () => console.log('login'));
-page('/register', () => console.log('register'));
-page('/create', () => console.log('create'));
+page('/login', loginView);
+page('/register', registgerView);
+page('/create', createView);
 page('/profile', () => console.log('profile'));
-page('/fakOf', () => console.log('fakOf'));
 
-
+updateNav();
 page.start();
 
 function decorateContext(ctx, next) {
     ctx.render = renderMain;
+    ctx.updateNav = updateNav;
 
     next();
 }
@@ -27,4 +33,24 @@ function decorateContext(ctx, next) {
 function renderMain(temlateResult) {
 
     render(temlateResult, main)
+}
+
+function updateNav() {
+    const userData = getUserData();
+
+    if (userData) {
+        document.querySelector('.user').style.display = 'block';
+        document.querySelector('.guest').style.display = 'none';
+        document.querySelector('.user span').textContent = `Welcome,${userData.email}`;
+
+    } else {
+        document.querySelector('.user').style.display = 'none';
+        document.querySelector('.guest').style.display = 'block';
+    }
+}
+
+function onLogout() {
+    logout();
+    updateNav();
+    page.redirect('/');
 }
