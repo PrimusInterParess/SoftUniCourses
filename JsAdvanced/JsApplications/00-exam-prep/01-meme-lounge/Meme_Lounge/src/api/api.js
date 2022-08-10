@@ -7,7 +7,6 @@ async function request(url, method, data) {
     const options = {
         method,
         headers: {
-
         }
     };
 

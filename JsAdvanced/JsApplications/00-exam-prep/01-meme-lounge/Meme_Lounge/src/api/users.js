@@ -29,7 +29,6 @@ export async function register(username, email, password, gender) {
         accessToken: result.accessToken,
     };
 
-
     setUserData(userData);
 
     return result;

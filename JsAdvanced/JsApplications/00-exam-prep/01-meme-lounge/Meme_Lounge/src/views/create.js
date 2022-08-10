@@ -27,7 +27,7 @@ export function createView(ctx) {
 
         const meme = {
             title: formData.get('title'),
-            describtion: formData.get('description'),
+            description: formData.get('description'),
             imageUrl: formData.get('imageUrl'),
         };
 

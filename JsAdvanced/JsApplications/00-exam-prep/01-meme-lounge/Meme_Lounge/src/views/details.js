@@ -1,8 +1,8 @@
-import { getMemeById } from '../api/memes.js';
+import { deleteMeme, getMemeById } from '../api/memes.js';
 import { html } from '../lib.js'
 import { getUserData } from '../util.js';
 
-const detailsTemp = (meme, isOwner) => html`
+const detailsTemp = (meme, isOwner, onDelete) => html`
 <section id="meme-details">
 <h1>Meme Title: ${meme.title}
 
@@ -21,7 +21,7 @@ const detailsTemp = (meme, isOwner) => html`
 
         ${isOwner ? html`
         <a class="button warning" href="/edit/${meme._id}">Edit</a>
-        <button class="button danger">Delete</button>`: ''}
+        <button @click=${onDelete} class="button danger">Delete</button>` : ''}
        
         
     </div>
@@ -36,7 +36,16 @@ export async function detailsView(ctx) {
 
     const isOwner = userData?.id == meme._ownerId;
 
-    ctx.render(detailsTemp(meme,isOwner));
+    ctx.render(detailsTemp(meme, isOwner, onDelete));
+
+    async function onDelete() {
+        const choice = confirm('Are you sure you want to delete this meme?');
+
+        if (choice) {
+            await deleteMeme(ctx.params.id);
+            ctx.page.redirect('/memes');
+        }
+    }
 
 }
 
