@@ -2,7 +2,7 @@ const { chromium } = require('playwright-chromium');
 const { expect } = require('chai');
 
 const host = 'http://localhost:3000'; // Application host (NOT service host - that can be anything)
-const DEBUG = false;
+const DEBUG = true;
 
 const mockData = require('./mock-data.json');
 const endpoints = {
@@ -542,7 +542,7 @@ describe('E2E tests', function() {
 
     });
 
-    describe('User Profile Page [ 10 Points ]', async() => {
+    describe.only('User Profile Page [ 10 Points ]', async() => {
         const email = 'merry@mail.bg';
         const username = 'Merry';
         const password = '123456';
