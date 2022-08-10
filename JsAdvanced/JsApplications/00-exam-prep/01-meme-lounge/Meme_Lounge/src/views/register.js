@@ -1,7 +1,8 @@
 import { register } from '../api/users.js';
 import { html } from '../lib.js'
+import { notify } from '../notify.js';
 
-const registgerTemp = (onSubmit) => html`
+const registgerTemp = (onSubmit) => html `
 <section id="register">
 <form @submit=${onSubmit} id="register-form">
     <div class="container">
@@ -45,13 +46,13 @@ export async function registgerView(ctx) {
         const repeatPass = formData.get('repeatPass').trim();
 
         if (repeatPass == '' || username == '' || email == '' || password == '') {
-            return alert('All fields are required!')
+            return notify('All fields are required!')
         }
 
         if (password != repeatPass) {
-           return alert('Passwords don\'t match!');
+            return notify('Passwords don\'t match!');
         }
-        await register(username,email, password,gender);
+        await register(username, email, password, gender);
         ctx.updateNav();
         ctx.page.redirect('/memes');
     }

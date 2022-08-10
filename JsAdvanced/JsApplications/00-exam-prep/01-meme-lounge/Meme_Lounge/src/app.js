@@ -7,20 +7,21 @@ import { detailsView } from './views/details.js';
 import { editView } from './views/edit.js';
 import { homeView } from './views/home.js';
 import { loginView } from './views/login.js';
+import { profileView } from './views/profile.js';
 import { registgerView } from './views/register.js';
 
 const main = document.querySelector('main');
-document.getElementById('logoutBtn').addEventListener('click',onLogout);
+document.getElementById('logoutBtn').addEventListener('click', onLogout);
 
 page(decorateContext);
 page('/', homeView);
 page('/memes', catalogView);
 page('/memes/:id', detailsView);
-page('/edit/:id',editView);
+page('/edit/:id', editView);
 page('/login', loginView);
 page('/register', registgerView);
 page('/create', createView);
-page('/profile', () => console.log('profile'));
+page('/profile', profileView);
 
 updateNav();
 page.start();

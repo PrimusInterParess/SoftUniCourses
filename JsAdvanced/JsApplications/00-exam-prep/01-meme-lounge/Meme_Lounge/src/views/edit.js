@@ -1,7 +1,8 @@
 import { editMeme, getMemeById } from '../api/memes.js';
 import { html } from '../lib.js'
+import { notify } from '../notify.js';
 
-const editTemp = (onSubmit, meme) => html`
+const editTemp = (onSubmit, meme) => html `
 <section id="edit-meme">
 <form @submit=${onSubmit} id="edit-form">
     <h1>Edit Meme</h1>
@@ -37,14 +38,13 @@ export async function editView(ctx) {
         if (meme.title == '' ||
             meme.describtion == '' ||
             meme.imageUrl == '') {
-            return alert('All fields are required!');
+            return notify('All fields are required!');
         }
 
         await editMeme(memeId, meme);
         event.target.reset();
-        ctx.page.redirect('/memes/'+memeId);
+        ctx.page.redirect('/memes/' + memeId);
     }
 
 
 }
-

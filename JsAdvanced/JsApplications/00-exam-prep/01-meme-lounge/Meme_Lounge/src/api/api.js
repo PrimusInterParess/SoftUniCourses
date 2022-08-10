@@ -1,3 +1,4 @@
+import { notify } from "../notify.js";
 import { clearUserData, getUserData } from "../util.js";
 
 const host = 'http://localhost:3030';
@@ -6,8 +7,7 @@ async function request(url, method, data) {
 
     const options = {
         method,
-        headers: {
-        }
+        headers: {}
     };
 
     if (data != undefined) {
@@ -43,7 +43,7 @@ async function request(url, method, data) {
 
     } catch (err) {
 
-        alert(err.message);
+        notify(err.message);
         throw err;
     }
 }
@@ -63,4 +63,3 @@ export async function put(url, data) {
 export async function del(url) {
     return request(url, 'delete');
 }
-
