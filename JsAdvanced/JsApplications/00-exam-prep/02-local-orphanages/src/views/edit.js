@@ -1,48 +1,50 @@
-import { createPost } from "../api/posts.js";
 import { html } from "../lib.js";
+import { getPostById ,editPost} from "../api/posts.js";
 
-const createTemp = (onSubmit) => html`
-<section id="create-page" class="auth">
-<form @submit=${onSubmit} id="create">
-    <h1 class="title">Create Post</h1>
+
+const editTemp = (onSubmit, post) => html`
+<section id="edit-page" class="auth">
+<form @submit=${onSubmit} id="edit">
+    <h1 class="title">Edit Post</h1>
 
     <article class="input-group">
-        <label for="title">Post Title</label>
-        <input type="title" name="title" id="title">
+        <label for="title"></label>
+        <input type="title" name="title" id="title" .value="${post.title}">
     </article>
 
     <article class="input-group">
         <label for="description">Description of the needs </label>
-        <input type="text" name="description" id="description">
+        <input type="text" name="description" id="description" .value="${post.description}">
     </article>
 
     <article class="input-group">
         <label for="imageUrl"> Needed materials image </label>
-        <input type="text" name="imageUrl" id="imageUrl">
+        <input type="text" name="imageUrl" id="imageUrl" .value="${post.imageUrl}">
     </article>
 
     <article class="input-group">
         <label for="address">Address of the orphanage</label>
-        <input type="text" name="address" id="address">
+        <input type="text" name="address" id="address" .value="${post.address}">
     </article>
 
     <article class="input-group">
         <label for="phone">Phone number of orphanage employee</label>
-        <input type="text" name="phone" id="phone">
+        <input type="text" name="phone" id="phone" .value="${post.phone}">
     </article>
 
-    <input type="submit" class="btn submit" value="Create Post">
+    <input type="submit" class="btn submit" value="Edit Post">
 </form>
-</section>
-`;
+</section>`;
 
-export function createView(ctx) {
-    ctx.render(createTemp(onSubmit));
+export async function editView(ctx) {
+    const postId = ctx.params.id;
+
+    const post = await getPostById(postId);
+
+    ctx.render(editTemp(onSubmit, post));
 
     async function onSubmit(evnt) {
         evnt.preventDefault();
-
-
 
         const formData = new FormData(evnt.target);
 
@@ -62,8 +64,9 @@ export function createView(ctx) {
             return alert('All fields are required!');
         }
 
-        await createPost(post);
+        await editPost(postId, post);
         evnt.target.reset();
-        ctx.page.redirect('/');
+
+        ctx.page.redirect('/posts/' + postId);
     }
 }

@@ -3,17 +3,25 @@ import { page, render } from './lib.js';
 import { getUserData } from './util.js'
 import { createView } from './views/create.js';
 import { dashboardView } from './views/dashboard.js';
+import { detailsView } from './views/details.js';
+import { editView } from './views/edit.js';
 import { loginView } from './views/login.js';
+import { myPostsView } from './views/my-posts.js';
 import { registerView } from './views/registger.js';
 
 page(decorateContext);
-page('/',dashboardView);
+page('/', dashboardView);
 page('/login', loginView);
 page('/register', registerView);
-page('/create',createView);
+page('/create', createView);
+page('/posts/:id', detailsView);
+page('/edit/:id', editView);
+page('/my-posts', myPostsView);
+
+
 
 const main = document.querySelector('main');
-document.getElementById('logoutBtn').addEventListener('click',onLogout);
+document.getElementById('logoutBtn').addEventListener('click', onLogout);
 updateNav();
 page.start();
 

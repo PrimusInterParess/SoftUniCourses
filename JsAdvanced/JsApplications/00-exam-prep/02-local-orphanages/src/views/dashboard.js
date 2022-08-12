@@ -14,7 +14,7 @@ const dashboardCard = (card) => html`
 <h2 class="post-title">${card.title}</h2>
 <img class="post-image" src=${card.imageUrl} alt="Kids clothes">
 <div class="btn-wrapper">
-    <a href="/data/posts/${card._id}" class="details-btn btn">Details</a>
+    <a href="/posts/${card._id}" class="details-btn btn">Details</a>
 </div>
 </div>`
 
