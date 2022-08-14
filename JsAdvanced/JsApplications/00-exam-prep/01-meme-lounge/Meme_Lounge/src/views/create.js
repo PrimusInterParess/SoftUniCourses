@@ -33,7 +33,7 @@ export function createView(ctx) {
         };
 
         if (meme.title == '' ||
-            meme.describtion == '' ||
+            meme.description == '' ||
             meme.imageUrl == '') {
             return notify('All fields are required!');
         }
