@@ -1,0 +1,11 @@
+h1 {
+    font-size: 28px;
+}
+
+section article header p#author {
+    font-style: italic;
+}
+
+section article p#author-message {
+    font-size: 24px;
+}
