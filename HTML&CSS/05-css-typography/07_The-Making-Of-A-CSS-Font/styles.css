@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orienta&display=swap');
+
+body {
+    background-color: darkred;
+    text-align: center;
+
+}
+
+h1 {
+    color: #fff;
+    font-family: Righteous ,cursive;
+    font-size: 45px;
+    line-height: 45px;
+    text-transform: uppercase;
+}
+
+h2{
+    font-size: 30px;
+    line-height: 50px;
+    letter-spacing: -1px;
+    color: #DFBF84;
+}
+
+p{
+    font-family: Orienta,sans-serif;
+    font-size: 16px;
+    color: #f6f6f6;
+}
