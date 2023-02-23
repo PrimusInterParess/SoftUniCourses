@@ -1,0 +1,15 @@
+section .card{
+   display: block;
+}
+
+section.card img{
+    position: absolute;
+    width: 100%;
+}
+
+
+.section {
+    background-color: lightcoral;
+    width: 100%;
+    position: relative;
+}
