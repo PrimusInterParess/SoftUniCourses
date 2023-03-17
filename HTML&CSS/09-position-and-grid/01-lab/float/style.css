@@ -8,11 +8,11 @@ img {
   border: 3px dashed black;
 }
 
-/* .clearfix {
+.clearfix {
   overflow: auto;
 }
 .clearfix::after {
   content: "";
   clear: both;
   display: table;
-} */
+}

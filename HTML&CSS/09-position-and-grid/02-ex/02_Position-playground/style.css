@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .viewport {
     display: block;
     background-color: coral;
@@ -12,3 +13,69 @@ img {
     display: block;
     background-color: cornflowerblue;
 }
+=======
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+.viewport, .viewport2 {
+    position: relative;
+    height: 50vh;
+}
+
+.viewport{
+    
+    background-color: aqua;
+}
+
+.viewport2{
+    
+    background-color: lightcoral;
+}
+
+.card img, .card2 img{
+position: relative;
+width: 400px;
+
+}
+
+.viewport .card, .viewport2 .card2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    transform: translate(-50%, -50%);
+}
+
+.viewport .card i{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: white;
+}
+
+.viewport2 .card2 i{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: white;
+}
+>>>>>>> a36c3a23982417270e5d0d52e0649a9cc189f1c0
