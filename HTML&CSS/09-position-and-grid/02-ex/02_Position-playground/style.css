@@ -1,15 +1,64 @@
-section .card{
-   display: block;
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-section.card img{
-    position: absolute;
-    width: 100%;
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
 }
 
-
-.section {
-    background-color: lightcoral;
-    width: 100%;
+.viewport, .viewport2 {
     position: relative;
+    height: 50vh;
+}
+
+.viewport{
+    
+    background-color: aqua;
+}
+
+.viewport2{
+    
+    background-color: lightcoral;
+}
+
+.card img, .card2 img{
+position: relative;
+width: 400px;
+
+}
+
+.viewport .card, .viewport2 .card2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    transform: translate(-50%, -50%);
+}
+
+.viewport .card i{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: white;
+}
+
+.viewport2 .card2 i{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: white;
 }
