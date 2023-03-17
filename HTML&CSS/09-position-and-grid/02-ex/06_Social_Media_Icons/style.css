@@ -1,0 +1,32 @@
+ul {
+    display: inline-block;
+}
+
+li {
+    display: inline-block;
+    padding: 20px;
+    text-decoration: none;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: lightgrey;
+    text-align: center;
+}
+
+li a i {
+    color: black;
+}
+
+li a i.fa-brands.fa-facebook:hover {
+    color: blue;
+}
+
+li a i.fa-brands.fa-twitter:hover,
+li a i.fa-brands.fa-linkedin:hover,
+li a i.fa-brands.fa-instagram:hover {
+    color: lightblue;
+}
+
+li a i.fa-brands.fa-google-plus:hover {
+    color: lightsalmon;
+}

@@ -1,0 +1,16 @@
+.card {
+    position: relative;
+    left: 100px;
+    top: 100px;
+    width: 400px;
+}
+
+.cup {
+    width: 100%;
+}
+
+.new {
+    position: absolute;
+    right: -120px;
+    bottom: 250px;
+}
