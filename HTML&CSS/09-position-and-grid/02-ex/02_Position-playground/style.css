@@ -1,0 +1,14 @@
+.viewport {
+    display: block;
+    background-color: coral;
+    position: relative;
+}
+
+img {
+    width: 100px;
+}
+
+.viewport1 {
+    display: block;
+    background-color: cornflowerblue;
+}

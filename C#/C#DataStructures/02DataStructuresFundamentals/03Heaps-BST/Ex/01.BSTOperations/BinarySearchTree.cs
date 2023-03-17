@@ -87,8 +87,6 @@
             this.EachInOrderDfs(this.Root, action);
         }
 
-
-
         public List<T> Range(T lower, T upper)
         {
             var result = new List<T>();
