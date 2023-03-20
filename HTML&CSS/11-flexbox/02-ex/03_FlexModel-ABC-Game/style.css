@@ -1,0 +1,20 @@
+
+*{
+    box-sizing: border-box;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    border: 1px dashed black;
+    align-items: center;
+    gap: 5px;
+   max-width: 15vw;
+   height: 15rem;
+}
+
+.container span{
+    font-family: Arial, Helvetica, sans-serif;
+   font-size: 20px;
+    border: 1px solid black;
+}

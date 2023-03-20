@@ -1,0 +1,35 @@
+/* General styling */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #EEE;
+    padding: 5rem;
+}
+
+header,
+main,
+aside,
+footer {
+    background-color: #FFF;
+    padding: 2rem;
+    border-radius: 0.4rem;
+    border-color: #000;
+}
+
+header,
+footer {
+    flex-basis: 100%;
+}
+
+main {
+    flex: 8 1 40rem;
+}
+
+aside {
+   flex: 2 1 20rem;
+
+}
