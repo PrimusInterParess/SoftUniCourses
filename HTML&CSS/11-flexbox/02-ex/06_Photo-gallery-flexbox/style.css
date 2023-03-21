@@ -1,0 +1,34 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: lightgray;
+    padding: 80px 80px;
+}
+
+section,
+ul,
+li{
+    display: flex;
+}
+
+ul{
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 100px;
+}
+
+li{
+    box-shadow: 2px 2px 4px #000000;
+    border: 15px solid black;
+    width: 22%;
+    height: 700px;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+img{
+    padding: 15px;
+}
