@@ -95,12 +95,6 @@ p {
     align-items: center;
 }
 
-
-/* Common */
-
-.section-subtitle{
-}
-
 .section-title{
     margin-bottom: 8px;
     font-size: 48px;
@@ -169,18 +163,18 @@ p {
 #features .container{
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-evenly;
   gap: 30px;
-  justify-content: space-between;
-
 }
 
 #features .feature{
     padding: 40px;
     width: 48%;
-    max-width: 800px;
     border-radius: 6px ;
     border: 1px solid #7e8bb6;
     height: 280px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 #features .feature:hover{
