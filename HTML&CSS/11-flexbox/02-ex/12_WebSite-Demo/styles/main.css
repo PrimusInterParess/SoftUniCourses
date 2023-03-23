@@ -26,6 +26,14 @@ p {
     background-color: #070e27;
 }
 
+@media(width > 1200px)
+{
+    .header{
+        margin: 0 auto 0 auto;
+        max-width: 1300px;
+    }
+}
+
 .header .navigation .nav-list {
     display: flex;
     gap: 16px;
@@ -70,14 +78,16 @@ p {
     align-items: center;
 }
 
+#hero .welcome>* {
+    width: 45%;
+}
+
 #hero .welcome .title {
     line-height: 1.2;
     font-size: 48px;
 }
 
-#hero .welcome>* {
-    width: 45%;
-}
+
 
 #hero .welcome .info {
     margin-bottom: 12PX;
@@ -131,7 +141,7 @@ p {
     margin-bottom: 48px;
 }
 
-#how .row-img {
+#how img.row-img {
     width: 60%;
 }
 
@@ -149,10 +159,18 @@ p {
 
 #features{
     padding: 70px 64px;
+   
 }
 
+.features-heading{
+    display: flex;
+    margin: 0 auto 24px auto;
+    max-width: 1300px;
+    flex-wrap: wrap;
+}
 #features .section-title{
     margin-bottom: 0px;
+    width: 100%;
 }
 
 #features .section-subtitle{
@@ -160,21 +178,19 @@ p {
     margin-bottom: 30px;
 }
 
-#features .container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 30px;
+#features .container .features-row{
+    display: flex;
+    gap: 24px;
+    margin: 0 auto 24px auto;
+    max-width: 1300px;
 }
 
 #features .feature{
     padding: 40px;
-    width: 48%;
+    width: 50%;
     border-radius: 6px ;
     border: 1px solid #7e8bb6;
-    height: 280px;
-    max-width: 900px;
-    margin: 0 auto;
+    height: 230px;
 }
 
 #features .feature:hover{
@@ -190,4 +206,106 @@ p {
 #features .feature .title{
     margin-bottom: 5px;
     font-size: 24px;
+}
+
+
+@media screen and (max-width:767px){
+        
+    #hero .welcome {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+
+    }
+    
+    #hero .welcome .title {
+        width: 100%;
+    }
+
+    #hero .welcome > div {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width:897px) {
+    #how .row {
+        gap: 10px;
+    }
+         
+    #how .row:not(:last-child) {
+        margin-bottom: 36px;
+    }
+    
+    #how .row .row-img {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width:745px) {
+    #hero .partners {
+     flex-wrap: wrap;
+     justify-content: space-around;
+     align-items: center;
+     gap: 10px;
+    }
+}
+
+@media screen and (max-width:1445px) {
+     
+    .features-heading{
+        display: flex;
+
+    }
+    #features .section-title{
+       font-size: 40px;
+    }
+    
+    #features .section-subtitle{
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    #features .container .features-row{
+        display: flex;
+        flex-direction: column;
+       gap: 12px;
+    }
+    
+    #features .feature{
+        padding: 20px;
+        width: 100%;
+        border-radius: 6px ;
+        border: 1px solid #7e8bb6;
+        height: 230px;
+    }
+    
+    #features .feature:hover{
+        background-color: #162044;
+        cursor: pointer;
+    }
+    
+    #features .feature .feature-img{
+        margin-bottom: 5px;
+    }
+    
+    
+    #features .feature .title{
+        margin-bottom: 5px;
+        font-size: 16px;
+    }
+
+    #features .feature .text{
+        margin-bottom: 5px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width:586px){
+    .header .navigation {
+      display: none;
+    }
+
+    .header .btn{
+        margin-left: auto;
+    }
 }
