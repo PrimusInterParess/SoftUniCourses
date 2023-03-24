@@ -1,1 +1,2 @@
-# SoftUniCourses
+# SoftUni
+software courses
