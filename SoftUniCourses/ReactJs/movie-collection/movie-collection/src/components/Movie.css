@@ -1,0 +1,16 @@
+.movie-article{
+border: 3px black solid; 
+box-shadow: 5px 10px #888888;
+border-radius: 6px;
+width: 30%;
+margin-bottom: 30px;
+align-items: center;
+padding: 5px;
+}
+
+.btn-delete{
+    border-radius: 3px;
+    margin-left: 4px;
+    color: red;
+    display: block;
+}
