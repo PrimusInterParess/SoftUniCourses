@@ -37,15 +37,15 @@ export default function UserList() {
         setShowAddUser(true);
     };
 
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = async (e) => {
         e.preventDefault();
-
-        console.log(e.currentTarget)
-        const formData= new FormData(e.currentTarget);
+        
+        const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData);
+        const newUser = await userService.CreateUser(data);
 
-        console.log(data);
-     
+        setUsers(state => [...state, newUser]);
+
     };
 
 

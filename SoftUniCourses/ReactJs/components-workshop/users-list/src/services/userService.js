@@ -17,13 +17,21 @@ export const GetUser = async (id) => {
     return result.user;
 };
 
-export const CreateUser = async (data) => {
-    const response = await fetch(baseUrl,{
-        method:'POST',
-        headers:{
-            'content-type':'application/json',
+export const CreateUser = async (inputData) => {
+    const { city, country, street, streetNumber, ...data } = inputData;
+    data.address = {
+        city,
+        country,
+        street,
+        streetNumber,
+    }
+    
+    const response = await fetch(baseUrl, {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
         },
-        body:JSON.stringify(data)
+        body: JSON.stringify(data)
     });
 
     const result = await response.json();
