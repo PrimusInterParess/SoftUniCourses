@@ -3,34 +3,58 @@ import * as userService from '../services/userService';
 import { useEffect, useState } from 'react';
 import UserDetails from './UserDetails';
 import CreateEdit from './CreateEdit';
+import Delete from './Delete';
 
 export default function UserList() {
 
     const [users, setUsers] = useState([]);
     const [currentUser, setCurrentUser] = useState(null);
     const [showAddUser, setShowAddUser] = useState(false);
+    const [showEditUser, setShowEditUser] = useState(false);
+    const [cuurentUserId, setCurrentUserId] = useState(null);
 
     useEffect(() => {
-        userService.GetAll()
+        userService.getAll()
             .then(setUsers);
     }, []);
 
     const onInfoClick = (id) => {
-        userService.GetUser(id)
+        userService.getUser(id)
             .then(setCurrentUser);
     };
 
     const onEditClick = (id) => {
-        console.log(id)
+        userService.getUser(id)
+        .then(setCurrentUser)
+        setShowEditUser(true);
     };
 
+    const editUser = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const data = Object.fromEntries(formData);
+        await userService.editUser(data,currentUser._id);
+        onEscpClick();
+    }
+
+
     const onDeleteClick = (id) => {
-        console.log(id)
+        setCurrentUserId(id);
     };
+
+    const deleteUser = async (e) => {
+        e.preventDefault();
+
+        await userService.deleteUser(cuurentUserId);
+        setUsers(state => state.filter(u => u._id !== cuurentUserId));
+        onEscpClick();
+    }
 
     const onEscpClick = () => {
         setCurrentUser(null);
         setShowAddUser(false);
+        setCurrentUserId(null);
+        setShowEditUser(false);
     };
 
     const onUserAddClick = () => {
@@ -39,21 +63,22 @@ export default function UserList() {
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData);
-        const newUser = await userService.CreateUser(data);
-
+        const newUser = await userService.createUser(data);
         setUsers(state => [...state, newUser]);
-
+        onEscpClick();
     };
 
 
     return (
         <>
             <section className="card users-container">
-                {currentUser && !showAddUser && <UserDetails escape={onEscpClick} user={currentUser} />}
+                {currentUser && !showAddUser && !showEditUser && <UserDetails escape={onEscpClick} user={currentUser} />}
                 {showAddUser && <CreateEdit onSubmitHandler={onSubmitHandler} escape={onEscpClick} />}
+                {cuurentUserId && <Delete deleteUser={deleteUser} escape={onEscpClick} />}
+                {showEditUser && <CreateEdit escape={onEscpClick} user={currentUser} onSubmitHandler={editUser}  /> }
                 <form className="search-form">
                     <h2>
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="user"
