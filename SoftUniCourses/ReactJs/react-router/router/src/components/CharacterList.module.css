@@ -1,0 +1,15 @@
+.ul-characters-list{
+    text-decoration: none;
+    list-style: none;
+}
+
+.ul-characters-list li a{
+    text-decoration: none;
+    color: antiquewhite;
+}
+
+.ul-characters-list li{
+    border: 1px dashed  antiquewhite;
+}
+
+

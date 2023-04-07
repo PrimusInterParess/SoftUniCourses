@@ -1,0 +1,24 @@
+ a.character-nav-a {
+
+     text-decoration: none;
+     color: antiquewhite;
+     border: 1px dashed antiquewhite;
+     border-radius: 4px;
+     margin-right: 30px;
+     text-align: center;
+     padding: 3px;
+ }
+
+ .character-nav {
+     margin-bottom: 15px;
+ }
+
+ .character-nav ul {
+     text-decoration: none;
+     list-style: none;
+ }
+
+ .character-nav ul li{
+    margin-bottom: 15px;
+    display: inline;
+ }
