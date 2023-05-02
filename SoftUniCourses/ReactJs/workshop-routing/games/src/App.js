@@ -5,9 +5,10 @@ import { Register } from "./components/Register/Register";
 import { Create } from "./components/Create/Create";
 import { Catalog } from "./components/Catalog/Catalog";
 import { Details } from "./components/Details/Details";
-import { AuthContext } from "./contexts/AuthContext";
 
+import { AuthContext } from "./contexts/AuthContext";
 import * as gameService from './services/gameService';
+import * as authService from './services/authService';
 
 import { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
@@ -32,16 +33,21 @@ function App() {
     }
 
     const onLoginSubmit = async (values) => {
-        console.log(values);
+      try {
+        const result = await authService.login(values);
+        setAut(result);
+      } catch (error) {
+        console.log(error);
+      }
     }
     return (
-        <AuthContext.Provider value={{onLoginSubmit}}>
-        <div className="App">
+        <AuthContext.Provider value={{ onLoginSubmit }}>
+            <div className="App">
                 <Header />
                 <main id="main-content">
                     <Routes>
                         <Route path='/' element={<Home />} />
-                        <Route path="/login" element={<Login/>} />
+                        <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/catalog" element={<Catalog games={games} />} />
                         <Route path="/catalog/:gameId" element={<Details games={games} />} />

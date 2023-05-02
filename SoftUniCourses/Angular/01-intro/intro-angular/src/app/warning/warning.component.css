@@ -1,0 +1,6 @@
+.warning-heading{
+    border: 1px dashed yellow;
+    display: inline;
+    color: yellow;
+    background-color: red;
+}

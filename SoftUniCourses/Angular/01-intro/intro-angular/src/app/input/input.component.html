@@ -1,0 +1,10 @@
+<h1>Input component</h1>
+
+<input type="text" [(ngModel)]="username">
+<button [disabled]="username===''" type="button" (click)="OnReset()">Update</button>
+<p *ngIf="displayNgf; else noUser"> User name: {{username}}</p>
+<ng-template #noUser>
+    <p>
+        No user
+    </p>
+</ng-template>
