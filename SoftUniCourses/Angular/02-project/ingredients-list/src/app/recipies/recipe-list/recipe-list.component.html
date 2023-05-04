@@ -1,17 +1,29 @@
 <div class="row">
     <div class="col-xs-12">
-        <button>Add new recipe</button>
+        <button class="btn btn-primary">Add new recipe</button>
     </div>
 </div>
+
+<hr>
+<!-- [src]="recipe.imagePath" Property binding --> 
+ <!-- src="{{recipe.imagePath}}" String inerpolation -->
 <div class="row">
     <div class="col-xs-12">
-        <a href="#" class="list-group-item cleafix">
+        <a 
+        href="#" 
+        class="list-group-item clearfix" 
+        *ngFor="let recipe of recipies"
+        >
             <div class="pull-left">
-                <h4 class="list-group-item-heading">Recipe name</h4>
-                <p class="list-group-item-text">Description</p>
+                <h4 class="list-group-item-heading">{{recipe.name}}</h4>
+                <p class="list-group-item-text">{{recipe.description}}</p>
             </div>
             <span class="pull-right">
-                <img style="max-height: 50px;" src="" alt="" class="img-responsive">
+                <img 
+                style="max-height: 50px;"
+                 src="{{recipe.imagePath}}" 
+                 alt="" class="img-responsive"
+                 >
             </span>
         </a>
         <app-recipe-item>
