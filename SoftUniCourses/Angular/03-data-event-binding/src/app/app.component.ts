@@ -25,4 +25,12 @@ export class AppComponent {
       content: bluepringData.serverContent
     });
   }
+
+  onChangeFirst() {
+    this.serverElements[0].name = 'change';
+  }
+
+  onDestroyFirst() {
+    this.serverElements.splice(0, 1);
+  }
 }
