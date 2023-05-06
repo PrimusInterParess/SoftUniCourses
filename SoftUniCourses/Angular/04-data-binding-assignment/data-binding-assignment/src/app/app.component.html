@@ -1,0 +1,12 @@
+<app-game-control
+(onGameStart)="onGameStarted($event)"
+></app-game-control>
+<app-odd
+*ngFor="let item of oddNumbers"
+[oddNumber]="item"
+></app-odd>
+<app-even
+*ngFor="let item of evenNumbers"
+[evenNumber]="item"
+>
+</app-even>
