@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter,Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   collapsed = true;
+
+  @Output() onNavigateClicled= new EventEmitter<string>();
+
+  onNavigateClick(feature:string){
+    console.log(feature + ' from nav');
+    this.onNavigateClicled.emit(feature);
+  }
 }
