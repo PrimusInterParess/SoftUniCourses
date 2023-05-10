@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Recipe } from './recipe-list/recepe.model';
 
 @Component({
   selector: 'app-recipies',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./recipies.component.css']
 })
 export class RecipiesComponent {
+  currentClicked:Recipe;
 
+  currentlyClicked(currentRecipe:Recipe){
+    this.currentClicked=currentRecipe;
+    console.log(this.currentClicked);
+  }
 }

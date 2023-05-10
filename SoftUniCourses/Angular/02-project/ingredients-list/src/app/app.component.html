@@ -1,11 +1,15 @@
-<app-header
-(onNavigateClicled)="onNavigate($event)"
-></app-header>
+<app-header (onNavigateClicled)="onNavigate($event)"></app-header>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <app-recipies *ngIf="feature ==='recipe'"></app-recipies>
-            <app-shopping-list *ngIf="feature !=='recipe'"></app-shopping-list>
+            <app-recipies 
+            *ngIf="feature ==='recipe'"
+            >
+            </app-recipies>
+            <app-shopping-list 
+            *ngIf="feature !=='recipe'"
+            >
+            </app-shopping-list>
         </div>
     </div>
 </div>
