@@ -10,7 +10,6 @@
 <div class="row">
     <div class="col-xs-12">
         <app-recipe-item
-        (recipeClicked)="currenClicked($event)"
         *ngFor="let recipeEl of recipies"
         [recipe]="recipeEl"
         >

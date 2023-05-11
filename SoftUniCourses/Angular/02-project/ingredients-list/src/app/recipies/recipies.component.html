@@ -1,12 +1,13 @@
 <div class="row">
     <div class="col-md-5">
-        <app-recipe-list (currentClickedRecipe)="currentlyClicked($event)">
+        <app-recipe-list>
         </app-recipe-list>
     </div>
     <div class="col-md-7">
         <app-recipe-details 
-        *ngIf="currentClicked; else info" 
-        [recipe]="currentClicked">
+        *ngIf="currentRecipe; else info"
+        [recipe]="currentRecipe"
+        >
         </app-recipe-details>
     </div>
     <ng-template #info>
