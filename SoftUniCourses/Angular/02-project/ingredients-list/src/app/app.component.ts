@@ -6,11 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-
-  feature:string='recipe';
-
-  onNavigate(inputFeature: string) {
-    this.feature=inputFeature;
-  }
-
 }
