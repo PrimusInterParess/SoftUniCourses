@@ -23,6 +23,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   onAddNew() {
-      this.router.navigate(['new'], { relativeTo: this.route, queryParamsHandling: 'preserve' });
+      this.router.navigate(['add-new-recipe'], { relativeTo: this.route, queryParamsHandling: 'preserve' });
   }
 }
