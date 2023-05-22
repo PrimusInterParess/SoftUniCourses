@@ -17,8 +17,6 @@ export class AddRecipeFormComponent {
   };
 
   onSubmit(f: NgForm) {
-    console.log(f.value);
-    console.log(f.valid);
     this.submitted=true;
     this.user.email = f.value.userData.email;
     this.user.password = f.value.userData.password;
